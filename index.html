@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shaheen Toefy | AI QA Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+<header class="bg-blue-900 dark:bg-gray-800 text-white py-6 shadow-md sticky top-0 z-50">
+  <div class="container mx-auto flex justify-between items-center px-6">
+    <h1 class="text-2xl font-bold">Shaheen Toefy</h1>
+    <nav class="space-x-4 flex items-center">
+      <a href="#about" class="hover:text-orange-400 transition">About Me</a>
+      <a href="#skills" class="hover:text-orange-400 transition">Skills</a>
+      <a href="#projects" class="hover:text-orange-400 transition">Projects</a>
+      <a href="#contact" class="hover:text-orange-400 transition">Contact</a>
+      <button id="darkModeToggle" class="ml-4 px-3 py-1 rounded hover:bg-orange-400 transition">🌙</button>
+    </nav>
+  </div>
+</header>
+
+<section id="hero" class="flex flex-col items-center justify-center h-screen text-center px-6">
+  <h2 class="text-4xl md:text-5xl font-bold mb-4 fade-in">AI QA Engineer</h2>
+  <p class="text-xl md:text-2xl max-w-xl mb-6">Accelerating product quality with AI-driven testing solutions, automation, and innovative QA strategies.</p>
+</section>
+
+<section id="about" class="container mx-auto py-12 px-6 reveal">
+  <h2 class="text-3xl font-bold mb-6 text-center">About Me</h2>
+  <p class="max-w-3xl mx-auto text-center">
+    I am a hands-on AI QA Engineer, building automated testing frameworks using Playwright, Cypress, and Postman. My work accelerates time-to-market while ensuring top-quality software products.
+  </p>
+</section>
+
+<section id="skills" class="container mx-auto py-12 px-6 reveal bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
+  <h2 class="text-3xl font-bold mb-6 text-center">Skills & Tools</h2>
+  <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+    <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
+      <h3 class="font-semibold text-lg mb-2">Frontend</h3>
+      <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-200">
+        <li>HTML</li><li>CSS / SCSS</li><li>JavaScript / TypeScript</li><li>React / Next.js</li>
+      </ul>
+    </div>
+    <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
+      <h3 class="font-semibold text-lg mb-2">Backend</h3>
+      <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-200">
+        <li>Node.js / Express</li><li>PHP / SQL</li><li>MongoDB / PostgreSQL</li>
+      </ul>
+    </div>
+    <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
+      <h3 class="font-semibold text-lg mb-2">QA & AI</h3>
+      <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-200">
+        <li>Playwright / Cypress</li><li>Postman / REST & GraphQL</li><li>AI-driven QA scripts</li><li>CI/CD Integration</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="container mx-auto py-12 px-6 reveal">
+  <h2 class="text-3xl font-bold mb-6 text-center">Projects & AI QA Contributions</h2>
+  <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+    <div onclick="openProject('https://github.com/ShaheenT/ishopp')" class="cursor-pointer p-6 rounded-xl shadow-md bg-white dark:bg-gray-800 hover:scale-105 transition">
+      <h3 class="text-xl font-semibold mb-2">iShopp</h3>
+      <p class="text-gray-600 dark:text-gray-300">Implemented Playwright & Postman automation, reduced QA cycle by 40%.</p>
+    </div>
+    <div onclick="openProject('https://github.com/ShaheenT/xbetapp')" class="cursor-pointer p-6 rounded-xl shadow-md bg-white dark:bg-gray-800 hover:scale-105 transition">
+      <h3 class="text-xl font-semibold mb-2">XBetApp</h3>
+      <p class="text-gray-600 dark:text-gray-300">AI-driven testing for mobile betting workflows, integrated CI/CD pipeline.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="container mx-auto py-12 px-6 reveal bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
+  <h2 class="text-3xl font-bold mb-6 text-center">Contact Me</h2>
+  <form id="contactForm" class="max-w-2xl mx-auto flex flex-col space-y-4">
+    <input type="text" placeholder="Your Name" required class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+    <input type="email" placeholder="Your Email" required class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+    <textarea placeholder="Your Message" required class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"></textarea>
+    <button type="submit" class="p-3 rounded bg-blue-900 hover:bg-orange-400 text-white transition">Send Message</button>
+  </form>
+  <p class="mt-4 text-center">Email: <a href="mailto:shaheentoefy@gmail.com" class="underline hover:text-orange-400">shaheentoefy@gmail.com</a></p>
+  <p class="text-center">GitHub: <a href="https://github.com/ShaheenT" class="underline hover:text-orange-400">ShaheenT</a></p>
+</section>
+
+<footer class="text-center py-6 bg-blue-900 dark:bg-gray-800 text-white">
+  © 2025 Shaheen Toefy | Built with ❤️
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
