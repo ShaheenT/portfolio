@@ -17,22 +17,38 @@
       <h1 class="text-2xl font-bold">SQ Army Knife</h1>
     </div>
     <nav class="space-x-4 flex items-center">
-      <a href="#resources" class="hover:text-orange-400 transition">Resources</a>
-      <a href="#about" class="hover:text-orange-400 transition">About</a>
-      <a href="#contact" class="hover:text-orange-400 transition">Contact</a>
-      <a href="https://www.linkedin.com/in/shaheentoefy" target="_blank" rel="noopener noreferrer"
-        <img src="./images/linkedin-icon.png" alt="LinkedIn" class="w-6 h-6 hover:scale-110 transition"/>
-      </a>
-    </nav>
+  <a href="index.html" class="hover:text-orange-400 transition font-semibold">
+    ← Home
+  </a>
+  <a href="#resources" class="hover:text-orange-400 transition">Resources</a>
+  <a href="#about" class="hover:text-orange-400 transition">About</a>
+  <a href="#contact" class="hover:text-orange-400 transition">Contact</a>
+  <a href="https://www.linkedin.com/in/shaheentoefy" target="_blank" rel="noopener noreferrer">
+    <img src="./images/linkedin-icon.png" alt="LinkedIn" class="w-10 h-10 hover:scale-110 transition"/>
+  </a>
+</nav>
+
   </div>
 </header>
 
 <!-- HERO -->
-<section id="hero" class="flex flex-col items-center justify-center h-screen text-center px-6 bg-gradient-to-b from-blue-700 to-blue-500 text-white">
-  <h2 class="text-4xl md:text-5xl font-bold mb-4">Everything a QA Tester Needs, Exactly When They Need It</h2>
-  <p class="max-w-2xl text-lg md:text-xl mb-8">Reusable automation scripts, API collections, AI-enhanced QA frameworks, and CI/CD templates — all in one place.</p>
-  <a href="#resources" class="px-6 py-3 bg-orange-500 hover:bg-orange-400 rounded-full text-lg font-semibold transition">Explore Resources</a>
+<section id="hero" class="flex flex-col items-center justify-center h-screen text-center px-6 
+  bg-gradient-to-b from-gray-800 via-gray-700 to-gray-900 text-white relative overflow-hidden">
+  
+  <!-- Optional: subtle diagonal stripes or tool texture overlay -->
+  <div class="absolute inset-0 bg-[url('./images/knife-pattern.png')] bg-repeat opacity-10 -z-10"></div>
+
+  <h2 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+    Everything a QA Tester Needs, Exactly When They Need It
+  </h2>
+  <p class="max-w-2xl text-lg md:text-xl mb-8 drop-shadow-md">
+    Reusable automation scripts, API collections, AI-enhanced QA frameworks, and CI/CD templates — all in one place.
+  </p>
+  <a href="#resources" class="px-6 py-3 bg-red-600 hover:bg-red-500 rounded-full text-lg font-semibold shadow-lg transition">
+    Explore Resources
+  </a>
 </section>
+
 
 <!-- RESOURCES CARDS -->
 <section id="resources" class="container mx-auto py-12 px-6">
