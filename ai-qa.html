@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI QA Dashboard — Shaheen Toefy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Prism for syntax highlighting -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <style>
+    /* small modal backdrop fade */
+    .modal-backdrop { background: rgba(2,6,23,0.6); }
+    pre.code-block { max-height: 240px; overflow: auto; border-radius: 6px; }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+
+  <!-- HEADER -->
+  <header class="bg-white dark:bg-gray-800 shadow sticky top-0 z-40">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+      <div>
+        <h1 class="text-xl font-semibold">AI QA Engineer Dashboard — Shaheen Toefy</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Playwright • Cucumber • Postman • AI-driven tests • CI/CD</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="px-3 py-2 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">← Back to Home</a>
+        <button id="darkToggle" class="px-3 py-2 rounded bg-gray-200 dark:bg-gray-700">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="container mx-auto px-6 py-8">
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <h2 class="text-2xl font-bold">Recruiter-ready AI QA showcases</h2>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Click a card to open the repo preview: folder structure, sample tests, CI, and business impact.</p>
+      </div>
+      <div class="text-sm text-gray-600 dark:text-gray-300">Last updated: <strong>Sept 2025</strong></div>
+    </div>
+  </section>
+
+  <!-- CARDS GRID -->
+  <main class="container mx-auto px-6 pb-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <!-- Card 1 -->
+    <article class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow hover:shadow-lg transition">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-lg font-semibold">🪪 EiXNFCPro — AI QA</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">NFC digital business card platform — Playwright-focused E2E and analytics checks</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="https://github.com/ShaheenT/eixnfcpro-ai-qa" target="_blank" class="text-blue-600 dark:text-blue-400 text-sm underline">Repo</a>
+          <button class="open-modal px-2 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded" data-target="modal-eixnfcpro">Preview</button>
+        </div>
+      </div>
+      <ul class="mt-4 text-sm list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+        <li>AI test-generation → Playwright scripts</li>
+        <li>Self-healing locators & cross-browser tests</li>
+        <li>Analytics and request validation</li>
+      </ul>
+      <div class="mt-4 flex gap-2">
+        <span class="px-2 py-1 bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 rounded text-xs">E2E</span>
+        <span class="px-2 py-1 bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-200 rounded text-xs">Cross-browser</span>
+        <span class="px-2 py-1 bg-orange-100 dark:bg-orange-800 text-orange-800 dark:text-orange-200 rounded text-xs">AI-gen</span>
+      </div>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow hover:shadow-lg transition">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-lg font-semibold">🕌 Athaan Fi Beit — AI QA</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">IoT timerevent validation — Cucumber BDD + Playwright hooks</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="https://github.com/ShaheenT/athaanfibeit-ai-qa" target="_blank" class="text-blue-600 dark:text-blue-400 text-sm underline">Repo</a>
+          <button class="open-modal px-2 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded" data-target="modal-athaan">Preview</button>
+        </div>
+      </div>
+      <ul class="mt-4 text-sm list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+        <li>BDD scenarios generated from user stories</li>
+        <li>Time-sensitive trigger validation and logs</li>
+        <li>Predictive QA checks for scheduling defects</li>
+      </ul>
+      <div class="mt-4 flex gap-2">
+        <span class="px-2 py-1 bg-purple-100 dark:bg-purple-800 text-purple-800 dark:text-purple-200 rounded text-xs">IoT</span>
+        <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-800 text-indigo-800 dark:text-indigo-200 rounded text-xs">BDD</span>
+      </div>
+    </article>
+
+    <!-- Card 3 -->
+    <article class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow hover:shadow-lg transition">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-lg font-semibold">🎰 EiXBets — AI QA</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Betting & wallet platform — compliance, risk-based prioritization</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="https://github.com/ShaheenT/eixbets-ai-qa" target="_blank" class="text-blue-600 dark:text-blue-400 text-sm underline">Repo</a>
+          <button class="open-modal px-2 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded" data-target="modal-eixbets">Preview</button>
+        </div>
+      </div>
+      <ul class="mt-4 text-sm list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+        <li>Wallet top-ups, compliance & visual regression</li>
+        <li>AI-prioritized test queues (risk-first)</li>
+        <li>Responsible gaming prompts & compliance tests</li>
+      </ul>
+      <div class="mt-4 flex gap-2">
+        <span class="px-2 py-1 bg-red-100 dark:bg-red-800 text-red-800 dark:text-red-200 rounded text-xs">Compliance</span>
+        <span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-800 text-yellow-800 dark:text-yellow-200 rounded text-xs">Risk-based</span>
+      </div>
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white dark:bg-gray-800 text-center text-sm py-6">
+    © 2025 Shaheen Toefy — AI QA Engineer
+  </footer>
+
+  <!-- MODALS -->
+  <!-- Modal template: put one for each repo -->
+  <div id="modal-eixnfcpro" class="fixed inset-0 hidden items-center justify-center z-50">
+    <div class="modal-backdrop absolute inset-0"></div>
+    <div class="relative bg-white dark:bg-gray-900 rounded-xl shadow-xl max-w-4xl w-full mx-4 p-6 z-10 overflow-auto" style="max-height:90vh;">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-xl font-bold">EiXNFCPro — AI QA Preview</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Playwright E2E, analytics validations, AI-generated tests.</p>
+        </div>
+        <div class="flex gap-2">
+          <a href="https://github.com/ShaheenT/eixnfcpro-ai-qa" target="_blank" class="px-3 py-1 rounded bg-blue-600 text-white">Open Repo</a>
+          <button class="close-modal px-3 py-1 rounded bg-gray-200 dark:bg-gray-700">Close</button>
+        </div>
+      </div>
+
+      <hr class="my-4 border-gray-200 dark:border-gray-700" />
+
+      <!-- Folder structure -->
+      <h4 class="font-semibold text-sm mb-2">Folder structure</h4>
+      <pre class="bg-gray-900 text-green-200 p-3 rounded code-block"><code>eixnfcpro-ai-qa/
+├── README.md
+├── package.json
+├── playwright.config.ts
+└── tests/
+    ├── nfc-profile.spec.ts
+    └── analytics.spec.ts
+</code></pre>
+
+      <!-- Example Playwright test -->
+      <h4 class="font-semibold text-sm mt-4 mb-2">Example: tests/nfc-profile.spec.ts</h4>
+      <pre class="bg-gray-900 p-3 rounded code-block"><code class="language-typescript">// tests/nfc-profile.spec.ts
+import { test, expect } from '@playwright/test';
+
+test.describe('NFC Business Card', () => {
+  test('NFC tap opens digital profile', async ({ page }) => {
+    await page.goto('https://eixnfcpro-demo.com/nfc-scan');
+    // simulate NFC trigger (app exposes a test hook)
+    await page.click('#simulate-nfc');
+    await expect(page.locator('#profile-name')).toContainText('Shaheen Toefy');
+    await expect(page).toHaveURL(/.*profile/);
+  });
+});
+</code></pre>
+
+      <!-- Analytics test -->
+      <h4 class="font-semibold text-sm mt-4 mb-2">Example: tests/analytics.spec.ts</h4>
+      <pre class="bg-gray-900 p-3 rounded code-block"><code class="language-typescript">// tests/analytics.spec.ts
+import { test, expect } from '@playwright/test';
+
+test('Analytics event is tracked on NFC scan', async ({ page }) => {
+  await page.goto('https://eixnfcpro-demo.com/nfc-scan');
+  await page.click('#simulate-nfc');
+  const request = await page.waitForRequest('**/analytics');
+  expect(request.method()).toBe('POST');
+});
+</code></pre>
+
+      <!-- CI YAML -->
+      <h4 class="font-semibold text-sm mt-4 mb-2">GitHub Actions (playwright)</h4>
+      <pre class="bg-gray-900 p-3 rounded code-block"><code class="language-bash"># .github/workflows/playwright.yml
+name: Playwright Tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - run: npx playwright test --reporter=html
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: playwright-report
+</code></pre>
+
+      <h4 class="font-semibold text-sm mt-4 mb-2">Business impact</h4>
+      <ul class="list-disc list-inside text-sm space-y-1 text-gray-700 dark:text-gray-300">
+        <li>60% reduction in manual regression time</li>
+        <li>3x faster cross-browser validation</li>
+        <li>Automated analytics verification (avoids revenue leaks)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Modal: Athaan Fi Beit -->
+  <div id="modal-athaan" class="fixed inset-0 hidden items-center justify-center z-50">
+    <div class="modal-backdrop absolute inset-0"></div>
+    <div class="relative bg-white dark:bg-gray-900 rounded-xl shadow-xl max-w-4xl w-full mx-4 p-6 z-10 overflow-auto" style="max-height:90vh;">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-xl font-bold">Athaan Fi Beit — AI QA Preview</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Cucumber BDD, IoT hooks, scheduling validation.</p>
+        </div>
+        <div class="flex gap-2">
+          <a href="https://github.com/ShaheenT/athaanfibeit-ai-qa" target="_blank" class="px-3 py-1 rounded bg-blue-600 text-white">Open Repo</a>
+          <button class="close-modal px-3 py-1 rounded bg-gray-200 dark:bg-gray-700">Close</button>
+        </div>
+      </div>
+
+      <hr class="my-4 border-gray-200 dark:border-gray-700" />
+
+      <h4 class="font-semibold text-sm mb-2">Folder structure</h4>
+      <pre class="bg-gray-900 text-green-200 p-3 rounded code-block"><code>athaanfibeit-ai-qa/
+├── README.md
+├── package.json
+├── cucumber.js
+└── tests/
+    ├── features/prayer.feature
+    └── step_definitions/prayer.steps.ts
+</code></pre>
+
+      <h4 class="font-semibold text-sm mt-4 mb-2">Feature: tests/features/prayer.feature</h4>
+      <pre class="bg-gray-900 p-3 rounded code-block"><code class="language-bash">Feature: Prayer time triggers
+  Scenario: Athaan notification plays at Maghrib
+    Given I am a registered user in Cape Town
+    When it is time for Maghrib
+    Then the Athaan trigger should play on my connected device
+</code></pre>
+
+      <h4 class="font-semibold text-sm mt-4 mb-2">Step definitions: tests/step_definitions/prayer.steps.ts</h4>
+      <pre class="bg-gray-900 p-3 rounded code-block"><code class="language-typescript">// tests/step_definitions/prayer.steps.ts
+import { Given, When, Then } from '@cucumber/cucumber';
+import assert from 'assert';
+
+Given('I am a registered user in Cape Town', async function () {
+  this.location = 'Cape Town';
+});
+
+When('it is time for Maghrib', async function () {
+  // Simulate time trigger; in production connect to IoT test harness
+  this.triggered = true;
+});
+
+Then('the Athaan trigger should play on my connected device', async function () {
+  assert.strictEqual(this.triggered, true);
+});
+</code></pre>
+
+      <h4 class="font-semibold text-sm mt-4 mb-2">GitHub Actions (cucumber)</h4>
+      <pre class="bg-gray-900 p-3 rounded code-block"><code class="language-bash"># .github/workflows/cucumber.yml
+name: Cucumber Tests
+on: [push, pull_request]
+jobs:
+  bdd-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npx cucumber-js
+</code></pre>
+
+      <h4 class="font-semibold text-sm mt-4 mb-2">Business impact</h4>
+      <ul class="list-disc list-inside text-sm space-y-1 text-gray-700 dark:text-gray-300">
+        <li>35% fewer production defects in scheduling logic</li>
+        <li>Faster verification for region-specific prayer rules</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Modal: EiXBets -->
+  <div id="modal-eixbets" class="fixed inset-0 hidden items-center justify-center z-50">
+    <div class="modal-backdrop absolute inset-0"></div>
+    <div class="relative bg-white dark:bg-gray-900 rounded-xl shadow-xl max-w-4xl w-full mx-4 p-6 z-10 overflow-auto" style="max-height:90vh;">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-xl font-bold">EiXBets — AI QA Preview</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Playwright & AI test prioritization for compliance.</p>
+        </div>
+        <div class="flex gap-2">
+          <a href="https://github.com/ShaheenT/eixbets-ai-qa" target="_blank" class="px-3 py-1 rounded bg-blue-600 text-white">Open Repo</a>
+          <button class="close-modal px-3 py-1 rounded bg-gray-200 dark:bg-gray-700">Close</button>
+        </div>
+      </div>
+
+      <hr class="my-4 border-gray-200 dark:border-gray-700" />
+
+      <h4 class="font-semibold text-sm mb-2">Folder structure</h4>
+      <pre class="bg-gray-900 text-green-200 p-3 rounded code-block"><code>eixbets-ai-qa/
+├── README.md
+├── package.json
+├── playwright.config.ts
+└── tests/
+    ├── wallet.spec.ts
+    ├── betslip.spec.ts
+    └── compliance.spec.ts
+</code></pre>
+
+      <h4 class="font-semibold text-sm mt-4 mb-2">Example: tests/wallet.spec.ts</h4>
+      <pre class="bg-gray-900 p-3 rounded code-block"><code class="language-typescript">// tests/wallet.spec.ts
+import { test, expect } from '@playwright/test';
+
+test('User wallet top-up via EFT', async ({ page }) => {
+  await page.goto('https://eixbets-demo.com/login');
+  await page.fill('#username', 'testuser');
+  await page.fill('#password', 'password123');
+  await page.click('button[type=submit]');
+  await page.click('#wallet-topup');
+  await page.fill('#amount', '500');
+  await page.click('#confirm-payment');
+  await expect(page.locator('#wallet-balance')).toContainText('R500');
+});
+</code></pre>
+
+      <h4 class="font-semibold text-sm mt-4 mb-2">CI: .github/workflows/compliance.yml</h4>
+      <pre class="bg-gray-900 p-3 rounded code-block"><code class="language-bash">name: Compliance Tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - run: npx playwright test --reporter=html
+</code></pre>
+
+      <h4 class="font-semibold text-sm mt-4 mb-2">Business impact</h4>
+      <ul class="list-disc list-inside text-sm space-y-1 text-gray-700 dark:text-gray-300">
+        <li>70% regression coverage automated</li>
+        <li>Release cycles cut by 2 weeks</li>
+        <li>AI-prioritized compliance tests reduced audit failures</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    // dark mode toggler
+    const darkToggle = document.getElementById('darkToggle');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark)) {
+      document.documentElement.classList.add('dark'); darkToggle.textContent = '☀️';
+    }
+    darkToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      const isDark = document.documentElement.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      darkToggle.textContent = isDark ? '☀️' : '🌙';
+    });
+
+    // modal open/close
+    document.querySelectorAll('.open-modal').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = btn.dataset.target;
+        document.getElementById(target).classList.remove('hidden');
+        document.getElementById(target).classList.add('flex');
+      });
+    });
+    document.querySelectorAll('.close-modal').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        btn.closest('[id^="modal-"]').classList.remove('flex');
+        btn.closest('[id^="modal-"]').classList.add('hidden');
+      });
+    });
+    // close modal clicking backdrop
+    document.querySelectorAll('.modal-backdrop').forEach(b => {
+      b.addEventListener('click', () => {
+        b.closest('[id^="modal-"]').classList.remove('flex');
+        b.closest('[id^="modal-"]').classList.add('hidden');
+      });
+    });
+  </script>
+</body>
+</html>

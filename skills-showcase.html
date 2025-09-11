@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frontend Skills Showcase | Shaheen Toefy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Simple fade-in animation for cards */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Optional card glow on hover */
+    .glow:hover {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+  <!-- HEADER -->
+  <header class="bg-blue-900 dark:bg-gray-800 text-white py-6 shadow-md sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center px-6">
+      <h1 class="text-2xl font-bold">Shaheen Toefy</h1>
+      <nav class="space-x-4 flex items-center">
+        <a href="index.html" class="hover:text-orange-400 transition">Home</a>
+        <a href="#skills" class="hover:text-orange-400 transition">Frontend Skills</a>
+        <button id="dark-toggle" class="ml-4 p-2 rounded-lg bg-gray-200 dark:bg-gray-700">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="container mx-auto py-12 px-6 text-center">
+    <h2 class="text-4xl md:text-5xl font-bold mb-4">Frontend Skills Showcase</h2>
+    <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">
+      Explore my expertise in building modern, interactive, and scalable web interfaces using HTML, CSS/SCSS, JavaScript/TypeScript, React, and Next.js.
+    </p>
+  </section>
+
+  <!-- SKILLS GRID -->
+  <section id="skills" class="container mx-auto px-6 pb-12">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- HTML Card -->
+      <div class="fade-in p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg glow transition cursor-pointer">
+        <h3 class="text-xl font-bold mb-2">HTML5</h3>
+        <p class="text-gray-700 dark:text-gray-300">
+          Semantic structure, accessibility, SEO-friendly markup, and modern HTML features.
+        </p>
+      </div>
+
+      <!-- CSS/SCSS Card -->
+      <div class="fade-in p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg glow transition cursor-pointer">
+        <h3 class="text-xl font-bold mb-2">CSS / SCSS</h3>
+        <p class="text-gray-700 dark:text-gray-300">
+          Responsive design, Tailwind CSS, animations, and modular SCSS architecture.
+        </p>
+      </div>
+
+      <!-- JavaScript Card -->
+      <div class="fade-in p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg glow transition cursor-pointer">
+        <h3 class="text-xl font-bold mb-2">JavaScript / TypeScript</h3>
+        <p class="text-gray-700 dark:text-gray-300">
+          Modern JS, ES6+, TypeScript types, DOM manipulation, and dynamic UI behavior.
+        </p>
+      </div>
+
+      <!-- React Card -->
+      <div class="fade-in p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg glow transition cursor-pointer">
+        <h3 class="text-xl font-bold mb-2">React</h3>
+        <p class="text-gray-700 dark:text-gray-300">
+          Functional components, hooks, context API, state management, and interactive UIs.
+        </p>
+      </div>
+
+      <!-- Next.js Card -->
+      <div class="fade-in p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg glow transition cursor-pointer">
+        <h3 class="text-xl font-bold mb-2">Next.js</h3>
+        <p class="text-gray-700 dark:text-gray-300">
+          SSR, SSG, API routes, dynamic routing, and full-stack React applications.
+        </p>
+      </div>
+
+      <!-- Bonus Card -->
+      <div class="fade-in p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg glow transition cursor-pointer">
+        <h3 class="text-xl font-bold mb-2">Interactive Projects</h3>
+        <p class="text-gray-700 dark:text-gray-300">
+          Implementing animations, transitions, and responsive designs that impress recruiters and collaborators.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-6 bg-blue-900 dark:bg-gray-800 text-white">
+    © 2025 Shaheen Toefy | Built with ❤️
+  </footer>
+
+  <!-- JS for scroll-trigger fade-in -->
+  <script>
+    const faders = document.querySelectorAll('.fade-in');
+
+    const appearOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+
+    // Dark mode toggle
+    const darkToggle = document.getElementById('dark-toggle');
+    darkToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+  </script>
+
+</body>
+</html>

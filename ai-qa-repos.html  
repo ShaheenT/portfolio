@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI QA STLC Dashboard</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+<script src="script.js" defer></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+<header class="p-4 bg-blue-600 dark:bg-blue-900 text-white text-center font-bold text-xl">
+  AI-Powered QA Lifecycle Dashboard
+</header>
+
+<main class="p-6">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <a href="requirements.html" class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
+      📌 Requirements & Risk Analysis
+    </a>
+    <a href="planning.html" class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
+      🗂 Test Planning
+    </a>
+    <a href="design.html" class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
+      📝 Test Design
+    </a>
+    <a href="implementation.html" class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
+      ⚙️ Implementation
+    </a>
+    <a href="execution.html" class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
+      🚀 Execution & CI
+    </a>
+    <a href="analysis.html" class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
+      📊 Analysis & Reporting
+    </a>
+    <a href="maintenance.html" class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
+      🔄 Maintenance
+    </a>
+  </div>
+</main>
+
+<footer class="p-4 text-center text-sm text-gray-500">
+  Shaheen Toefy – AI QA Engineer Portfolio
+</footer>
+</body>
+</html>

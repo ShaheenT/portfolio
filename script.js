@@ -1,12 +1,19 @@
 // Dark Mode Toggle
-const toggleButton = document.getElementById("darkModeToggle");
-if(localStorage.getItem("dark-mode")==="enabled"){document.documentElement.classList.add("dark"); toggleButton.textContent="☀️";}
-toggleButton.addEventListener("click",()=>{
-  document.documentElement.classList.toggle("dark");
-  if(document.documentElement.classList.contains("dark")){
-    toggleButton.textContent="☀️"; localStorage.setItem("dark-mode","enabled");
-  } else { toggleButton.textContent="🌙"; localStorage.setItem("dark-mode","disabled"); }
-});
+const toggleBtn = document.getElementById("dark-toggle");
+if (toggleBtn) {
+  toggleBtn.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    const isDark = document.documentElement.classList.contains("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    toggleBtn.textContent = isDark ? "☀️" : "🌙";
+  });
+
+  // Load saved theme
+  if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark");
+    toggleBtn.textContent = "☀️";
+  }
+}
 
 // Scroll Reveal
 window.addEventListener("scroll",()=>{

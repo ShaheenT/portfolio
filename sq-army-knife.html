@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQ Army Knife | QA Knowledge Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+<!-- HEADER -->
+<header class="bg-blue-900 dark:bg-gray-800 text-white py-6 shadow-md sticky top-0 z-50">
+  <div class="container mx-auto flex justify-between items-center px-6">
+    <div class="flex items-center space-x-3">
+      <img src="./images/st-logo.png" alt="SQ Army Knife Logo" class="w-10 h-10 rounded-full border-2 border-white" />
+      <h1 class="text-2xl font-bold">SQ Army Knife</h1>
+    </div>
+    <nav class="space-x-4 flex items-center">
+      <a href="#resources" class="hover:text-orange-400 transition">Resources</a>
+      <a href="#about" class="hover:text-orange-400 transition">About</a>
+      <a href="#contact" class="hover:text-orange-400 transition">Contact</a>
+      <a href="https://www.linkedin.com/in/shaheentoefy" target="_blank" rel="noopener noreferrer"
+        <img src="./images/linkedin-icon.png" alt="LinkedIn" class="w-6 h-6 hover:scale-110 transition"/>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero" class="flex flex-col items-center justify-center h-screen text-center px-6 bg-gradient-to-b from-blue-700 to-blue-500 text-white">
+  <h2 class="text-4xl md:text-5xl font-bold mb-4">Everything a QA Tester Needs, Exactly When They Need It</h2>
+  <p class="max-w-2xl text-lg md:text-xl mb-8">Reusable automation scripts, API collections, AI-enhanced QA frameworks, and CI/CD templates — all in one place.</p>
+  <a href="#resources" class="px-6 py-3 bg-orange-500 hover:bg-orange-400 rounded-full text-lg font-semibold transition">Explore Resources</a>
+</section>
+
+<!-- RESOURCES CARDS -->
+<section id="resources" class="container mx-auto py-12 px-6">
+  <h2 class="text-3xl font-bold mb-8 text-center">QA Knowledge Modules</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Card 1 -->
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition cursor-pointer">
+      <h3 class="text-xl font-bold mb-4">🧪 Playwright / Cypress Templates</h3>
+      <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+        <li>End-to-end UI test scripts</li>
+        <li>Reusable components & page objects</li>
+        <li>Cross-browser testing setups</li>
+        <li>Self-healing script examples</li>
+      </ul>
+      <a href="https://github.com/your-playwright-cypress-hub" target="_blank"
+         class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition">
+        Open Source Portal
+      </a>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition cursor-pointer">
+      <h3 class="text-xl font-bold mb-4">📡 Postman & API Collections</h3>
+      <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+        <li>REST API testing collections</li>
+        <li>GraphQL query templates</li>
+        <li>Environment-ready variables</li>
+        <li>Reusable API workflows</li>
+      </ul>
+      <a href="https://github.com/your-postman-api-hub" target="_blank"
+         class="mt-4 inline-block px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition">
+        Open Source Portal
+      </a>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition cursor-pointer">
+      <h3 class="text-xl font-bold mb-4">🤖 AI-Driven QA Scripts</h3>
+      <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+        <li>Predictive defect analysis</li>
+        <li>Auto-generated regression tests</li>
+        <li>Self-healing automation</li>
+        <li>Integration with CI/CD pipelines</li>
+      </ul>
+      <a href="https://github.com/your-ai-qa-hub" target="_blank"
+         class="mt-4 inline-block px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition">
+        Open Source Portal
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="container mx-auto py-12 px-6">
+  <h2 class="text-3xl font-bold mb-6 text-center">About SQ Army Knife</h2>
+  <p class="max-w-3xl mx-auto text-center">
+    SQ Army Knife is your centralized QA toolkit: reusable scripts, templates, API collections, AI-assisted testing, and CI/CD pipeline guides — all open source for testers to save time, ensure quality, and accelerate delivery.
+  </p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="container mx-auto py-12 px-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
+  <h2 class="text-3xl font-bold mb-6 text-center">Contact / Contribute</h2>
+  <p class="text-center mb-4">Contribute, suggest templates, or reach out: <a href="mailto:shaheentoefy@gmail.com" class="underline hover:text-orange-400">shaheentoefy@gmail.com</a></p>
+</section>
+
+<!-- FOOTER -->
+<footer class="text-center py-6 bg-blue-900 dark:bg-gray-800 text-white">
+  © 2025 Shaheen Toefy | SQ Army Knife | All Rights Reserved | <a href="#terms" class="underline hover:text-orange-400">Terms & Conditions</a>
+</footer>
+
+</body>
+</html>

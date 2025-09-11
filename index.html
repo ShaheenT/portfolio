@@ -1,82 +1,313 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shaheen Toefy | AI QA Engineer</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
 
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300 relative">
+
+<!-- HEADER -->
+<!-- HEADER -->
 <header class="bg-blue-900 dark:bg-gray-800 text-white py-6 shadow-md sticky top-0 z-50">
   <div class="container mx-auto flex justify-between items-center px-6">
-    <h1 class="text-2xl font-bold">Shaheen Toefy</h1>
+    <!-- Left Section: Logo + Name + LinkedIn -->
+    <div class="flex items-center space-x-4">
+      <!-- Logo -->
+      <img src="./images/st-logo.png" alt="Logo" class="w-10 h-10 rounded-full shadow-lg border border-gray-300 dark:border-gray-600">
+
+      <!-- Name -->
+      <h1 class="text-2xl font-bold">Shaheen Toefy</h1>
+
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/shaheentoefy" target="_blank" rel="noopener noreferrer"
+         class="hover:text-blue-400 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+          <path d="M19 0h-14c-2.76 0-5 2.24-5 
+            5v14c0 2.76 2.24 5 5 5h14c2.76 
+            0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 
+            19h-3v-10h3v10zm-1.5-11.27c-.97 
+            0-1.75-.79-1.75-1.76s.78-1.75 
+            1.75-1.75 1.75.78 1.75 
+            1.75-.78 1.76-1.75 1.76zm13.5 
+            11.27h-3v-5.6c0-1.34-.03-3.06-1.87-3.06-1.87 
+            0-2.16 1.46-2.16 2.96v5.7h-3v-10h2.88v1.37h.04c.4-.75 
+            1.38-1.54 2.84-1.54 3.04 0 3.6 
+            2 3.6 4.59v5.58z"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Right Section: Nav + Clock + Screenshot -->
     <nav class="space-x-4 flex items-center">
       <a href="#about" class="hover:text-orange-400 transition">About Me</a>
       <a href="#skills" class="hover:text-orange-400 transition">Skills</a>
       <a href="#projects" class="hover:text-orange-400 transition">Projects</a>
       <a href="#contact" class="hover:text-orange-400 transition">Contact</a>
-      <button id="darkModeToggle" class="ml-4 px-3 py-1 rounded hover:bg-orange-400 transition">🌙</button>
+
+      <!-- Digital Clock -->
+      <div id="clock" class="ml-6 font-mono text-sm bg-gray-700 px-3 py-1 rounded-lg shadow-inner"></div>
+
+      <!-- Screenshot Button -->
+      <button id="screenshot-btn" class="ml-2 p-2 rounded-lg bg-gray-600 hover:bg-gray-500 transition" title="Take Screenshot">
+        📸
+      </button>
+
+      <!-- Dark Mode Toggle -->
+      <button id="dark-toggle" class="ml-4 p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+        🌙
+      </button>
     </nav>
   </div>
 </header>
 
-<section id="hero" class="flex flex-col items-center justify-center h-screen text-center px-6">
-  <h2 class="text-4xl md:text-5xl font-bold mb-4 fade-in">AI QA Engineer</h2>
-  <p class="text-xl md:text-2xl max-w-xl mb-6">Accelerating product quality with AI-driven testing solutions, automation, and innovative QA strategies.</p>
-</section>
+<!-- JS: Clock + Screenshot -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+  // Clock updater
+  function updateClock() {
+    const now = new Date();
+    const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const date = now.toLocaleDateString([], options);
+    document.getElementById("clock").textContent = `${date} | ${time}`;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
 
-<section id="about" class="container mx-auto py-12 px-6 reveal">
-  <h2 class="text-3xl font-bold mb-6 text-center">About Me</h2>
-  <p class="max-w-3xl mx-auto text-center">
-    I am a hands-on AI QA Engineer, building automated testing frameworks using Playwright, Cypress, and Postman. My work accelerates time-to-market while ensuring top-quality software products.
+  // Screenshot feature
+  document.getElementById("screenshot-btn").addEventListener("click", () => {
+    html2canvas(document.body).then(canvas => {
+      const link = document.createElement("a");
+      const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+      link.download = `screenshot-${timestamp}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    });
+  });
+</script>
+
+<!-- HERO with DotGrid Background -->
+<section id="hero" class="relative flex flex-col items-center justify-center h-screen text-center px-6 overflow-hidden">
+  <!-- DotGrid Background -->
+  <canvas id="dotGridCanvas" class="absolute inset-0 -z-10 w-full h-full"></canvas>
+
+  <!-- Profile Image -->
+  <img src="images/stprofile.jpg" alt="Shaheen Toefy"
+       class="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-white shadow-lg mb-6 object-cover" />
+
+  <!-- Text -->
+  <h2 class="text-4xl md:text-5xl font-bold mb-4">AI QA Engineer</h2>
+  <p class="text-lg md:text-xl max-w-xl">
+    Accelerating product quality with AI-driven testing solutions, automation, and innovative QA strategies.
   </p>
 </section>
 
-<section id="skills" class="container mx-auto py-12 px-6 reveal bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
+<!-- ABOUT -->
+<section id="about" class="container mx-auto py-12 px-6">
+  <h2 id="aboutHeader" class="text-3xl font-bold mb-6 text-center">About Me</h2>
+<p class="max-w-[88rem] mx-auto text-center">    I’m an AI-driven Quality Assurance Engineer passionate about transforming software testing with intelligence, speed, and precision. At EntrprnriX Ai, I leverage AI-powered frameworks—including Testim, Mabl, Functionize, Applitools, and TestSigma—to accelerate testing, reduce manual effort, and deliver market-ready applications faster.
+
+With expertise spanning Playwright, Selenium, Cypress, Appium, Postman, and RestAssured, I design end-to-end QA strategies that combine traditional QA rigor with AI-enhanced automation, self-healing tests, and predictive defect analytics. I ensure software is not only functional and secure, but also scalable and user-friendly.
+
+I specialize in helping startups and high-growth tech companies:
+
+Reduce time-to-market with intelligent automation and AI-generated test scripts.
+
+Optimize QA workflows to maintain high-quality releases with lean teams.
+
+Provide predictive insights to prioritize risk and improve product reliability.
+
+I thrive at the intersection of innovation and quality, blending technical precision with creative problem-solving to drive business growth, scale products, and deliver exceptional user experiences.
+
+If your software is ambitious, fast-moving, or complex, I help make it reliable—faster.
+
+Value Delivered to Startups & Software Companies:
+
+Accelerates time-to-market by leveraging AI to auto-generate and maintain test scripts for fast-moving product cycles.
+
+Improves software quality and reliability through intelligent regression, visual, and functional testing powered by AI.
+
+Reduces manual testing effort and costs, enabling small teams to maintain high QA standards without scaling headcount.
+
+Provides predictive insights into potential defect areas, helping product teams prioritize risk and optimize development focus.
+
+Bridges technical precision with design thinking, creating test strategies that are robust, scalable, and aligned with user experience goals.
+
+By combining AI-driven automation, predictive analytics, and traditional QA expertise, I help startups and software companies build secure, scalable, and market-ready applications faster, while optimizing QA workflows and minimizing risk.
+  </p>
+</section>
+<!-- Certifications / Training Section -->
+<section id="certifications" class="py-16 px-6 bg-gray-100 dark:bg-gray-800 reveal">
+  <h2 class="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-gray-100">📜 Certifications / Training</h2>
+  <div class="flex flex-wrap justify-center gap-4">
+    <!-- Playwright -->
+    <span class="relative group bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
+      Playwright
+      <span class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
+        Playwright – E2E testing automation
+      </span>
+    </span>
+    <!-- Cypress -->
+    <span class="relative group bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
+      Cypress
+      <span class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
+        Cypress – Fast frontend test automation
+      </span>
+    </span>
+    <!-- Postman -->
+    <span class="relative group bg-orange-100 dark:bg-orange-900 text-orange-900 dark:text-orange-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
+      Postman
+      <span class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
+        Postman – API testing and automation
+      </span>
+    </span>
+    <!-- AI Tools -->
+    <span class="relative group bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
+      AI Tools
+      <span class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
+        TensorFlow, Python AI libraries, and automation tools
+      </span>
+    </span>
+    <!-- React -->
+    <span class="relative group bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
+      React
+      <span class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
+        Reaxt description
+      </span>
+    </span>
+     <!-- Typescript -->
+    <span class="relative group bg-pastel-blue-100 dark:bg-blue-900 text-blue-900 dark:text-orange-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
+      Typescript
+      <span class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
+        Typescriptdescription
+      </span>
+    </span>
+  </div>
+</section>
+
+
+<!-- SKILLS -->
+<!-- SKILLS -->
+<section id="skills" class="container mx-auto py-12 px-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
   <h2 class="text-3xl font-bold mb-6 text-center">Skills & Tools</h2>
+
+  <!-- Skills Grid -->
   <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-    <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
-      <h3 class="font-semibold text-lg mb-2">Frontend</h3>
-      <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-200">
-        <li>HTML</li><li>CSS / SCSS</li><li>JavaScript / TypeScript</li><li>React / Next.js</li>
-      </ul>
-    </div>
+    <!-- Frontend Card (Clickable) -->
+<a href="sq-army-knife.html">
+  <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition cursor-pointer">
+    <h3 class="font-semibold text-lg mb-2">Frontend</h3>
+    <ul class="list-disc list-inside text-sm">
+      <li>HTML</li>
+      <li>CSS / SCSS</li>
+      <li>JavaScript / TypeScript</li>
+      <li>React / Next.js</li>
+    </ul>
+  </div>
+</a>
+
+
+
+    <!-- Backend Card -->
     <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
       <h3 class="font-semibold text-lg mb-2">Backend</h3>
-      <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-200">
-        <li>Node.js / Express</li><li>PHP / SQL</li><li>MongoDB / PostgreSQL</li>
+      <ul class="list-disc list-inside text-sm">
+        <li>Node.js / Express</li>
+        <li>PHP / SQL</li>
+        <li>MongoDB / PostgreSQL</li>
       </ul>
     </div>
+
+    <!-- QA & AI Card -->
     <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
       <h3 class="font-semibold text-lg mb-2">QA & AI</h3>
-      <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-200">
-        <li>Playwright / Cypress</li><li>Postman / REST & GraphQL</li><li>AI-driven QA scripts</li><li>CI/CD Integration</li>
+      <ul class="list-disc list-inside text-sm">
+        <li>Playwright / Cypress</li>
+        <li>Postman / REST & GraphQL</li>
+        <li>AI-driven QA scripts</li>
+        <li>CI/CD Integration</li>
       </ul>
+    </div>
+
+    <!-- AI QA Repos Card -->
+    <a href="ai-qa.html" class="block">
+      <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition cursor-pointer">
+        <h3 class="font-semibold text-lg mb-2">AI QA Repos</h3>
+        <ul class="list-disc list-inside text-sm">
+          <li title="End-to-End automation testing with Playwright & Cypress">Playwright / Cypress</li>
+          <li title="API testing with Postman for REST & GraphQL">Postman / REST & GraphQL</li>
+          <li title="AI-assisted QA test scripts for faster coverage">AI-driven QA scripts</li>
+          <li title="Continuous Integration & Deployment pipelines">CI/CD Integration</li>
+        </ul>
+      </div>
+    </a>
+  </div>
+
+  <!-- Resources Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+    <!-- AI Engineer Resources Card -->
+    <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+      <h2 class="text-xl font-bold mb-4">🚀 AI Engineer Resources</h2>
+      <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+        <li>AI Concepts & Applied Learning</li>
+        <li>Reusable Code & Templates</li>
+        <li>Real-World Projects</li>
+        <li>Mentorship & Knowledge Sharing</li>
+      </ul>
+      <a href="https://github.com/your-ai-engineer-repo"
+         target="_blank"
+         class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition">
+        Explore Resources
+      </a>
+    </div>
+
+    <!-- QA Knowledge Share Card -->
+    <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+      <h2 class="text-xl font-bold mb-4">🧪 AI QA Knowledge Share</h2>
+      <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+        <li>Reusable Playwright / Cypress Test Frameworks</li>
+        <li>Postman Collections for REST & GraphQL APIs</li>
+        <li>AI-driven QA Scripts & Automation</li>
+        <li>CI/CD Pipeline Integration Guides</li>
+      </ul>
+      <a href="https://github.com/your-qa-automation-hub"
+         target="_blank"
+         class="mt-4 inline-block px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition">
+        Open Source Portal 🌍
+      </a>
     </div>
   </div>
 </section>
 
-<section id="projects" class="container mx-auto py-12 px-6 reveal">
+
+<!-- PROJECTS -->
+<section id="projects" class="container mx-auto py-12 px-6">
   <h2 class="text-3xl font-bold mb-6 text-center">Projects & AI QA Contributions</h2>
   <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-    <div onclick="openProject('https://github.com/ShaheenT/ishopp')" class="cursor-pointer p-6 rounded-xl shadow-md bg-white dark:bg-gray-800 hover:scale-105 transition">
+    <div onclick="openProject('https://github.com/ShaheenT/ishopp')" 
+         class="cursor-pointer p-6 rounded-xl shadow-md bg-white dark:bg-gray-800 hover:scale-105 transition">
       <h3 class="text-xl font-semibold mb-2">iShopp</h3>
       <p class="text-gray-600 dark:text-gray-300">Implemented Playwright & Postman automation, reduced QA cycle by 40%.</p>
     </div>
-    <div onclick="openProject('https://github.com/ShaheenT/xbetapp')" class="cursor-pointer p-6 rounded-xl shadow-md bg-white dark:bg-gray-800 hover:scale-105 transition">
+    <div onclick="openProject('https://github.com/ShaheenT/xbetapp')" 
+         class="cursor-pointer p-6 rounded-xl shadow-md bg-white dark:bg-gray-800 hover:scale-105 transition">
       <h3 class="text-xl font-semibold mb-2">XBetApp</h3>
       <p class="text-gray-600 dark:text-gray-300">AI-driven testing for mobile betting workflows, integrated CI/CD pipeline.</p>
     </div>
   </div>
 </section>
 
-<section id="contact" class="container mx-auto py-12 px-6 reveal bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
+<!-- CONTACT -->
+<section id="contact" class="container mx-auto py-12 px-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
   <h2 class="text-3xl font-bold mb-6 text-center">Contact Me</h2>
   <form id="contactForm" class="max-w-2xl mx-auto flex flex-col space-y-4">
-    <input type="text" placeholder="Your Name" required class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
-    <input type="email" placeholder="Your Email" required class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+    <input type="text" placeholder="Your Name" required class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700" />
+    <input type="email" placeholder="Your Email" required class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700" />
     <textarea placeholder="Your Message" required class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"></textarea>
     <button type="submit" class="p-3 rounded bg-blue-900 hover:bg-orange-400 text-white transition">Send Message</button>
   </form>
@@ -84,10 +315,160 @@
   <p class="text-center">GitHub: <a href="https://github.com/ShaheenT" class="underline hover:text-orange-400">ShaheenT</a></p>
 </section>
 
-<footer class="text-center py-6 bg-blue-900 dark:bg-gray-800 text-white">
-  © 2025 Shaheen Toefy | Built with ❤️
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-gray-300 dark:text-gray-400 px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 border-t border-gray-700 relative overflow-hidden">
+  <!-- Tech Glow Background -->
+  <div id="footerGlow" class="absolute inset-0 pointer-events-none">
+    <div class="w-64 h-64 bg-gradient-to-r from-purple-700 via-blue-500 to-pink-500 opacity-20 rounded-full blur-3xl transform -translate-x-32 -translate-y-32"></div>
+  </div>
+
+  <!-- Trademark & Terms -->
+  <div class="flex items-center gap-2 z-10">
+    <span class="font-mono text-sm">© 2025 Shaheen Toefy™</span>
+    <a href="terms.html" class="underline hover:text-orange-400 text-sm transition-all">Terms & Conditions</a>
+  </div>
+
+  <!-- Screenshot Button -->
+  <div class="z-10">
+    <button id="screenshotBtn" title="Capture Screenshot" class="flex items-center gap-1 p-2 bg-gray-800 dark:bg-gray-700 hover:bg-orange-400 rounded-lg transition-transform transform hover:scale-110">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-4.553a2 2 0 00-2.828-2.828L12 7.172 7.275 2.447a2 2 0 10-2.828 2.828L9 10m6 0l4.553 4.553a2 2 0 01-2.828 2.828L12 16.828l-4.725 4.725a2 2 0 11-2.828-2.828L9 10m6 0H9" />
+      </svg>
+      <span class="text-sm font-mono">Capture</span>
+    </button>
+  </div>
 </footer>
 
-<script src="script.js"></script>
+<script>
+  // Screenshot Button (HTML2Canvas)
+  document.getElementById('screenshotBtn').addEventListener('click', async () => {
+    if (!window.html2canvas) {
+      const script = document.createElement('script');
+      script.src = "https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js";
+      document.body.appendChild(script);
+      script.onload = captureScreenshot;
+    } else {
+      captureScreenshot();
+    }
+  });
+
+  function captureScreenshot() {
+    html2canvas(document.body).then(canvas => {
+      const link = document.createElement('a');
+      const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+      link.download = `Shaheen_Portfolio_Screenshot_${timestamp}.png`;
+      link.href = canvas.toDataURL();
+      link.click();
+    });
+  }
+
+  // Interactive Glow
+  const footerGlow = document.getElementById('footerGlow').firstElementChild;
+  document.querySelector('footer').addEventListener('mousemove', (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left - footerGlow.offsetWidth / 2;
+    const y = e.clientY - rect.top - footerGlow.offsetHeight / 2;
+    footerGlow.style.transform = `translate(${x}px, ${y}px)`;
+  });
+
+  // Reset glow when mouse leaves footer
+  document.querySelector('footer').addEventListener('mouseleave', () => {
+    footerGlow.style.transform = `translate(-32px, -32px)`;
+  });
+</script>
+
+<style>
+  /* Slow pulse for background glow */
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.3; }
+  }
+  #footerGlow > div {
+    transition: transform 0.3s ease-out;
+    animation: pulse-slow 6s ease-in-out infinite;
+  }
+</style>
+
+
+<!-- DOTGRID SCRIPT -->
+<script>
+  const canvas = document.getElementById("dotGridCanvas");
+  const ctx = canvas.getContext("2d");
+  let width, height, dots = [];
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    initDots();
+  }
+
+  function initDots() {
+    dots = [];
+    const gap = 30;
+    for (let x = 0; x < width; x += gap) {
+      for (let y = 0; y < height; y += gap) {
+        dots.push({ x, y });
+      }
+    }
+  }
+
+  function draw(mouseX, mouseY) {
+    ctx.clearRect(0, 0, width, height);
+    dots.forEach(dot => {
+      const dx = dot.x - mouseX;
+      const dy = dot.y - mouseY;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const radius = Math.max(2, 8 - dist / 50);
+      ctx.beginPath();
+      ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = dist < 120 ? "#FF6B00" : "#5227FF";
+      ctx.fill();
+    });
+  }
+
+  window.addEventListener("resize", resize);
+  window.addEventListener("mousemove", e => draw(e.clientX, e.clientY));
+  resize();
+  draw(width/2, height/2);
+
+  // Open project links
+  function openProject(url) {
+    window.open(url, "_blank");
+  }
+</script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Helper: wrap each character in a span
+  function splitTextToSpans(element) {
+    const text = element.textContent;
+    const chars = text.split('');
+    element.textContent = '';
+    chars.forEach(char => {
+      const span = document.createElement('span');
+      span.textContent = char;
+      span.style.display = 'inline-block';
+      element.appendChild(span);
+    });
+  }
+
+  const header = document.getElementById('aboutHeader');
+  splitTextToSpans(header);
+
+  // Animate each letter on scroll
+  gsap.from(header.querySelectorAll('span'), {
+    scrollTrigger: {
+      trigger: header,
+      start: 'top 80%',
+      toggleActions: 'play none none none',
+    },
+    opacity: 0,
+    y: 40,
+    stagger: 0.05,
+    duration: 0.6,
+    ease: "power3.out"
+  });
+</script>
+
 </body>
 </html>
