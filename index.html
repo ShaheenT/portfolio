@@ -14,18 +14,13 @@
 <!-- HEADER -->
 <!-- HEADER -->
 <header class="bg-blue-900 dark:bg-gray-800 text-white py-6 shadow-md sticky top-0 z-50">
-  <div class="container mx-auto flex justify-between items-center px-6">
-    <!-- Left Section: Logo + Name + LinkedIn -->
-    <div class="flex items-center space-x-4">
-      <!-- Logo -->
-      <img src="./images/st-logo.png" alt="Logo" class="w-10 h-10 rounded-full shadow-lg border border-gray-300 dark:border-gray-600">
-
+<div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 md:px-6">    <!-- Left Section: Logo + Name + LinkedIn -->
+ <div class="flex items-center space-x-3 md:space-x-4 mb-3 md:mb-0">      <!-- Logo -->
+<img src="./images/st-logo.png" class="w-10 h-10 rounded-full">
       <!-- Name -->
-      <h1 class="text-2xl font-bold">Shaheen Toefy</h1>
-
+ <h1 class="text-xl md:text-2xl font-bold">Shaheen Toefy</h1>
       <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/in/shaheentoefy" target="_blank" rel="noopener noreferrer"
-         class="hover:text-blue-400 transition">
+      <a href="https://www.linkedin.com/in/shaheentoefy"  class="hidden md:block hover:text-blue-400">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
           <path d="M19 0h-14c-2.76 0-5 2.24-5 
             5v14c0 2.76 2.24 5 5 5h14c2.76 
@@ -43,26 +38,16 @@
     </div>
 
     <!-- Right Section: Nav + Clock + Screenshot -->
-    <nav class="space-x-4 flex items-center">
-      <a href="#about" class="hover:text-orange-400 transition">About Me</a>
-      <a href="#skills" class="hover:text-orange-400 transition">Skills</a>
-      <a href="#projects" class="hover:text-orange-400 transition">Projects</a>
-      <a href="#contact" class="hover:text-orange-400 transition">Contact</a>
-
-      <!-- Digital Clock -->
-      <div id="clock" class="ml-6 font-mono text-sm bg-gray-700 px-3 py-1 rounded-lg shadow-inner"></div>
-
-      <!-- Screenshot Button -->
-      <button id="screenshot-btn" class="ml-2 p-2 rounded-lg bg-gray-600 hover:bg-gray-500 transition" title="Take Screenshot">
-        📸
-      </button>
-
-      <!-- Dark Mode Toggle -->
-      <button id="dark-toggle" class="ml-4 p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
-        🌙
-      </button>
-    </nav>
-  </div>
+    <nav class="flex flex-wrap md:flex-nowrap items-center gap-2 md:gap-4 justify-center md:justify-end">
+    <a href="#about" class="text-sm md:text-base">About Me</a>
+    <a href="#skills" class="text-sm md:text-base">Skills</a>
+    <a href="#projects" class="text-sm md:text-base">Projects</a>
+    <a href="#contact" class="text-sm md:text-base">Contact</a>
+    <div id="clock" class="text-xs md:text-sm bg-gray-700 px-2 py-1 rounded-lg"></div>
+    <button id="screenshot-btn" class="px-2 py-1 text-sm rounded-lg bg-gray-600">📸</button>
+    <button id="dark-toggle" class="px-2 py-1 text-sm rounded-lg bg-gray-200 dark:bg-gray-700">🌙</button>
+  </nav>
+</div>
 </header>
 
 <!-- JS: Clock + Screenshot -->
@@ -92,17 +77,15 @@
 </script>
 
 <!-- HERO with DotGrid Background -->
-<section id="hero" class="relative flex flex-col items-center justify-center h-screen text-center px-6 overflow-hidden">
-  <!-- DotGrid Background -->
+<section id="hero" class="relative flex flex-col items-center justify-center min-h-[80vh] text-center px-4 md:px-6 overflow-hidden">  <!-- DotGrid Background -->
   <canvas id="dotGridCanvas" class="absolute inset-0 -z-10 w-full h-full"></canvas>
 
   <!-- Profile Image -->
-  <img src="images/stprofile.jpg" alt="Shaheen Toefy"
-       class="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-white shadow-lg mb-6 object-cover" />
+  <img src="images/stprofile.jpg"
+       class="w-24 h-24 md:w-48 md:h-48 rounded-full border-4 border-white shadow-lg mb-4 md:mb-6 object-cover" />
 
   <!-- Text -->
-  <h2 class="text-4xl md:text-5xl font-bold mb-4">AI QA Engineer</h2>
-  <p class="text-lg md:text-xl max-w-xl">
+<p class="text-sm md:text-lg max-w-md md:max-w-xl">
     Accelerating product quality with AI-driven testing solutions, automation, and innovative QA strategies.
   </p>
 </section>
@@ -110,37 +93,82 @@
 <!-- ABOUT -->
 <section id="about" class="container mx-auto py-12 px-6">
   <h2 id="aboutHeader" class="text-3xl font-bold mb-6 text-center">About Me</h2>
-<p class="max-w-[88rem] mx-auto text-center">    I’m an AI-driven Quality Assurance Engineer passionate about transforming software testing with intelligence, speed, and precision. At EntrprnriX Ai, I leverage AI-powered frameworks—including Testim, Mabl, Functionize, Applitools, and TestSigma—to accelerate testing, reduce manual effort, and deliver market-ready applications faster.
+<p class="max-w-[90%] md:max-w-[88rem] mx-auto text-center text-sm md:text-base">   I’m an AI-driven Quality Assurance Engineer passionate about accelerating software testing with intelligence, precision, and speed.
 
-With expertise spanning Playwright, Selenium, Cypress, Appium, Postman, and RestAssured, I design end-to-end QA strategies that combine traditional QA rigor with AI-enhanced automation, self-healing tests, and predictive defect analytics. I ensure software is not only functional and secure, but also scalable and user-friendly.
+At EntrprnriX Ai, I leverage AI-powered frameworks—Testim, Mabl, Functionize, Applitools, and TestSigma—alongside tools like Playwright, Selenium, Cypress, Appium, and Postman to design end-to-end QA strategies.
+
+My work blends traditional QA rigor with AI-enhanced automation, self-healing tests, and predictive defect analytics, ensuring software is functional, secure, scalable, and user-friendly.
 
 I specialize in helping startups and high-growth tech companies:
 
-Reduce time-to-market with intelligent automation and AI-generated test scripts.
+Reduce time-to-market with AI-generated test scripts and intelligent automation.
 
-Optimize QA workflows to maintain high-quality releases with lean teams.
+Optimize QA workflows to deliver high-quality releases with lean teams.
 
 Provide predictive insights to prioritize risk and improve product reliability.
 
-I thrive at the intersection of innovation and quality, blending technical precision with creative problem-solving to drive business growth, scale products, and deliver exceptional user experiences.
+By combining AI-driven automation, predictive analytics, and deep QA expertise, I help companies build secure, scalable, and market-ready applications faster—without compromising quality.
 
-If your software is ambitious, fast-moving, or complex, I help make it reliable—faster.
 
-Value Delivered to Startups & Software Companies:
 
-Accelerates time-to-market by leveraging AI to auto-generate and maintain test scripts for fast-moving product cycles.
-
-Improves software quality and reliability through intelligent regression, visual, and functional testing powered by AI.
-
-Reduces manual testing effort and costs, enabling small teams to maintain high QA standards without scaling headcount.
-
-Provides predictive insights into potential defect areas, helping product teams prioritize risk and optimize development focus.
-
-Bridges technical precision with design thinking, creating test strategies that are robust, scalable, and aligned with user experience goals.
-
-By combining AI-driven automation, predictive analytics, and traditional QA expertise, I help startups and software companies build secure, scalable, and market-ready applications faster, while optimizing QA workflows and minimizing risk.
   </p>
+</section><!-- CV / Resume Download Section -->
+<section id="resume" class="container mx-auto py-12 px-6 text-center">
+  <h2 class="text-3xl font-bold mb-6">Download My Resume</h2>
+
+  <!-- Envelope Icon + Image -->
+  <div class="flex flex-col items-center gap-4">
+    <img src="images/envelope.png" alt="Envelope Icon" class="w-24 h-24 cursor-pointer transition-transform transform hover:scale-110" id="envelopeIcon">
+    
+    <p class="max-w-xl text-center text-sm md:text-base">
+      Interested in my experience? Click the button below to download my CV.
+    </p>
+
+    <!-- Download Button -->
+    <button id="downloadResumeBtn" class="mt-2 px-6 py-3 bg-blue-900 hover:bg-orange-400 text-white rounded-lg shadow-md transition">
+      Click Here to Download Resume
+    </button>
+  </div>
 </section>
+
+<!-- Script for download + email notification -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS
+  emailjs.init("5wuZgwDTlS2KGqAiz"); // your Public Key
+
+  const resumeFile = 'files/Shaheen_Toefy_Resume.pdf'; // path to your resume
+
+  document.getElementById('downloadResumeBtn').addEventListener('click', async () => {
+    // Open envelope animation
+    const envelope = document.getElementById('envelopeIcon');
+    envelope.classList.add('rotate-45'); // simple rotate effect (can enhance with CSS animation)
+
+    // Trigger resume download
+    const link = document.createElement('a');
+    link.href = resumeFile;
+    link.download = 'Shaheen_Toefy_Resume.pdf';
+    link.click();
+
+    // Send Email notification via EmailJS
+    await emailjs.send("service_1ag0u4x", "Portfolio Gmail", {
+      user_email: "someone@example.com", // optional, you can use form input if you want
+      message: `Your resume was downloaded at ${new Date().toLocaleString()}`,
+    }).then(() => {
+      console.log('Email sent notifying CV download!');
+    }).catch(err => console.error('Email send error:', err));
+  });
+</script>
+
+<!-- Simple envelope rotation animation -->
+<style>
+  #envelopeIcon.rotate-45 {
+    transform: rotate(-45deg);
+    transition: transform 0.5s ease-in-out;
+  }
+</style>
+
+
 <!-- Certifications / Training Section -->
 <section id="certifications" class="py-16 px-6 bg-gray-100 dark:bg-gray-800 reveal">
   <h2 class="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-gray-100">📜 Certifications / Training</h2>
@@ -196,11 +224,10 @@ By combining AI-driven automation, predictive analytics, and traditional QA expe
 <section id="skills" class="container mx-auto py-12 px-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
   <h2 class="text-3xl font-bold mb-6 text-center">Skills & Tools</h2>
 
-  <!-- Skills Grid -->
-  <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-    <!-- Frontend Card (Clickable) -->
-<a href="sq-army-knife.html">
-  <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition cursor-pointer">
+ <!-- Skills Grid -->
+<div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+  <!-- Frontend Card (Not Clickable) -->
+  <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
     <h3 class="font-semibold text-lg mb-2">Frontend</h3>
     <ul class="list-disc list-inside text-sm">
       <li>HTML</li>
@@ -209,48 +236,55 @@ By combining AI-driven automation, predictive analytics, and traditional QA expe
       <li>React / Next.js</li>
     </ul>
   </div>
-</a>
 
-
-
-    <!-- Backend Card -->
-    <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
-      <h3 class="font-semibold text-lg mb-2">Backend</h3>
-      <ul class="list-disc list-inside text-sm">
-        <li>Node.js / Express</li>
-        <li>PHP / SQL</li>
-        <li>MongoDB / PostgreSQL</li>
-      </ul>
-    </div>
-
-    <!-- QA & AI Card -->
-    <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
-      <h3 class="font-semibold text-lg mb-2">QA & AI</h3>
-      <ul class="list-disc list-inside text-sm">
-        <li>Playwright / Cypress</li>
-        <li>Postman / REST & GraphQL</li>
-        <li>AI-driven QA scripts</li>
-        <li>CI/CD Integration</li>
-      </ul>
-    </div>
-
-    <!-- AI QA Repos Card -->
-    <a href="ai-qa.html" class="block">
-      <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition cursor-pointer">
-        <h3 class="font-semibold text-lg mb-2">AI QA Repos</h3>
-        <ul class="list-disc list-inside text-sm">
-          <li title="End-to-End automation testing with Playwright & Cypress">Playwright / Cypress</li>
-          <li title="API testing with Postman for REST & GraphQL">Postman / REST & GraphQL</li>
-          <li title="AI-assisted QA test scripts for faster coverage">AI-driven QA scripts</li>
-          <li title="Continuous Integration & Deployment pipelines">CI/CD Integration</li>
-        </ul>
-      </div>
-    </a>
+  <!-- Backend Card -->
+  <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
+    <h3 class="font-semibold text-lg mb-2">Backend</h3>
+    <ul class="list-disc list-inside text-sm">
+      <li>Node.js / Express</li>
+      <li>PHP / SQL</li>
+      <li>MongoDB / PostgreSQL</li>
+    </ul>
   </div>
 
+  <!-- QA & AI Card -->
+  <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
+    <h3 class="font-semibold text-lg mb-2">QA & AI</h3>
+    <ul class="list-disc list-inside text-sm">
+      <li>Playwright / Cypress</li>
+      <li>Postman / REST & GraphQL</li>
+      <li>AI-driven QA scripts</li>
+      <li>CI/CD Integration</li>
+    </ul>
+  </div>
+
+  <!-- AI QA Repos Card -->
+  <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition">
+    <h3 class="font-semibold text-lg mb-2">AI QA Repos</h3>
+    <ul class="list-disc list-inside text-sm">
+      <li title="End-to-End automation testing with Playwright & Cypress">Playwright / Cypress</li>
+      <li title="API testing with Postman for REST & GraphQL">Postman / REST & GraphQL</li>
+      <li title="AI-assisted QA test scripts for faster coverage">AI-driven QA scripts</li>
+      <li title="Continuous Integration & Deployment pipelines">CI/CD Integration</li>
+    </ul>
+  </div>
+
+  <!-- New QA Card: Everything a QA Tester Needs -->
+  <a href="sq-army-knife.html" class="block">
+    <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition cursor-pointer">
+      <h3 class="font-semibold text-lg mb-2">Everything a QA Tester Needs</h3>
+      <ul class="list-disc list-inside text-sm">
+        <li>All essential QA tools and frameworks in one place</li>
+        <li>Reusable automation templates</li>
+        <li>Comprehensive testing workflows</li>
+        <li>CI/CD ready QA scripts</li>
+      </ul>
+    </div>
+  </a>
+</div>
+
   <!-- Resources Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
-    <!-- AI Engineer Resources Card -->
+<div class="grid sm:grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">    <!-- AI Engineer Resources Card -->
     <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
       <h2 class="text-xl font-bold mb-4">🚀 AI Engineer Resources</h2>
       <ul class="space-y-2 text-gray-700 dark:text-gray-300">
@@ -303,20 +337,91 @@ By combining AI-driven automation, predictive analytics, and traditional QA expe
 </section>
 
 <!-- CONTACT -->
+<!-- CONTACT SECTION -->
 <section id="contact" class="container mx-auto py-12 px-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
   <h2 class="text-3xl font-bold mb-6 text-center">Contact Me</h2>
+
+  <!-- Contact Form -->
   <form id="contactForm" class="max-w-2xl mx-auto flex flex-col space-y-4">
-    <input type="text" placeholder="Your Name" required class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700" />
-    <input type="email" placeholder="Your Email" required class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700" />
-    <textarea placeholder="Your Message" required class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"></textarea>
-    <button type="submit" class="p-3 rounded bg-blue-900 hover:bg-orange-400 text-white transition">Send Message</button>
+    <input type="text" name="from_name" placeholder="Your Name" required
+           class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"/>
+    <input type="email" name="from_email" placeholder="Your Email" required
+           class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"/>
+    <textarea name="message" placeholder="Your Message" required rows="5"
+              class="p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"></textarea>
+    <button type="submit" id="sendButton" 
+            class="p-3 rounded bg-blue-900 hover:bg-orange-400 text-white transition flex items-center justify-center gap-2">
+      <span class="button-text">Send Message</span>
+      <svg id="loader" class="w-5 h-5 animate-spin hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8h4l-3 3 3 3h-4z"></path>
+      </svg>
+    </button>
   </form>
-  <p class="mt-4 text-center">Email: <a href="mailto:shaheentoefy@gmail.com" class="underline hover:text-orange-400">shaheentoefy@gmail.com</a></p>
-  <p class="text-center">GitHub: <a href="https://github.com/ShaheenT" class="underline hover:text-orange-400">ShaheenT</a></p>
+
+  <!-- Contact Info -->
+  <p class="mt-4 text-center text-gray-700 dark:text-gray-300">
+    Email: <a href="mailto:shaheentoefy@gmail.com" class="underline hover:text-orange-400">shaheentoefy@gmail.com</a>
+  </p>
+  <p class="text-center text-gray-700 dark:text-gray-300">
+    GitHub: <a href="https://github.com/ShaheenT" class="underline hover:text-orange-400">ShaheenT</a>
+  </p>
 </section>
 
+<!-- Toast Notification -->
+<div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg opacity-0 pointer-events-none transition-all duration-300 z-50">
+  Message sent successfully! ✅
+</div>
+
+<!-- EmailJS Script -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("5wuZgwDTlS2KGqAiz"); // Public Key
+
+  const form = document.getElementById('contactForm');
+  const toast = document.getElementById('toast');
+  const sendButton = document.getElementById('sendButton');
+  const loader = document.getElementById('loader');
+  const buttonText = sendButton.querySelector('.button-text');
+
+  function showToast(message, success = true) {
+    toast.textContent = message;
+    toast.style.backgroundColor = success ? '#16a34a' : '#dc2626';
+    toast.style.opacity = 1;
+    toast.style.pointerEvents = 'auto';
+
+    setTimeout(() => {
+      toast.style.opacity = 0;
+      toast.style.pointerEvents = 'none';
+    }, 4000);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Show loader
+    loader.classList.remove('hidden');
+    buttonText.textContent = 'Sending...';
+    sendButton.disabled = true;
+
+    emailjs.sendForm('service_1ag0u4x', 'Portfolio Gmail', this)
+      .then(() => {
+        showToast('Message sent successfully! ✅');
+        form.reset();
+      }, (error) => {
+        console.error('Failed to send message:', error);
+        showToast('Oops! Something went wrong. ❌', false);
+      })
+      .finally(() => {
+        loader.classList.add('hidden');
+        buttonText.textContent = 'Send Message';
+        sendButton.disabled = false;
+      });
+  });
+</script>
+
 <!-- FOOTER -->
-<footer class="bg-gray-900 text-gray-300 dark:text-gray-400 px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 border-t border-gray-700 relative overflow-hidden">
+<footer class="bg-gray-900 text-gray-300 dark:text-gray-400 px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 justify-between gap-4 md:gap-0 border-t border-gray-700 relative overflow-hidden">
   <!-- Tech Glow Background -->
   <div id="footerGlow" class="absolute inset-0 pointer-events-none">
     <div class="w-64 h-64 bg-gradient-to-r from-purple-700 via-blue-500 to-pink-500 opacity-20 rounded-full blur-3xl transform -translate-x-32 -translate-y-32"></div>
