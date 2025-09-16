@@ -112,112 +112,133 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
 
 
   </p>
-</section><!-- CV / Resume Download Section -->
+</section>
+<!-- CV / Resume Download Section -->
 <section id="resume" class="container mx-auto py-12 px-6 text-center">
   <h2 class="text-3xl font-bold mb-6">Download My Resume</h2>
 
-  <!-- Envelope Icon + Image -->
+  <!-- Envelope Lottie Animation -->
   <div class="flex flex-col items-center gap-4">
-    <img src="images/envelope.png" alt="Envelope Icon" class="w-24 h-24 cursor-pointer transition-transform transform hover:scale-110" id="envelopeIcon">
+    <dotlottie-wc id="lottie-envelope"
+      src="https://lottie.host/d9e81b8c-b597-45c8-b19f-ee344e7532cb/NFevx1ybDC.lottie"
+      style="width: 96px; height: 96px; cursor: pointer;"
+      speed="1"
+      loop
+      autoplay="false"
+      title="Click to download my resume">
+    </dotlottie-wc>
     
     <p class="max-w-xl text-center text-sm md:text-base">
-      Interested in my experience? Click the button below to download my CV.
+      Interested in my experience? Click the envelope or the button below to download my CV.
     </p>
 
     <!-- Download Button -->
-    <button id="downloadResumeBtn" class="mt-2 px-6 py-3 bg-blue-900 hover:bg-orange-400 text-white rounded-lg shadow-md transition">
+    <button id="downloadResumeBtn" 
+            class="mt-2 px-6 py-3 bg-blue-900 hover:bg-orange-400 text-white rounded-lg shadow-md transition">
       Click Here to Download Resume
     </button>
   </div>
 </section>
 
-<!-- Script for download + email notification -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
+<!-- Lottie Web Component Loader -->
+<script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
+
 <script>
-  // Initialize EmailJS
-  emailjs.init("5wuZgwDTlS2KGqAiz"); // your Public Key
+  const lottieEnvelope = document.getElementById("lottie-envelope");
 
-  const resumeFile = 'files/Shaheen_Toefy_Resume.pdf'; // path to your resume
+  // Intersection Observer → play animation only when in view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        lottieEnvelope.play();
+      } else {
+        lottieEnvelope.stop(); // stop when scrolled out (optional)
+      }
+    });
+  }, { threshold: 0.5 });
 
-  document.getElementById('downloadResumeBtn').addEventListener('click', async () => {
-    // Open envelope animation
-    const envelope = document.getElementById('envelopeIcon');
-    envelope.classList.add('rotate-45'); // simple rotate effect (can enhance with CSS animation)
+  observer.observe(lottieEnvelope);
 
-    // Trigger resume download
-    const link = document.createElement('a');
-    link.href = resumeFile;
-    link.download = 'Shaheen_Toefy_Resume.pdf';
-    link.click();
+  // Resume download link (update this to your actual resume path)
+  const resumeFile = "./images/Shaheen-AI-QA-Engineer.pdf";
 
-    // Send Email notification via EmailJS
-    await emailjs.send("service_1ag0u4x", "Portfolio Gmail", {
-      user_email: "someone@example.com", // optional, you can use form input if you want
-      message: `Your resume was downloaded at ${new Date().toLocaleString()}`,
-    }).then(() => {
-      console.log('Email sent notifying CV download!');
-    }).catch(err => console.error('Email send error:', err));
-  });
-</script>
+  function confirmAndDownload() {
+    const userConfirmed = confirm("Shaheen will get a notification that you decided to download the resume. Do you want to continue?");
+    
+    if (userConfirmed) {
+      // Replay animation on click
+      lottieEnvelope.seek(0);
+      lottieEnvelope.play();
 
-<!-- Simple envelope rotation animation -->
-<style>
-  #envelopeIcon.rotate-45 {
-    transform: rotate(-45deg);
-    transition: transform 0.5s ease-in-out;
+      // Trigger file download
+      const link = document.createElement("a");
+      link.href = resumeFile;
+      link.download = "Shaheen-Resume.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   }
-</style>
 
+  // Make both envelope & button trigger the confirmation + download
+  lottieEnvelope.addEventListener("click", confirmAndDownload);
+  document.getElementById("downloadResumeBtn").addEventListener("click", confirmAndDownload);
+</script>
 
 <!-- Certifications / Training Section -->
 <section id="certifications" class="py-16 px-6 bg-gray-100 dark:bg-gray-800 reveal">
   <h2 class="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-gray-100">📜 Certifications / Training</h2>
+  
   <div class="flex flex-wrap justify-center gap-4">
     <!-- Playwright -->
-    <span class="relative group bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
+    <a href="https://playwright.dev" target="_blank" class="relative group bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
       Playwright
-      <span class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
+      <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
         Playwright – E2E testing automation
       </span>
-    </span>
+    </a>
+
     <!-- Cypress -->
-    <span class="relative group bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
+    <a href="https://www.cypress.io" target="_blank" class="relative group bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
       Cypress
-      <span class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
+      <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
         Cypress – Fast frontend test automation
       </span>
-    </span>
+    </a>
+
     <!-- Postman -->
-    <span class="relative group bg-orange-100 dark:bg-orange-900 text-orange-900 dark:text-orange-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
+    <a href="https://www.postman.com" target="_blank" class="relative group bg-orange-100 dark:bg-orange-900 text-orange-900 dark:text-orange-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
       Postman
-      <span class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
+      <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
         Postman – API testing and automation
       </span>
-    </span>
+    </a>
+
     <!-- AI Tools -->
-    <span class="relative group bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
+    <a href="https://www.tensorflow.org" target="_blank" class="relative group bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
       AI Tools
-      <span class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
+      <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
         TensorFlow, Python AI libraries, and automation tools
       </span>
-    </span>
+    </a>
+
     <!-- React -->
-    <span class="relative group bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
+    <a href="https://react.dev" target="_blank" class="relative group bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
       React
-      <span class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
-        Reaxt description
+      <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
+        React – Frontend UI library
       </span>
-    </span>
-     <!-- Typescript -->
-    <span class="relative group bg-pastel-blue-100 dark:bg-blue-900 text-blue-900 dark:text-orange-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
-      Typescript
-      <span class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
-        Typescriptdescription
+    </a>
+
+    <!-- TypeScript -->
+    <a href="https://www.typescriptlang.org" target="_blank" class="relative group bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-orange-100 px-4 py-2 rounded-full shadow-md cursor-pointer">
+      TypeScript
+      <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
+        TypeScript – Typed JavaScript superset
       </span>
-    </span>
+    </a>
   </div>
 </section>
-
 
 <!-- SKILLS -->
 <!-- SKILLS -->
