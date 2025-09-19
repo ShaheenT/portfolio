@@ -246,7 +246,7 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
   </div>
 </section>
 
-
+<!-- SKILLS -->
 <!-- SKILLS -->
 <section id="skills" class="container mx-auto py-12 px-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
   <h2 class="text-3xl font-bold mb-6 text-center">Skills & Tools</h2>
@@ -531,7 +531,14 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
         <li>Postman Collections for REST & GraphQL APIs</li>
         <li>AI-driven QA Scripts & Automation</li>
         <li>CI/CD Pipeline Integration Guides</li>
+        
       </ul>
+      <a href="#testing-guide"
+   class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition">
+   Guide to Software Testing & Automation 📘
+</a>
+
+
       <a href="https://github.com/your-qa-automation-hub"
          target="_blank"
          class="mt-4 inline-block px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition">
@@ -543,102 +550,160 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
 
 
 <!-- PROJECTS -->
-<section id="projects" class="container mx-auto py-12 px-6">
-  <h2 class="text-3xl font-bold mb-6 text-center">Projects & AI QA Contributions</h2>
-  <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-    <div class="cursor-pointer p-6 rounded-xl shadow-md bg-white dark:bg-gray-800 hover:scale-105 transition">
-  <!-- Header: Logo + Title -->
-  <div class="flex items-center gap-3 mb-3">
-    <!-- Placeholder Logo -->
-    <img src="images/ishopp_logo.png" alt="iShopp Logo" 
-         class="w-10 h-10 rounded-lg bg-gray-200 dark:bg-gray-700 object-cover">
-    <h3 class="text-xl font-semibold">iShopp</h3>
+<!-- Project Grid -->
+<!-- Project Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+  <!-- iShopp -->
+  <div class="p-6 rounded-xl shadow-md bg-white dark:bg-gray-800 hover:scale-105 transition project-card" data-project="iShopp">
+    <div class="flex items-center mb-2">
+      <img src="images/ishopp_logo.png" alt="iShopp Logo" class="w-10 h-10 mr-2 rounded">
+      <h3 class="text-xl font-semibold">iShopp</h3>
+    </div>
+    <p class="text-gray-600 dark:text-gray-300 mb-4">
+      Implemented Playwright & Postman automation, reduced QA cycle by 40%.
+    </p>
+    <div class="grid grid-cols-3 gap-2 mb-4">
+      <img src="images/iShopp-screen1-webimg1.png" class="screenshot cursor-pointer rounded" alt="iShopp Screenshot">
+      <img src="images/iShopp-screen2-dashboard.png" class="screenshot cursor-pointer rounded" alt="iShopp Screenshot">
+    </div>
+    <button class="requestAccessBtn mt-4 w-full px-4 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700">
+      Request Access to Code
+    </button>
   </div>
 
-  <!-- Project Description -->
-  <p class="text-gray-600 dark:text-gray-300 mb-4">
-    Implemented Playwright & Postman automation, reduced QA cycle by 40%.
-  </p>
-
-  <!-- Screenshots Preview -->
-  <div class="grid grid-cols-2 gap-2 mb-4">
-    <img src="images/iShopp-screen1- webimg1.png" alt="iShopp Screenshot 1" 
-         class="rounded-lg shadow-sm object-cover">
-    <img src="images/iShopp-screen2-dashboard.png" alt="iShopp Screenshot 2" 
-         class="rounded-lg shadow-sm object-cover">
-   
+  <!-- XBetApp -->
+  <div class="p-6 rounded-xl shadow-md bg-white dark:bg-gray-800 hover:scale-105 transition project-card" data-project="XBetApp">
+    <div class="flex items-center mb-2">
+      <img src="images/Xbet.webp" alt="XBetApp Logo" class="w-10 h-10 mr-2 rounded">
+      <h3 class="text-xl font-semibold">XBetApp</h3>
+    </div>
+    <p class="text-gray-600 dark:text-gray-300 mb-4">
+      AI-driven testing for mobile betting workflows, integrated CI/CD pipeline.
+    </p>
+    <div class="grid grid-cols-3 gap-2 mb-4">
+      <img src="images/veridian-screen1.png" class="screenshot cursor-pointer rounded" alt="XBetApp Screenshot">
+      
+    </div>
+    <button class="requestAccessBtn mt-4 w-full px-4 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700">
+      Request Access to Code
+    </button>
   </div>
 
-  <!-- Request Access Button -->
-  <button id="requestAccessBtn" 
-          class="w-full px-4 py-2 bg-blue-900 hover:bg-orange-400 text-white rounded-lg shadow-md transition">
-    Request Access to Code
-  </button>
+  <!-- Veridian -->
+  <div class="p-6 rounded-xl shadow-md bg-white dark:bg-gray-800 hover:scale-105 transition project-card" data-project="Veridian">
+    <div class="flex items-center mb-2">
+      <img src="images/veridian-appicon.png" alt="Veridian Logo" class="w-10 h-10 mr-2 rounded">
+      <h3 class="text-xl font-semibold">Veridian</h3>
+    </div>
+    <p class="text-gray-600 dark:text-gray-300 mb-4">
+      Scalable automation framework with advanced reporting & analytics.
+    </p>
+    <div class="grid grid-cols-3 gap-2 mb-4">
+      <img src="images/veridian-screen1.png" class="screenshot cursor-pointer rounded" alt="Veridian Screenshot">
+      <img src="https://via.placeholder.com/150" class="screenshot cursor-pointer rounded" alt="Veridian Screenshot">
+      <img src="https://via.placeholder.com/150" class="screenshot cursor-pointer rounded" alt="Veridian Screenshot">
+    </div>
+    <button class="requestAccessBtn mt-4 w-full px-4 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700">
+      Request Access to Code
+    </button>
+  </div>
+
 </div>
 
-    <div class="cursor-pointer p-6 rounded-xl shadow-md bg-white dark:bg-gray-800 hover:scale-105 transition">
-  <!-- Header: Logo + Title -->
-  <div class="flex items-center gap-3 mb-3">
-    <!-- Placeholder Logo -->
-    <img src="images/xbetapp-logo-placeholder.png" alt="XBetApp Logo" 
-         class="w-10 h-10 rounded-lg bg-gray-200 dark:bg-gray-700 object-cover">
-    <h3 class="text-xl font-semibold">XBetApp</h3>
+<!-- Fullscreen Image Modal -->
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50">
+  <div class="relative max-w-3xl w-full">
+    <button onclick="closeImageModal()" 
+      class="absolute top-2 right-2 bg-white text-black rounded-full px-3 py-1 text-lg font-bold hover:bg-gray-200">✕</button>
+    <img id="modalImage" src="" class="rounded-lg max-h-[80vh] mx-auto">
   </div>
-
-  <!-- Project Description -->
-  <p class="text-gray-600 dark:text-gray-300 mb-4">
-    AI-driven testing for mobile betting workflows, integrated CI/CD pipeline.
-  </p>
-
-  <!-- Screenshots Preview -->
-  <div class="grid grid-cols-2 gap-2 mb-4">
-    <img src="images/xbetapp-screen1.png" alt="XBetApp Screenshot 1" 
-         class="rounded-lg shadow-sm object-cover">
-    <img src="images/xbetapp-screen2.png" alt="XBetApp Screenshot 2" 
-         class="rounded-lg shadow-sm object-cover">
-    <img src="images/xbetapp-screen3.png" alt="XBetApp Screenshot 3" 
-         class="rounded-lg shadow-sm object-cover">
-    <img src="images/xbetapp-screen4.png" alt="XBetApp Screenshot 4" 
-         class="rounded-lg shadow-sm object-cover">
-  </div>
-
-  <!-- Request Access Button -->
-  <button id="requestXbetAccessBtn" 
-          class="w-full px-4 py-2 bg-blue-900 hover:bg-orange-400 text-white rounded-lg shadow-md transition">
-    Request Access to Code
-  </button>
-</div>
-<div class="cursor-pointer p-6 rounded-xl shadow-md bg-white dark:bg-gray-800 hover:scale-105 transition">
-  <!-- Header: Logo + Title -->
-  <div class="flex items-center gap-3 mb-3">
-    <!-- Placeholder Logo -->
-    <img src="images/veridian-appicon.png" alt="Veridian Logo" 
-         class="w-10 h-10 rounded-lg bg-gray-200 dark:bg-gray-700 object-cover">
-    <h3 class="text-xl font-semibold">Veridian</h3>
-  </div>
-
-  <!-- Project Description -->
-  <p class="text-gray-600 dark:text-gray-300 mb-4">
-    Veridian – A next-gen automation platform combining AI, analytics, and scalability for enterprise solutions.
-  </p>
-
-  <!-- Screenshots Preview -->
-  <div class="grid grid-cols-2 gap-2 mb-4">
-    <img src="images/veridian-screen1.png" alt="Veridian Screenshot 1" 
-         class="rounded-lg shadow-sm object-cover">
-    
-  </div>
-
-  <!-- Request Access Button -->
-  <button id="requestVeridianAccessBtn" 
-          class="w-full px-4 py-2 bg-blue-900 hover:bg-orange-400 text-white rounded-lg shadow-md transition">
-    Request Access to Code
-  </button>
 </div>
 
-
+<!-- Request Access Modal -->
+<div id="requestModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
+  <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg max-w-md w-full relative">
+    <h3 id="modalTitle" class="text-xl font-semibold mb-4">Request Access</h3>
+    <form id="requestForm" class="space-y-4">
+      <input type="hidden" id="projectName" name="projectName">
+      <div>
+        <label class="block text-sm font-medium">Full Name</label>
+        <input type="text" name="fullName" required class="w-full p-2 border rounded-lg">
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Email</label>
+        <input type="email" name="email" required class="w-full p-2 border rounded-lg">
+      </div>
+      <div class="flex justify-end gap-2 mt-4">
+        <button type="button" id="closeModal" class="px-4 py-2 rounded-lg bg-gray-300 hover:bg-gray-400">Cancel</button>
+        <button type="submit" class="px-4 py-2 rounded-lg bg-blue-900 text-white hover:bg-orange-400">Submit</button>
+      </div>
+    </form>
   </div>
-</section>
+</div>
+
+<script>
+  // Image Modal
+  const screenshots = document.querySelectorAll(".screenshot");
+  const imageModal = document.getElementById("imageModal");
+  const modalImage = document.getElementById("modalImage");
+  screenshots.forEach(img => {
+    img.addEventListener("click", () => {
+      modalImage.src = img.src;
+      imageModal.classList.remove("hidden");
+    });
+  });
+  function closeImageModal() { imageModal.classList.add("hidden"); }
+
+  // Request Access Modal
+  const requestModal = document.getElementById("requestModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const projectNameInput = document.getElementById("projectName");
+
+  document.querySelectorAll(".requestAccessBtn").forEach(btn => {
+    btn.addEventListener("click", e => {
+      const projectCard = e.target.closest(".project-card") || e.target.closest(".p-6");
+      const projectName = projectCard.dataset.project || "Unknown Project";
+      projectNameInput.value = projectName;
+      modalTitle.textContent = `Request Access to ${projectName} Code`;
+      requestModal.classList.remove("hidden");
+    });
+  });
+
+  document.getElementById("closeModal").addEventListener("click", () => {
+    requestModal.classList.add("hidden");
+  });
+
+  // Submit Request (placeholder fetch, integrate your backend here)
+  document.getElementById("requestForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target).entries());
+    console.log("Request Data:", data);
+
+    await fetch("/api/request-access", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    alert("✅ Your request has been submitted. You'll receive an approval link shortly.");
+    requestModal.classList.add("hidden");
+    e.target.reset();
+  });
+</script>
+
+<style>
+  .screenshot {
+    transition: transform 0.3s ease;
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+  }
+  .screenshot:hover {
+    transform: scale(1.05);
+  }
+</style>
+
 
 <!-- CONTACT -->
 <!-- CONTACT SECTION -->
