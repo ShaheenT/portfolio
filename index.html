@@ -99,6 +99,8 @@
 <!-- ABOUT -->
 <section id="about" class="container mx-auto py-12 px-6">
   <h2 id="aboutHeader" class="text-3xl font-bold mb-6 text-center">About Me</h2>
+    <h2 id="aboutHeader" class="text-1xl font-bold mb-6 text-center">Senior QA Engineer | Test Automation | Manual & Automated Testing | Fintech & SaaS
+</h2>
 <p class="max-w-[90%] md:max-w-[88rem] mx-auto text-center text-sm md:text-base">   I’m an AI-driven Quality Assurance Engineer passionate about accelerating software testing with intelligence, precision, and speed.
 
 At EntrprnriX Ai, I leverage AI-powered frameworks—Testim, Mabl, Functionize, Applitools, and TestSigma—alongside tools like Playwright, Selenium, Cypress, Appium, and Postman to design end-to-end QA strategies.
@@ -121,7 +123,7 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
 </section>
 <!-- CV / Resume Download Section -->
 <section id="resume" class="container mx-auto py-12 px-6 text-center">
-  <h2 class="text-3xl font-bold mb-6">Download My Resume</h2>
+  <h2 class="text-3xl font-bold mb-6 text-white">Download My Resume</h2>
 
   <!-- Envelope Lottie Animation -->
   <div class="flex flex-col items-center gap-4">
@@ -130,21 +132,47 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
       style="width: 96px; height: 96px; cursor: pointer;"
       speed="1"
       loop
-      autoplay="false"
+      autoplay="true"
       title="Click to download my resume">
     </dotlottie-wc>
     
-    <p class="max-w-xl text-center text-sm md:text-base">
-      Interested in my experience? Click the envelope or the button below to download my CV.
+    <p class="max-w-xl text-center text-sm md:text-base text-gray-300">
+      Interested in my experience? Click the envelope or the button below to download my Resume.
     </p>
 
     <!-- Download Button -->
     <button id="downloadResumeBtn" 
-            class="mt-2 px-6 py-3 bg-blue-900 hover:bg-orange-400 text-white rounded-lg shadow-md transition">
-      Click Here to Download Resume
+            class="mt-2 px-6 py-3 bg-blue-700 hover:bg-orange-500 text-white rounded-lg shadow-md transition">
+      📄 Click Here to Download Resume
     </button>
   </div>
 </section>
+
+<script type="module">
+  // Envelope and Button Elements
+  const lottieEnvelope = document.getElementById("lottie-envelope");
+  const downloadBtn = document.getElementById("downloadResumeBtn");
+
+  // Path to your PDF (ensure it's saved in /resume/resume.pdf)
+  const resumePath = "resume/Shaheen_Toefy_Senior_QA_Engineer.pdf";
+
+  // Common download function
+  const triggerResumeDownload = () => {
+    const link = document.createElement("a");
+    link.href = resumePath;
+    link.download = "Shaheen_Toefy_Senior_QA_Engineer.pdf"; // Suggested filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Add event listeners for both button and Lottie
+  lottieEnvelope.addEventListener("click", triggerResumeDownload);
+  downloadBtn.addEventListener("click", triggerResumeDownload);
+</script>
+
+<!-- Import Lottie Web Component -->
+<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.js"></script>
 
 <!-- Lottie Web Component Loader -->
 <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
@@ -501,10 +529,28 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
         <li>Reusable automation templates</li>
         <li>Comprehensive testing workflows</li>
         <li>CI/CD ready QA scripts</li>
+
       </ul>
     </div>
   </a>
+
+<a href="sq-army-knife.html" class="block">
+    <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:scale-105 transition cursor-pointer">
+      <h3 class="font-semibold text-lg mb-2">Ai Tools & Software </h3>
+      <ul class="list-disc list-inside text-sm">
+        <li>🧠 1. OpenAI GPT (ChatGPT / API)</li>
+        <li>🎨 2. Midjourney</li>
+        <li>⚙️ 3. Anthropic Claudes</li>
+        <li>💼 4. Notion AI</li>
+        <li>💼 5. Testim.io</li>
+        <li>💼 6. Mabl</li>
+      </ul>
+    </div>
+  </a>
+
 </div>
+
+
 
   <!-- Resources Grid -->
 <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">    <!-- AI Engineer Resources Card -->
