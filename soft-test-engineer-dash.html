@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Test Engineer - Live Testing Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        .card-title {
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        .metric {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #4ade80;
+        }
+        .test-console {
+            background: #1e293b;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+        .console-line {
+            margin: 5px 0;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .pass { color: #4ade80; }
+        .fail { color: #ef4444; }
+        .info { color: #60a5fa; }
+        .warning { color: #fbbf24; }
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ade80, #22c55e);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .test-result {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .test-result.pass { border: 2px solid #4ade80; }
+        .test-result.fail { border: 2px solid #ef4444; }
+        .test-result .number {
+            font-size: 1.8em;
+            font-weight: bold;
+            display: block;
+        }
+        .code-editor {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin-top: 15px;
+            position: relative;
+        }
+        .line-numbers {
+            float: left;
+            color: #64748b;
+            margin-right: 15px;
+            text-align: right;
+        }
+        .code-content { overflow-x: auto; }
+        .keyword { color: #c678dd; }
+        .function { color: #61afef; }
+        .string { color: #98c379; }
+        .comment { color: #5c6370; font-style: italic; }
+        .wide-card {
+            grid-column: 1 / -1;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        input[type="range"] {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .status-running { background: #fbbf24; }
+        .status-pass { background: #4ade80; }
+        .status-fail { background: #ef4444; }
+
+        /* 🔹 Home Button */
+.home-btn {
+  position:fixed;
+  top:20px;
+  right:30px;
+  background:#1C62EB;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  padding:10px 20px;
+  font-size:1rem;
+  cursor:pointer;
+  z-index:1000;
+  transition:background 0.3s ease, transform 0.2s ease;
+}
+.home-btn:hover {
+  background:#0d44b3;
+  transform:scale(1.05);
+}
+    </style>
+</head>
+<body>
+    <!-- 🔹 Home Button -->
+<button class="home-btn" onclick="goHome()">🏠 Home</button>
+    <div class="container">
+        <header>
+            <h1>🔬 Software Test Engineer - Live Dashboard</h1>
+            <p style="font-size: 1.2em; opacity: 0.9;">Real-Time Automated Testing System</p>
+        </header>
+
+        <div class="dashboard">
+            <!-- Live Test Execution -->
+            <div class="card wide-card">
+                <div class="card-header">
+                    <div class="icon">🤖</div>
+                    <div class="card-title">Live Test Execution</div>
+                </div>
+                <div class="controls">
+                    <button class="btn" onclick="runTests()">▶ Run Test Suite</button>
+                    <button class="btn" onclick="stopTests()">⏹ Stop</button>
+                    <button class="btn" onclick="clearConsole()">🗑 Clear Console</button>
+                    <button class="btn" onclick="generateReport()">📄 Generate Report</button>
+                </div>
+                <div style="margin: 15px 0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span id="testStatus">Status: Ready</span>
+                        <span id="testProgress">0 / 0 tests</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressBar" style="width: 0%;"></div>
+                    </div>
+                </div>
+                <div class="test-console" id="console">
+                    <div class="console-line info">🔧 Test framework initialized...</div>
+                    <div class="console-line info">📦 Loading test modules...</div>
+                    <div class="console-line pass">✓ Environment setup complete</div>
+                </div>
+            </div>
+
+            <!-- Test Statistics -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon">📊</div>
+                    <div class="card-title">Test Statistics</div>
+                </div>
+                <div class="test-grid">
+                    <div class="test-result pass">
+                        <span class="number" id="passCount">0</span>
+                        <span style="font-size: 0.85em;">Passed</span>
+                    </div>
+                    <div class="test-result fail">
+                        <span class="number" id="failCount">0</span>
+                        <span style="font-size: 0.85em;">Failed</span>
+                    </div>
+                    <div class="test-result" style="border: 2px solid #fbbf24;">
+                        <span class="number" id="skipCount">0</span>
+                        <span style="font-size: 0.85em;">Skipped</span>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>Code Coverage:</span>
+                        <span id="coverage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="coverageBar" style="width: 0%;"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>Execution Time:</span>
+                        <span id="execTime">0.0s</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Python Test Framework -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon">🐍</div>
+                    <div class="card-title">Python Test Suite</div>
+                </div>
+                <div class="code-editor">
+                    <div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13</div>
+                    <div class="code-content">
+<span class="keyword">import</span> pytest
+<span class="keyword">import</span> unittest
+
+<span class="keyword">class</span> <span class="function">EmbeddedSystemTest</span>:
+    <span class="keyword">def</span> <span class="function">test_boot_sequence</span>(self):
+        <span class="comment"># Test firmware boot timing</span>
+        result = <span class="function">execute_boot_test</span>()
+        <span class="keyword">assert</span> result.time < <span class="string">3.0</span>
+        
+    <span class="keyword">def</span> <span class="function">test_memory_init</span>(self):
+        <span class="comment"># Validate memory initialization</span>
+        mem = <span class="function">check_memory_state</span>()
+        <span class="keyword">assert</span> mem.status == <span class="string">"OK"</span>
+                    </div>
+                </div>
+                <button class="btn" onclick="validateCode()" style="margin-top: 10px;">✓ Validate Code</button>
+            </div>
+
+            <!-- Static Analysis -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon">🔍</div>
+                    <div class="card-title">Static Code Analysis</div>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                        <span>Complexity Score:</span>
+                        <span id="complexity">0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                        <span>Security Issues:</span>
+                        <span id="security">0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                        <span>Code Smells:</span>
+                        <span id="smells">0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                        <span>Duplications:</span>
+                        <span id="duplications">0%</span>
+                    </div>
+                </div>
+                <button class="btn" onclick="runStaticAnalysis()">🔍 Run Analysis</button>
+            </div>
+
+            <!-- Coverage Simulator -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon">📈</div>
+                    <div class="card-title">Coverage Control</div>
+                </div>
+                <div style="margin: 15px 0;">
+                    <label>Statement Coverage: <span id="stmtValue">85%</span></label>
+                    <input type="range" min="0" max="100" value="85" oninput="updateCoverage('stmt', this.value)">
+                </div>
+                <div style="margin: 15px 0;">
+                    <label>Branch Coverage: <span id="branchValue">78%</span></label>
+                    <input type="range" min="0" max="100" value="78" oninput="updateCoverage('branch', this.value)">
+                </div>
+                <div style="margin: 15px 0;">
+                    <label>Function Coverage: <span id="funcValue">92%</span></label>
+                    <input type="range" min="0" max="100" value="92" oninput="updateCoverage('func', this.value)">
+                </div>
+            </div>
+
+            <!-- Bug Tracker -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon">🐛</div>
+                    <div class="card-title">Bug Detection</div>
+                </div>
+                <div id="bugList" style="max-height: 250px; overflow-y: auto;">
+                    <!-- Bugs will be added here -->
+                </div>
+                <button class="btn" onclick="addBug()">+ Report New Bug</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isRunning = false;
+        let testInterval;
+        let passed = 0, failed = 0, skipped = 0;
+        let totalTests = 25;
+        let currentTest = 0;
+        let startTime;
+
+        const testNames = [
+            "test_firmware_boot_sequence",
+            "test_memory_initialization",
+            "test_peripheral_validation",
+            "test_uart_communication",
+            "test_spi_interface",
+            "test_i2c_bus",
+            "test_gpio_configuration",
+            "test_interrupt_handling",
+            "test_timer_accuracy",
+            "test_adc_readings",
+            "test_power_management",
+            "test_watchdog_timer",
+            "test_flash_memory",
+            "test_eeprom_write",
+            "test_rtc_functionality",
+            "test_can_bus",
+            "test_ethernet_connection",
+            "test_usb_device",
+            "test_dma_transfer",
+            "test_clock_stability"
+        ];
+
+        function runTests() {
+            if (isRunning) return;
+            isRunning = true;
+            passed = failed = skipped = currentTest = 0;
+            startTime = Date.now();
+            
+            addToConsole('info', '🚀 Starting test suite execution...');
+            addToConsole('info', `📋 Total tests to run: ${totalTests}`);
+            
+            testInterval = setInterval(() => {
+                if (currentTest >= totalTests) {
+                    stopTests();
+                    completeTests();
+                    return;
+                }
+                
+                executeTest();
+                currentTest++;
+                updateProgress();
+            }, 800);
+        }
+
+        function executeTest() {
+            const testName = testNames[currentTest % testNames.length];
+            const random = Math.random();
+            
+            if (random > 0.15) {
+                passed++;
+                addToConsole('pass', `✓ PASS: ${testName}`);
+            } else if (random > 0.05) {
+                failed++;
+                addToConsole('fail', `✗ FAIL: ${testName} - Assertion failed at line ${Math.floor(Math.random() * 50)}`);
+            } else {
+                skipped++;
+                addToConsole('warning', `⊘ SKIP: ${testName} - Prerequisites not met`);
+            }
+            
+            document.getElementById('passCount').textContent = passed;
+            document.getElementById('failCount').textContent = failed;
+            document.getElementById('skipCount').textContent = skipped;
+        }
+
+        function stopTests() {
+            clearInterval(testInterval);
+            isRunning = false;
+            document.getElementById('testStatus').innerHTML = '<span class="status-indicator status-pass"></span>Status: Stopped';
+        }
+
+        function completeTests() {
+            const duration = ((Date.now() - startTime) / 1000).toFixed(2);
+            const coverage = (85 + Math.random() * 10).toFixed(1);
+            
+            addToConsole('info', '═══════════════════════════════════');
+            addToConsole('pass', `✓ Test suite completed in ${duration}s`);
+            addToConsole('info', `📊 Results: ${passed} passed, ${failed} failed, ${skipped} skipped`);
+            addToConsole('info', `📈 Code Coverage: ${coverage}%`);
+            
+            document.getElementById('coverage').textContent = coverage + '%';
+            document.getElementById('coverageBar').style.width = coverage + '%';
+            document.getElementById('execTime').textContent = duration + 's';
+        }
+
+        function updateProgress() {
+            const progress = (currentTest / totalTests) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('testProgress').textContent = `${currentTest} / ${totalTests} tests`;
+            document.getElementById('testStatus').innerHTML = `<span class="status-indicator status-running"></span>Status: Running`;
+        }
+
+        function addToConsole(type, message) {
+            const console = document.getElementById('console');
+            const line = document.createElement('div');
+            line.className = `console-line ${type}`;
+            line.textContent = message;
+            console.appendChild(line);
+            console.scrollTop = console.scrollHeight;
+        }
+
+        function clearConsole() {
+            document.getElementById('console').innerHTML = '';
+            addToConsole('info', '🔧 Console cleared');
+        }
+
+        function generateReport() {
+            addToConsole('info', '📄 Generating test report...');
+            setTimeout(() => {
+                addToConsole('pass', '✓ Report saved to: test_report_' + Date.now() + '.html');
+            }, 1000);
+        }
+
+        function validateCode() {
+            addToConsole('info', '🐍 Validating Python code...');
+            setTimeout(() => {
+                addToConsole('pass', '✓ No syntax errors found');
+                addToConsole('pass', '✓ PEP 8 compliance: 98%');
+            }, 1500);
+        }
+
+        function runStaticAnalysis() {
+            const complexity = Math.floor(Math.random() * 5) + 1;
+            const security = Math.floor(Math.random() * 3);
+            const smells = Math.floor(Math.random() * 8);
+            const duplications = (Math.random() * 5).toFixed(1);
+            
+            document.getElementById('complexity').textContent = complexity;
+            document.getElementById('security').textContent = security;
+            document.getElementById('smells').textContent = smells;
+            document.getElementById('duplications').textContent = duplications + '%';
+            
+            addToConsole('info', '🔍 Running static analysis...');
+            setTimeout(() => {
+                addToConsole('pass', `✓ Analysis complete - Quality Gate: ${complexity < 3 && security === 0 ? 'PASSED' : 'NEEDS REVIEW'}`);
+            }, 1200);
+        }
+
+        function updateCoverage(type, value) {
+            document.getElementById(type + 'Value').textContent = value + '%';
+            const avg = (parseInt(document.getElementById('stmtValue').textContent) + 
+                        parseInt(document.getElementById('branchValue').textContent) + 
+                        parseInt(document.getElementById('funcValue').textContent)) / 3;
+            document.getElementById('coverage').textContent = avg.toFixed(1) + '%';
+            document.getElementById('coverageBar').style.width = avg + '%';
+        }
+
+        let bugId = 1;
+        function addBug() {
+            const bugList = document.getElementById('bugList');
+            const bug = document.createElement('div');
+            bug.style.cssText = 'background: rgba(0,0,0,0.3); padding: 10px; margin: 8px 0; border-radius: 5px; border-left: 3px solid #ef4444;';
+            bug.innerHTML = `
+                <strong>BUG-${bugId++}</strong> - ${new Date().toLocaleTimeString()}<br>
+                <small>${testNames[Math.floor(Math.random() * testNames.length)]} - Unexpected behavior detected</small>
+            `;
+            bugList.insertBefore(bug, bugList.firstChild);
+            addToConsole('fail', `🐛 New bug reported: BUG-${bugId - 1}`);
+        }
+
+        // 🔹 Home button behavior
+function goHome(){
+  window.location.href = 'index.html'; // You can link to another page if needed
+}
+    </script>
+
+    
+</body>
+</html>

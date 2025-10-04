@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Doors - Storyteller QA Reveal</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-height:100vh;
+  background:#111;
+  font-family:Arial,sans-serif;
+  padding:20px;
+}
+h1 { color:#fff; margin-bottom:30px; text-align:center; }
+
+/* 🔹 Home Button */
+.home-btn {
+  position:fixed;
+  top:20px;
+  right:30px;
+  background:#1C62EB;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  padding:10px 20px;
+  font-size:1rem;
+  cursor:pointer;
+  z-index:1000;
+  transition:background 0.3s ease, transform 0.2s ease;
+}
+.home-btn:hover {
+  background:#0d44b3;
+  transform:scale(1.05);
+}
+
+.doors-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:40px;
+  width:100%;
+  max-width:1200px;
+}
+
+.door-container {
+  position:relative;
+  width:100%;
+  padding-top:140%;
+  perspective:1200px;
+}
+
+/* Doors */
+.door {
+  width:50%;
+  height:100%;
+  position:absolute;
+  top:0;
+  cursor:pointer;
+  transform-style:preserve-3d;
+  transition:transform 1.2s cubic-bezier(0.68,-0.55,0.27,1.55), box-shadow 0.3s ease;
+  z-index:2;
+  border-radius:5px;
+  background:linear-gradient(180deg,#8B5E3C 0%,#A87C5A 25%,#7B4F2A 50%,#8B5E3C 75%,#A87C5A 100%);
+  border-left:2px solid #5a3d24;
+  border-right:2px solid #5a3d24;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.2), 0 5px 15px rgba(0,0,0,0.3);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.door.left { left:0; transform-origin:left center; }
+.door.right { right:0; transform-origin:right center; }
+.door:hover { box-shadow: 0 0 40px rgba(255,255,255,0.3); }
+
+/* Logo on door panels */
+.door.left svg, .door.right svg {
+  position:absolute;
+  width:70%;
+  height:auto;
+  opacity:0.08;
+  pointer-events:none;
+}
+
+/* Overlay for first door */
+.overlay {
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:5;
+  opacity:0;
+  pointer-events:none;
+  transition: opacity 0.8s ease;
+}
+
+.overlay svg {
+  width:60%;
+  height:auto;
+  margin-bottom:20px;
+  opacity:0.2;
+}
+
+.overlay button {
+  padding:12px 30px;
+  font-size:1rem;
+  cursor:pointer;
+  border:none;
+  background:#1C62EB;
+  color:#fff;
+  border-radius:5px;
+  transition: background 0.3s ease;
+}
+.overlay button:hover { background:#0d44b3; }
+
+.overlay.visible {
+  opacity:1;
+  pointer-events:auto;
+}
+</style>
+</head>
+<body>
+
+<!-- 🔹 Home Button -->
+<button class="home-btn" onclick="goHome()">🏠 Home</button>
+
+<h1>My Portfolio Projects</h1>
+
+<div class="doors-grid">
+
+  <!-- Door 1 -->
+  <div class="door-container">
+    <div class="door left">
+      <!-- Logo left panel -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138 126">
+        <path fill="#F3C3AF" d="m25.976 38.773 38.91 12.287a13.66 13.66 0 0 0 8.227 0l38.911-12.287C109.782 16.99 91.374 0 69 0 46.624 0 28.218 16.99 25.976 38.773z"/>
+        <path fill="#1C62EB" d="M75.873 63.842a22.765 22.765 0 0 1-13.746 0L12.56 48.145C6.69 46.286.705 50.67.705 56.826V72.66a9.106 9.106 0 0 0 3.884 7.46l59.19 41.432a9.105 9.105 0 0 0 10.443 0l59.189-41.432a9.107 9.107 0 0 0 3.884-7.46V56.826c0-6.157-5.985-10.54-11.855-8.68L75.873 63.841z"/>
+      </svg>
+    </div>
+    <div class="door right">
+      <!-- Logo right panel -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138 126">
+        <path fill="#F3C3AF" d="m25.976 38.773 38.91 12.287a13.66 13.66 0 0 0 8.227 0l38.911-12.287C109.782 16.99 91.374 0 69 0 46.624 0 28.218 16.99 25.976 38.773z"/>
+        <path fill="#1C62EB" d="M75.873 63.842a22.765 22.765 0 0 1-13.746 0L12.56 48.145C6.69 46.286.705 50.67.705 56.826V72.66a9.106 9.106 0 0 0 3.884 7.46l59.19 41.432a9.105 9.105 0 0 0 10.443 0l59.189-41.432a9.107 9.107 0 0 0 3.884-7.46V56.826c0-6.157-5.985-10.54-11.855-8.68L75.873 63.841z"/>
+      </svg>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138 126">
+        <path fill="#F3C3AF" d="m25.976 38.773 38.91 12.287a13.66 13.66 0 0 0 8.227 0l38.911-12.287C109.782 16.99 91.374 0 69 0 46.624 0 28.218 16.99 25.976 38.773z"/>
+        <path fill="#1C62EB" d="M75.873 63.842a22.765 22.765 0 0 1-13.746 0L12.56 48.145C6.69 46.286.705 50.67.705 56.826V72.66a9.106 9.106 0 0 0 3.884 7.46l59.19 41.432a9.105 9.105 0 0 0 10.443 0l59.189-41.432a9.107 9.107 0 0 0 3.884-7.46V56.826c0-6.157-5.985-10.54-11.855-8.68L75.873 63.841z"/>
+      </svg>
+      <button onclick="openProject()">Open Project</button>
+    </div>
+  </div>
+
+  <!-- Door 2 -->
+  <div class="door-container">
+    <div class="door left"></div>
+    <div class="door right"></div>
+  </div>
+
+  <!-- Door 3 -->
+  <div class="door-container">
+    <div class="door left"></div>
+    <div class="door right"></div>
+  </div>
+
+</div>
+
+<audio id="doorSound" src="door-creak.mp3" preload="auto"></audio>
+
+<script>
+const containers = document.querySelectorAll('.door-container');
+const doorSound = document.getElementById('doorSound');
+
+containers.forEach((container,index)=>{
+  const leftDoor = container.querySelector('.door.left');
+  const rightDoor = container.querySelector('.door.right');
+  const overlay = container.querySelector('.overlay');
+  let doorsOpen=false;
+
+  function openDoors(){
+    if(doorSound) doorSound.play();
+    leftDoor.style.transform='rotateY(-120deg)';
+    rightDoor.style.transform='rotateY(120deg)';
+    if(index === 0 && overlay) overlay.classList.add('visible');
+    doorsOpen=true;
+  }
+
+  function closeDoors(){
+    if(doorSound) doorSound.play();
+    leftDoor.style.transform='rotateY(0deg)';
+    rightDoor.style.transform='rotateY(0deg)';
+    if(index === 0 && overlay) overlay.classList.remove('visible');
+    doorsOpen=false;
+  }
+
+  leftDoor.addEventListener('click',()=>{if(!doorsOpen) openDoors();});
+  rightDoor.addEventListener('click',()=>{if(!doorsOpen) openDoors();});
+
+  document.addEventListener('click',(e)=>{
+    if(doorsOpen && !container.contains(e.target)) closeDoors();
+  });
+});
+
+// Function to open project fullscreen
+function openProject(){
+  const url = 'storyteller_qa_center.html';
+  const w = window.open(url,'_blank','width='+screen.width+',height='+screen.height);
+  w.focus();
+}
+
+// 🔹 Home button behavior
+function goHome(){
+  window.location.href = 'index.html'; // You can link to another page if needed
+}
+</script>
+
+</body>
+</html>

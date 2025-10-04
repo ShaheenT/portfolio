@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shaheen Toefy - AI QA Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root {
+  --primary:#2563eb;
+  --secondary:#111827;
+  --bg:#f4f4f9;
+  --card-bg:#fff;
+  --tooltip-bg:#1f2937;
+}
+
+body { font-family:'Segoe UI',sans-serif; background: var(--bg); color: var(--secondary); margin:0; }
+header { background: linear-gradient(135deg,#1f2937,#2563eb); color:#fff; text-align:center; padding:3rem 1rem; }
+header h1 { font-size:2.5rem; margin:0; }
+header p { margin:0.5rem 0 0; font-size:1.1rem; }
+main { max-width:1200px; margin:auto; padding:2rem; display:grid; gap:2rem; grid-template-columns: repeat(auto-fit,minmax(350px,1fr)); }
+
+.skill-card { background: var(--card-bg); border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.1); padding:1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor:pointer; position:relative; z-index:1; }
+.skill-card:hover { transform: translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.15); }
+.skill-title { font-size:1.3rem; font-weight:bold; color: var(--primary); margin-bottom:0.5rem; }
+.tooltip { color: var(--primary); cursor:pointer; position:relative; }
+.tooltip::after { content: attr(data-tooltip); position:absolute; left:0; top:1.5rem; background: var(--tooltip-bg); color:#fff; padding:0.5rem 1rem; border-radius:6px; white-space: nowrap; opacity:0; pointer-events:none; transition:0.3s; z-index:10;}
+.tooltip:hover::after { opacity:1; }
+
+.tab-btns { margin:0.5rem 0; }
+.tab-btn { padding:0.4rem 0.8rem; margin-right:0.5rem; border:none; border-radius:6px; cursor:pointer; background:#e5e7eb; color:#111827; transition:0.3s;}
+.tab-btn.active { background: var(--primary); color:#fff; }
+.tab-content { display:none; margin-top:1rem; }
+.tab-content.active { display:block; }
+
+pre { background:#2d2d2d; color:#f8f8f2; padding:1rem; border-radius:6px; overflow-x:auto; margin-top:1rem; }
+.progress-container { background:#e5e7eb; border-radius:6px; height:12px; margin:0.5rem 0; }
+.progress-bar { height:12px; width:0; background: var(--primary); border-radius:6px; transition:width 1.5s ease-in-out; }
+
+canvas { max-width:100%; height:200px; margin-top:1rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Shaheen Toefy</h1>
+  <p>AI QA Engineer | Automation | Full-Stack Developer | Cloud & DevOps</p>
+</header>
+
+<main>
+<p style="grid-column:1/-1; font-style:italic; color:#111827;">
+All initiatives and methodologies below are conceptualized, built, and implemented via <strong>ENTRPRNRIX Ai</strong>.
+</p>
+
+<script>
+// Skill Data
+const skills = [
+  {id:1,title:'Continuous Testing',tooltip:'Regression cycle reduced by 40%',overview:'Automated regression suites running on CI/CD pipelines with Playwright & Cypress.',progress:90,counter:90,code:`// Playwright Example\nimport { test, expect } from '@playwright/test';\n\ntest('Login flow', async ({ page }) => {\n  await page.goto('https://internal.entprnrix.ai/login');\n  await page.fill('#username', 'qa_tester');\n  await page.fill('#password', '********');\n  await page.click('#loginBtn');\n  await expect(page).toHaveURL('/dashboard');\n});`,labels:['Pass','Fail'],data:[90,10]},
+  {id:2,title:'Test Automation Architecture',tooltip:'Reusable framework supporting web, mobile, and API',overview:'Structured automation frameworks with modular design, reusable components, and CI/CD integration.',progress:85,counter:85,code:`// Cypress Example\ndescribe('User Registration', () => {\n  it('should register a new user', () => {\n      cy.visit('/register');\n      cy.get('#name').type('Shaheen');\n      cy.get('#email').type('shaheen@example.com');\n      cy.get('#submit').click();\n      cy.contains('Registration Successful');\n  });\n});`,labels:['Module 1','Module 2','Module 3'],data:[80,85,90]},
+  {id:3,title:'Shift-Left QA Practices',tooltip:'Early QA integration reduced production defects by 25%',overview:'QA embedded in early dev cycles with AI-generated test cases and exploratory testing.',progress:80,counter:80,code:`// Example test snippet\n// See full workflow in ENTRPRNRIX Ai`,labels:['Early Defects','Late Defects'],data:[80,20]},
+  {id:4,title:'Cloud-Native QA',tooltip:'Automated testing in AWS/Docker',overview:'Executed cloud-native QA in AWS Lambda, API Gateway, S3, Docker, and serverless environments.',progress:92,counter:92,code:`// AWS test snippet example\n// See ENTRPRNRIX Ai project dashboards`,labels:['AWS','Docker','Serverless'],data:[92,88,90]},
+  {id:5,title:'Performance & Scalability Analysis',tooltip:'Handled peak loads up to 50,000 concurrent users',overview:'Load and stress tests performed with JMeter and K6. Metrics visualized using Grafana dashboards.',progress:95,counter:50000,code:`// Performance test snippet\n// Example K6 load test`,labels:['Concurrent Users'],data:[50000]},
+  {id:6,title:'Microservices Testing',tooltip:'Validated inter-service communication and APIs',overview:'End-to-end testing for microservices including API validation and service orchestration.',progress:88,counter:88,code:`// Microservice API test snippet\n// Example using Postman / Newman`,labels:['Service A','Service B','Service C'],data:[85,90,88]},
+  {id:7,title:'API Automation & Validation',tooltip:'REST and GraphQL coverage 100%',overview:'Automated API testing with Postman, Newman, and custom scripts.',progress:100,counter:100,code:`// Postman test snippet\npm.test("Status code is 200", function () { pm.response.to.have.status(200); });`,labels:['REST','GraphQL'],data:[100,100]},
+  {id:8,title:'Agile QA Coaching',tooltip:'Mentored 5 junior QA engineers',overview:'Coached teams on Agile QA practices, shift-left testing, and automation integration.',progress:90,counter:5,code:`// Coaching plan snippet`,labels:['Team 1','Team 2','Team 3'],data:[5,5,5]},
+  {id:9,title:'LLM-Based Testing / Generative AI QA',tooltip:'AI-generated 200+ test cases',overview:'Applied LLMs to generate exploratory test cases and predictive defect models.',progress:95,counter:200,code:`from openai import OpenAI\nclient = OpenAI()\nprompt = "Generate test cases for login validation"\nresponse = client.chat.completions.create(\n    model="gpt-5-mini",\n    messages=[{"role":"user","content":prompt}]\n)\nprint(response.choices[0].message.content)`,labels:['Generated Cases'],data:[200]},
+  {id:10,title:'CI/CD Test Integration',tooltip:'All automated tests integrated with pipelines',overview:'Automated test suites integrated into CI/CD pipelines for consistent quality.',progress:100,counter:100,code:`// CI/CD pipeline snippet`,labels:['GitHub Actions','Jenkins','GitLab CI'],data:[100,100,100]},
+  {id:11,title:'Test Orchestration',tooltip:'End-to-end coordination across platforms',overview:'Coordinated test execution across web, mobile, and API layers.',progress:90,counter:90,code:`// Orchestration snippet`,labels:['Web','Mobile','API'],data:[90,90,90]}
+];
+
+// Create Skill Cards
+skills.forEach(skill=>{
+  const container = document.createElement('div');
+  container.className='skill-card';
+  container.id='skill'+skill.id;
+  container.innerHTML=`
+    <div class="skill-title">${skill.title} <span class="tooltip" data-tooltip="${skill.tooltip}">ℹ️</span></div>
+    <div class="tab-btns">
+      <button class="tab-btn active" data-tab="overview${skill.id}">Overview</button>
+      <button class="tab-btn" data-tab="code${skill.id}">Code</button>
+      <button class="tab-btn" data-tab="media${skill.id}">Media</button>
+    </div>
+    <div class="tab-content active" id="overview${skill.id}">
+      <p>${skill.overview}</p>
+      <div class="progress-container"><div class="progress-bar" data-value="${skill.progress}"></div></div>
+      <div>${skill.id===8?'Teams Mentored':'Metric'}: <span class="counter" data-target="${skill.counter}">0</span>${skill.id===8?'':'%'}</div>
+    </div>
+    <div class="tab-content" id="code${skill.id}"><pre class="line-numbers language-javascript"><code>${skill.code}</code></pre></div>
+    <div class="tab-content" id="media${skill.id}"><canvas id="chart${skill.id}"></canvas></div>
+  `;
+  document.querySelector('main').appendChild(container);
+
+  // Animate progress bar
+  const bar = container.querySelector('.progress-bar');
+  bar.style.width = skill.progress+'%';
+
+  // Animate counter
+  const counterEl = container.querySelector('.counter');
+  let count=0;
+  if(counterEl){
+    const target=parseInt(counterEl.dataset.target);
+    const step=Math.ceil(target/100);
+    const interval=setInterval(()=>{
+      count+=step;
+      if(count>=target){count=target;clearInterval(interval);}
+      counterEl.innerText=count;
+    },15);
+  }
+
+  // Chart
+  const ctx = container.querySelector('canvas').getContext('2d');
+  const chart = new Chart(ctx,{
+    type:'bar',
+    data:{labels:skill.labels,datasets:[{label:'Metrics',data:skill.data,backgroundColor:'rgba(37,99,235,0.7)'}]},
+    options:{responsive:true, animation:{duration:1000}, plugins:{legend:{display:false}}}
+  });
+
+  // Live animated chart updates
+  setInterval(()=>{
+    chart.data.datasets[0].data = chart.data.datasets[0].data.map(val=>{
+      const delta=Math.floor(Math.random()*5-2);
+      return Math.max(0,val+delta);
+    });
+    chart.update();
+  },2000);
+
+  // Tab switching
+  const btns = container.querySelectorAll('.tab-btn');
+  btns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      btns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      container.querySelectorAll('.tab-content').forEach(tc=>tc.classList.remove('active'));
+      container.querySelector('#'+btn.dataset.tab).classList.add('active');
+      if(btn.dataset.tab.startsWith('code')) Prism.highlightAllUnder(container);
+    });
+  });
+});
+</script>
+
+<footer style="background:#1f2937; color:#fff; text-align:center; padding:1rem;">
+  <p>© 2025 Shaheen Toefy | <a href="mailto:shaheentoefy@gmail.com" style="color:#fff;">shaheentoefy@gmail.com</a></p>
+</footer>
+</body>
+</html>

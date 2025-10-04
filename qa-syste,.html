@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Version 1 Prototype- QA Skill System</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family: 'Roboto', sans-serif; display: flex; min-height: 100vh; }
+  .sidebar { width: 250px; background: #1e1e2f; color: #fff; padding:20px; height:100vh; position: fixed; overflow-y:auto; }
+  .sidebar h2 { margin-bottom:20px; }
+  .sidebar ul { list-style:none; padding:0; }
+  .sidebar ul li { margin:15px 0; }
+  .sidebar a { color:#fff; text-decoration:none; }
+  .main { margin-left:270px; padding:20px; flex:1; }
+  .section { margin-bottom:30px; border:1px solid #ccc; border-radius:5px; }
+  .section h2 { padding:10px; background:#f5f5f5; cursor:pointer; user-select:none; }
+  .section-content { padding:15px; display:block; }
+  .collapsed .section-content { display:none; }
+  table { width:100%; border-collapse: collapse; margin:15px 0; }
+  th, td { border:1px solid #ccc; padding:8px; text-align:left; }
+  th { background:#f0f0f0; }
+  pre.sql { background:#2d2d2d; color:#f8f8f2; padding:15px; border-radius:5px; overflow-x:auto; }
+  .screenshot { width:100%; height:150px; background:#ddd; display:flex; align-items:center; justify-content:center; color:#555; margin:15px 0; border-radius:5px; }
+  input, select, textarea { padding:5px; margin:5px 0; width:100%; box-sizing:border-box; }
+  button { padding:10px 15px; margin-top:10px; background:#1e1e2f; color:white; border:none; border-radius:4px; cursor:pointer; }
+  button:hover { background:#333; }
+  @media screen and (max-width:768px){.sidebar{position:relative;width:100%;height:auto}.main{margin-left:0;}}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <h2>Prototype QA System</h2>
+  <ul>
+    <li><a href="#manual-testing">Manual Testing</a></li>
+    <li><a href="#sql-validation">SQL Sandbox</a></li>
+    <li><a href="#migration-testing">Migration Testing</a></li>
+    <li><a href="#test-cases">Test Cases</a></li>
+    <li><a href="#bi-verification">BI Verification</a></li>
+  </ul>
+</aside>
+
+<!-- Main -->
+<main class="main">
+
+<!-- Manual Testing Section -->
+<div id="manual-testing" class="section">
+  <h2 onclick="toggleSection(this)">Manual Testing</h2>
+  <div class="section-content">
+    <p>Simulate testing of tables and reports:</p>
+    <table id="manual-table">
+      <tr><th>Scenario</th><th>System</th><th>Input</th><th>Expected</th><th>Actual</th><th>Status</th></tr>
+      <tr><td>Validate Revenue</td><td>HANA</td><td>CustID=101</td><td>5000</td><td>5000</td><td>Pass</td></tr>
+    </table>
+    <div class="screenshot">[Insert Report Screenshot]</div>
+  </div>
+</div>
+
+<!-- SQL Sandbox Section -->
+<div id="sql-validation" class="section">
+  <h2 onclick="toggleSection(this)">SQL Sandbox</h2>
+  <div class="section-content">
+    <p>Enter SQL query to run against sample dataset:</p>
+    <textarea id="sql-query" rows="5">SELECT CustomerID, SUM(Revenue) AS TotalRevenue FROM sales GROUP BY CustomerID;</textarea>
+    <button onclick="runSQL()">Run SQL</button>
+    <table id="sql-result">
+      <tr><th>CustomerID</th><th>TotalRevenue</th></tr>
+    </table>
+  </div>
+</div>
+
+<!-- Migration Testing Section -->
+<div id="migration-testing" class="section">
+  <h2 onclick="toggleSection(this)">Source-to-Target Migration</h2>
+  <div class="section-content">
+    <p>Upload source and target CSV to compare:</p>
+    <input type="file" id="source-file" accept=".csv">
+    <input type="file" id="target-file" accept=".csv">
+    <button onclick="reconcileCSV()">Compare</button>
+    <table id="reconcile-result"><tr><th>RowID</th><th>Source</th><th>Target</th><th>Status</th></tr></table>
+  </div>
+</div>
+
+<!-- Test Cases Section -->
+<div id="test-cases" class="section">
+  <h2 onclick="toggleSection(this)">Test Cases Tracker</h2>
+  <div class="section-content">
+    <p>Add and manage test cases:</p>
+    <input type="text" id="tc-title" placeholder="Title">
+    <textarea id="tc-desc" placeholder="Description"></textarea>
+    <input type="text" id="tc-expected" placeholder="Expected Result">
+    <input type="text" id="tc-actual" placeholder="Actual Result">
+    <select id="tc-status"><option>Pass</option><option>Fail</option><option>In Progress</option></select>
+    <button onclick="addTestCase()">Add Test Case</button>
+    <table id="tc-table"><tr><th>Title</th><th>Description</th><th>Expected</th><th>Actual</th><th>Status</th></tr></table>
+  </div>
+</div>
+
+<!-- BI Verification Section -->
+<div id="bi-verification" class="section">
+  <h2 onclick="toggleSection(this)">BI Verification</h2>
+  <div class="section-content">
+    <p>Upload Excel/CSV BI export and verify totals:</p>
+    <input type="file" id="bi-file" accept=".csv,.xlsx">
+    <button onclick="verifyBI()">Verify</button>
+    <table id="bi-table"><tr><th>Field</th><th>Expected</th><th>Actual</th><th>Status</th></tr></table>
+  </div>
+</div>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+  // Collapsible sections
+  function toggleSection(header){header.parentElement.classList.toggle("collapsed");}
+
+  // Sample data
+  const sales = [
+    {CustomerID:101, Revenue:5000},
+    {CustomerID:102, Revenue:7000},
+    {CustomerID:103, Revenue:6000}
+  ];
+
+  // SQL Sandbox
+  function runSQL(){
+    const resultTable = document.getElementById('sql-result');
+    resultTable.innerHTML = "<tr><th>CustomerID</th><th>TotalRevenue</th></tr>";
+    sales.forEach(row=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML=`<td>${row.CustomerID}</td><td>${row.Revenue}</td>`;
+      resultTable.appendChild(tr);
+    });
+  }
+
+  // Test Cases Tracker
+  function addTestCase(){
+    const title=document.getElementById('tc-title').value;
+    const desc=document.getElementById('tc-desc').value;
+    const expected=document.getElementById('tc-expected').value;
+    const actual=document.getElementById('tc-actual').value;
+    const status=document.getElementById('tc-status').value;
+    if(!title) return alert("Title required");
+    const table=document.getElementById('tc-table');
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${title}</td><td>${desc}</td><td>${expected}</td><td>${actual}</td><td>${status}</td>`;
+    table.appendChild(tr);
+    document.getElementById('tc-title').value='';
+    document.getElementById('tc-desc').value='';
+    document.getElementById('tc-expected').value='';
+    document.getElementById('tc-actual').value='';
+  }
+
+  // CSV Reconciliation
+  function reconcileCSV(){
+    const srcFile=document.getElementById('source-file').files[0];
+    const tgtFile=document.getElementById('target-file').files[0];
+    if(!srcFile || !tgtFile) return alert("Select both files");
+    const reader1 = new FileReader();
+    const reader2 = new FileReader();
+    reader1.onload=function(e){
+      const srcData=XLSX.read(e.target.result,{type:'binary'});
+      const srcSheet=XLSX.utils.sheet_to_json(srcData.Sheets[srcData.SheetNames[0]]);
+      reader2.onload=function(ev){
+        const tgtData=XLSX.read(ev.target.result,{type:'binary'});
+        const tgtSheet=XLSX.utils.sheet_to_json(tgtData.Sheets[tgtData.SheetNames[0]]);
+        const table=document.getElementById('reconcile-result');
+        table.innerHTML="<tr><th>RowID</th><th>Source</th><th>Target</th><th>Status</th></tr>";
+        const len=Math.max(srcSheet.length, tgtSheet.length);
+        for(let i=0;i<len;i++){
+          const srcRow=srcSheet[i]?JSON.stringify(srcSheet[i]):"N/A";
+          const tgtRow=tgtSheet[i]?JSON.stringify(tgtSheet[i]):"N/A";
+          const status=srcRow===tgtRow?"Pass":"Fail";
+          const tr=document.createElement('tr');
+          tr.innerHTML=`<td>${i+1}</td><td>${srcRow}</td><td>${tgtRow}</td><td>${status}</td>`;
+          table.appendChild(tr);
+        }
+      };
+      reader2.readAsBinaryString(tgtFile);
+    };
+    reader1.readAsBinaryString(srcFile);
+  }
+
+  // BI Verification (simple CSV)
+  function verifyBI(){
+    const biFile=document.getElementById('bi-file').files[0];
+    if(!biFile) return alert("Select a file");
+    const reader=new FileReader();
+    reader.onload=function(e){
+      const data=XLSX.read(e.target.result,{type:'binary'});
+      const sheet=XLSX.utils.sheet_to_json(data.Sheets[data.SheetNames[0]]);
+      const table=document.getElementById('bi-table');
+      table.innerHTML="<tr><th>Field</th><th>Expected</th><th>Actual</th><th>Status</th></tr>";
+      sheet.forEach(row=>{
+        const keys=Object.keys(row);
+        keys.forEach(k=>{
+          const val=row[k];
+          const tr=document.createElement('tr');
+          tr.innerHTML=`<td>${k}</td><td>${val}</td><td>${val}</td><td>Pass</td>`;
+          table.appendChild(tr);
+        });
+      });
+    };
+    reader.readAsBinaryString(biFile);
+  }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual QA Engineer - Automation Framework Portfolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 20px;
+        }
+        .container { max-width: 1800px; margin: 0 auto; }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9em;
+        }
+        .salary { background: linear-gradient(135deg, #f6d365, #fda085); color: #333; font-weight: 700; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+        .col-4 { grid-column: span 4; }
+        .col-6 { grid-column: span 6; }
+        .col-8 { grid-column: span 8; }
+        .col-12 { grid-column: span 12; }
+        .card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        .icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #f6d365, #fda085);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        .card-title { font-size: 1.4em; font-weight: 600; }
+        .code-editor {
+            background: #1e1e2e;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 15px 0;
+            border: 1px solid rgba(246, 211, 101, 0.3);
+        }
+        .code-header {
+            background: rgba(0,0,0,0.3);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .code-title {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .code-content {
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .line-numbers {
+            float: left;
+            color: #64748b;
+            margin-right: 20px;
+            text-align: right;
+            user-select: none;
+        }
+        .code-text {
+            overflow-x: auto;
+        }
+        .keyword { color: #c792ea; font-weight: bold; }
+        .function { color: #82aaff; }
+        .string { color: #c3e88d; }
+        .comment { color: #637777; font-style: italic; }
+        .decorator { color: #ffcb6b; }
+        .btn {
+            background: linear-gradient(135deg, #f6d365, #fda085);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #333;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(246, 211, 101, 0.4);
+        }
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tab {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .tab.active {
+            background: linear-gradient(135deg, #f6d365, #fda085);
+            color: #333;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .framework-info {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .info-item:last-child {
+            border-bottom: none;
+        }
+        .console {
+            background: #1a1f2e;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+        .console-line { margin: 5px 0; }
+        .pass { color: #4ade80; }
+        .fail { color: #ef4444; }
+        .info { color: #60a5fa; }
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            animation: slideInRight 0.3s ease;
+            z-index: 1000;
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .metric-card {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #f6d365;
+        }
+        .file-structure {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .folder { color: #fbbf24; }
+        .file { color: #60a5fa; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Test Automation Framework Portfolio</h1>
+            <p style="font-size: 1.2em; margin: 10px 0;">Production-Ready, Copy-Paste Automation Solutions</p>
+            <div>
+                <span class="badge salary">💰 Up to R550,000</span>
+                <span class="badge">🌍 Remote Work</span>
+                <span class="badge">⚡ High-Growth Product</span>
+            </div>
+        </header>
+
+        <div class="grid">
+            <!-- Framework Selector -->
+            <div class="card col-12">
+                <div class="card-header">
+                    <div class="header-left">
+                        <div class="icon">🎯</div>
+                        <div class="card-title">Interactive Automation Frameworks</div>
+                    </div>
+                </div>
+                <div class="tabs">
+                    <button class="tab active" onclick="switchFramework('playwright')">🎭 Playwright (Web)</button>
+                    <button class="tab" onclick="switchFramework('maestro')">📱 Maestro (Mobile)</button>
+                    <button class="tab" onclick="switchFramework('appium')">🤖 Appium (Cross-Platform)</button>
+                    <button class="tab" onclick="switchFramework('api')">🔌 API Automation (Postman/Newman)</button>
+                    <button class="tab" onclick="switchFramework('cypress')">🌲 Cypress (E2E)</button>
+                    <button class="tab" onclick="switchFramework('pytest')">🐍 Pytest (Backend)</button>
+                </div>
+
+                <!-- Playwright Framework -->
+                <div id="playwright" class="tab-content active">
+                    <div class="framework-info">
+                        <div class="info-item">
+                            <span><strong>Framework:</strong></span>
+                            <span>Playwright with TypeScript</span>
+                        </div>
+                        <div class="info-item">
+                            <span><strong>Use Case:</strong></span>
+                            <span>Web E2E Testing, Multi-browser Support</span>
+                        </div>
+                        <div class="info-item">
+                            <span><strong>Features:</strong></span>
+                            <span>Page Object Model, Custom Reporters, CI/CD Ready</span>
+                        </div>
+                    </div>
+
+                    <div class="file-structure">
+<span class="folder">📁 playwright-framework/</span>
+├── <span class="folder">📁 tests/</span>
+│   ├── <span class="file">📄 login.spec.ts</span>
+│   ├── <span class="file">📄 stories.spec.ts</span>
+│   └── <span class="file">📄 api.spec.ts</span>
+├── <span class="folder">📁 pages/</span>
+│   ├── <span class="file">📄 BasePage.ts</span>
+│   ├── <span class="file">📄 LoginPage.ts</span>
+│   └── <span class="file">📄 StoriesPage.ts</span>
+├── <span class="folder">📁 utils/</span>
+│   ├── <span class="file">📄 testData.ts</span>
+│   └── <span class="file">📄 helpers.ts</span>
+├── <span class="file">📄 playwright.config.ts</span>
+└── <span class="file">📄 package.json</span>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>playwright.config.ts</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('playwright-config')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="playwright-config"><span class="keyword">import</span> { defineConfig, devices } <span class="keyword">from</span> <span class="string">'@playwright/test'</span>;
+
+<span class="keyword">export default</span> <span class="function">defineConfig</span>({
+  <span class="comment">// Test directory</span>
+  testDir: <span class="string">'./tests'</span>,
+  
+  <span class="comment">// Maximum time one test can run</span>
+  timeout: <span class="string">30</span> * <span class="string">1000</span>,
+  
+  <span class="comment">// Run tests in parallel</span>
+  fullyParallel: <span class="keyword">true</span>,
+  
+  <span class="comment">// Fail build on CI if you accidentally left test.only</span>
+  forbidOnly: !!process.env.CI,
+  
+  <span class="comment">// Retry on CI only</span>
+  retries: process.env.CI ? <span class="string">2</span> : <span class="string">0</span>,
+  
+  <span class="comment">// Opt out of parallel tests on CI</span>
+  workers: process.env.CI ? <span class="string">1</span> : undefined,
+  
+  <span class="comment">// Reporter configuration</span>
+  reporter: [
+    [<span class="string">'html'</span>],
+    [<span class="string">'json'</span>, { outputFile: <span class="string">'test-results.json'</span> }],
+    [<span class="string">'junit'</span>, { outputFile: <span class="string">'junit-results.xml'</span> }]
+  ],
+  
+  <span class="comment">// Shared settings for all projects</span>
+  use: {
+    <span class="comment">// Base URL for tests</span>
+    baseURL: <span class="string">'https://app.example.com'</span>,
+    
+    <span class="comment">// Collect trace on retry</span>
+    trace: <span class="string">'on-first-retry'</span>,
+    
+    <span class="comment">// Screenshot on failure</span>
+    screenshot: <span class="string">'only-on-failure'</span>,
+    
+    <span class="comment">// Video on retry</span>
+    video: <span class="string">'retain-on-failure'</span>,
+  },
+
+  <span class="comment">// Configure projects for major browsers</span>
+  projects: [
+    {
+      name: <span class="string">'chromium'</span>,
+      use: { ...devices[<span class="string">'Desktop Chrome'</span>] },
+    },
+    {
+      name: <span class="string">'firefox'</span>,
+      use: { ...devices[<span class="string">'Desktop Firefox'</span>] },
+    },
+    {
+      name: <span class="string">'webkit'</span>,
+      use: { ...devices[<span class="string">'Desktop Safari'</span>] },
+    },
+    {
+      name: <span class="string">'mobile-chrome'</span>,
+      use: { ...devices[<span class="string">'Pixel 5'</span>] },
+    },
+    {
+      name: <span class="string">'mobile-safari'</span>,
+      use: { ...devices[<span class="string">'iPhone 13'</span>] },
+    },
+  ],
+});</pre>
+                        </div>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>pages/BasePage.ts</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('playwright-basepage')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="playwright-basepage"><span class="keyword">import</span> { Page, Locator } <span class="keyword">from</span> <span class="string">'@playwright/test'</span>;
+
+<span class="keyword">export class</span> <span class="function">BasePage</span> {
+  <span class="keyword">protected</span> page: Page;
+
+  <span class="keyword">constructor</span>(page: Page) {
+    <span class="keyword">this</span>.page = page;
+  }
+
+  <span class="comment">// Navigate to a URL</span>
+  <span class="keyword">async</span> <span class="function">goto</span>(url: <span class="keyword">string</span>) {
+    <span class="keyword">await this</span>.page.<span class="function">goto</span>(url, { 
+      waitUntil: <span class="string">'networkidle'</span> 
+    });
+  }
+
+  <span class="comment">// Wait for element to be visible</span>
+  <span class="keyword">async</span> <span class="function">waitForElement</span>(locator: Locator) {
+    <span class="keyword">await</span> locator.<span class="function">waitFor</span>({ state: <span class="string">'visible'</span> });
+  }
+
+  <span class="comment">// Click with retry logic</span>
+  <span class="keyword">async</span> <span class="function">clickElement</span>(locator: Locator) {
+    <span class="keyword">await this</span>.<span class="function">waitForElement</span>(locator);
+    <span class="keyword">await</span> locator.<span class="function">click</span>();
+  }
+
+  <span class="comment">// Type with delay for realistic input</span>
+  <span class="keyword">async</span> <span class="function">typeText</span>(locator: Locator, text: <span class="keyword">string</span>) {
+    <span class="keyword">await this</span>.<span class="function">waitForElement</span>(locator);
+    <span class="keyword">await</span> locator.<span class="function">fill</span>(<span class="string">''</span>);
+    <span class="keyword">await</span> locator.<span class="function">type</span>(text, { delay: <span class="string">50</span> });
+  }
+
+  <span class="comment">// Get text content</span>
+  <span class="keyword">async</span> <span class="function">getText</span>(locator: Locator): Promise<<span class="keyword">string</span>> {
+    <span class="keyword">await this</span>.<span class="function">waitForElement</span>(locator);
+    <span class="keyword">return await</span> locator.<span class="function">textContent</span>() || <span class="string">''</span>;
+  }
+
+  <span class="comment">// Take screenshot with custom name</span>
+  <span class="keyword">async</span> <span class="function">takeScreenshot</span>(name: <span class="keyword">string</span>) {
+    <span class="keyword">await this</span>.page.<span class="function">screenshot</span>({ 
+      path: <span class="string">`screenshots/${name}.png`</span>,
+      fullPage: <span class="keyword">true</span>
+    });
+  }
+
+  <span class="comment">// Wait for API response</span>
+  <span class="keyword">async</span> <span class="function">waitForApiResponse</span>(urlPattern: <span class="keyword">string</span>) {
+    <span class="keyword">return await this</span>.page.<span class="function">waitForResponse</span>(
+      response => response.<span class="function">url</span>().<span class="function">includes</span>(urlPattern)
+    );
+  }
+}</pre>
+                        </div>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>tests/stories.spec.ts</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('playwright-test')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="playwright-test"><span class="keyword">import</span> { test, expect } <span class="keyword">from</span> <span class="string">'@playwright/test'</span>;
+<span class="keyword">import</span> { StoriesPage } <span class="keyword">from</span> <span class="string">'../pages/StoriesPage'</span>;
+
+<span class="function">test</span>.<span class="function">describe</span>(<span class="string">'Stories Feature Tests'</span>, () => {
+  <span class="keyword">let</span> storiesPage: StoriesPage;
+
+  <span class="function">test</span>.<span class="function">beforeEach</span>(<span class="keyword">async</span> ({ page }) => {
+    storiesPage = <span class="keyword">new</span> <span class="function">StoriesPage</span>(page);
+    <span class="keyword">await</span> storiesPage.<span class="function">goto</span>(<span class="string">'/stories'</span>);
+  });
+
+  <span class="function">test</span>(<span class="string">'should display stories grid'</span>, <span class="keyword">async</span> () => {
+    <span class="comment">// Wait for stories to load</span>
+    <span class="keyword">await</span> storiesPage.<span class="function">waitForStoriesLoad</span>();
+    
+    <span class="comment">// Verify stories are visible</span>
+    <span class="keyword">const</span> storyCount = <span class="keyword">await</span> storiesPage.<span class="function">getStoryCount</span>();
+    <span class="function">expect</span>(storyCount).<span class="function">toBeGreaterThan</span>(<span class="string">0</span>);
+  });
+
+  <span class="function">test</span>(<span class="string">'should open story on click'</span>, <span class="keyword">async</span> ({ page }) => {
+    <span class="comment">// Click first story</span>
+    <span class="keyword">await</span> storiesPage.<span class="function">clickStory</span>(<span class="string">0</span>);
+    
+    <span class="comment">// Verify story modal opened</span>
+    <span class="keyword">await</span> <span class="function">expect</span>(page.<span class="function">locator</span>(<span class="string">'.story-modal'</span>))
+      .<span class="function">toBeVisible</span>();
+  });
+
+  <span class="function">test</span>(<span class="string">'should navigate between stories'</span>, <span class="keyword">async</span> () => {
+    <span class="keyword">await</span> storiesPage.<span class="function">clickStory</span>(<span class="string">0</span>);
+    
+    <span class="comment">// Swipe to next story</span>
+    <span class="keyword">await</span> storiesPage.<span class="function">swipeNext</span>();
+    
+    <span class="comment">// Verify story changed</span>
+    <span class="keyword">const</span> currentIndex = <span class="keyword">await</span> storiesPage.<span class="function">getCurrentStoryIndex</span>();
+    <span class="function">expect</span>(currentIndex).<span class="function">toBe</span>(<span class="string">1</span>);
+  });
+
+  <span class="function">test</span>(<span class="string">'should track story analytics'</span>, <span class="keyword">async</span> ({ page }) => {
+    <span class="comment">// Setup API interception</span>
+    <span class="keyword">let</span> analyticsCall = <span class="keyword">false</span>;
+    <span class="keyword">await</span> page.<span class="function">route</span>(<span class="string">'**/api/analytics/**'</span>, route => {
+      analyticsCall = <span class="keyword">true</span>;
+      route.<span class="function">continue</span>();
+    });
+    
+    <span class="comment">// View story</span>
+    <span class="keyword">await</span> storiesPage.<span class="function">clickStory</span>(<span class="string">0</span>);
+    
+    <span class="comment">// Verify analytics sent</span>
+    <span class="function">expect</span>(analyticsCall).<span class="function">toBeTruthy</span>();
+  });
+
+  <span class="function">test</span>(<span class="string">'should handle network errors gracefully'</span>, <span class="keyword">async</span> ({ page }) => {
+    <span class="comment">// Simulate network failure</span>
+    <span class="keyword">await</span> page.<span class="function">route</span>(<span class="string">'**/api/stories/**'</span>, route => 
+      route.<span class="function">abort</span>(<span class="string">'failed'</span>)
+    );
+    
+    <span class="comment">// Reload page</span>
+    <span class="keyword">await</span> storiesPage.<span class="function">goto</span>(<span class="string">'/stories'</span>);
+    
+    <span class="comment">// Verify error message displayed</span>
+    <span class="keyword">await</span> <span class="function">expect</span>(page.<span class="function">locator</span>(<span class="string">'.error-message'</span>))
+      .<span class="function">toBeVisible</span>();
+  });
+});</pre>
+                        </div>
+                    </div>
+
+                    <button class="btn" onclick="runFramework('playwright')" style="margin-top: 15px;">▶ Run Playwright Tests</button>
+                    <button class="btn btn-secondary" onclick="downloadFramework('playwright')">💾 Download Complete Framework</button>
+                </div>
+
+                <!-- Maestro Framework -->
+                <div id="maestro" class="tab-content">
+                    <div class="framework-info">
+                        <div class="info-item">
+                            <span><strong>Framework:</strong></span>
+                            <span>Maestro (Mobile UI Testing)</span>
+                        </div>
+                        <div class="info-item">
+                            <span><strong>Use Case:</strong></span>
+                            <span>iOS & Android Native App Testing</span>
+                        </div>
+                        <div class="info-item">
+                            <span><strong>Features:</strong></span>
+                            <span>YAML-based, No flakiness, Cloud execution</span>
+                        </div>
+                    </div>
+
+                    <div class="file-structure">
+<span class="folder">📁 maestro-tests/</span>
+├── <span class="folder">📁 flows/</span>
+│   ├── <span class="file">📄 login_flow.yaml</span>
+│   ├── <span class="file">📄 stories_flow.yaml</span>
+│   ├── <span class="file">📄 profile_flow.yaml</span>
+│   └── <span class="file">📄 regression_suite.yaml</span>
+├── <span class="folder">📁 utils/</span>
+│   ├── <span class="file">📄 test_data.yaml</span>
+│   └── <span class="file">📄 config.yaml</span>
+└── <span class="file">📄 .maestro-config.yaml</span>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>flows/stories_flow.yaml</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('maestro-stories')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="maestro-stories"><span class="comment"># Stories Feature Test Flow</span>
+<span class="keyword">appId:</span> com.example.storiesapp
+<span class="keyword">name:</span> Stories Feature Test
+<span class="keyword">tags:</span>
+  - stories
+  - critical
+<span class="keyword">---</span>
+
+<span class="comment"># Launch app and wait for home screen</span>
+- <span class="keyword">launchApp</span>
+- <span class="keyword">assertVisible:</span> <span class="string">"Home"</span>
+
+<span class="comment"># Navigate to Stories section</span>
+- <span class="keyword">tapOn:</span> <span class="string">"Stories"</span>
+- <span class="keyword">assertVisible:</span>
+    <span class="keyword">id:</span> <span class="string">"stories-grid"</span>
+
+<span class="comment"># Wait for stories to load</span>
+- <span class="keyword">waitForAnimationToEnd</span>
+- <span class="keyword">extendedWaitUntil:</span>
+    <span class="keyword">visible:</span>
+      <span class="keyword">id:</span> <span class="string">"story-card"</span>
+    <span class="keyword">timeout:</span> 10000
+
+<span class="comment"># Verify stories are displayed</span>
+- <span class="keyword">assertVisible:</span>
+    <span class="keyword">id:</span> <span class="string">"story-card"</span>
+    <span class="keyword">index:</span> 0
+
+<span class="comment"># Tap on first story</span>
+- <span class="keyword">tapOn:</span>
+    <span class="keyword">id:</span> <span class="string">"story-card"</span>
+    <span class="keyword">index:</span> 0
+
+<span class="comment"># Verify story viewer opened</span>
+- <span class="keyword">assertVisible:</span>
+    <span class="keyword">id:</span> <span class="string">"story-viewer"</span>
+
+<span class="comment"># Wait for story to load</span>
+- <span class="keyword">waitForAnimationToEnd</span>
+
+<span class="comment"># Capture screenshot</span>
+- <span class="keyword">takeScreenshot:</span> story-viewer-screen
+
+<span class="comment"># Swipe to next story</span>
+- <span class="keyword">swipe:</span>
+    <span class="keyword">direction:</span> LEFT
+    <span class="keyword">duration:</span> 300
+
+<span class="comment"># Verify next story loaded</span>
+- <span class="keyword">waitForAnimationToEnd</span>
+- <span class="keyword">assertVisible:</span>
+    <span class="keyword">id:</span> <span class="string">"story-content"</span>
+
+<span class="comment"># Test story controls</span>
+- <span class="keyword">tapOn:</span>
+    <span class="keyword">point:</span> <span class="string">"50%,50%"</span>
+- <span class="keyword">assertVisible:</span>
+    <span class="keyword">id:</span> <span class="string">"story-controls"</span>
+
+<span class="comment"># Close story viewer</span>
+- <span class="keyword">tapOn:</span>
+    <span class="keyword">id:</span> <span class="string">"close-button"</span>
+- <span class="keyword">assertVisible:</span>
+    <span class="keyword">id:</span> <span class="string">"stories-grid"</span>
+
+<span class="comment"># Test complete</span>
+- <span class="keyword">stopApp</span></pre>
+                        </div>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>flows/regression_suite.yaml</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('maestro-regression')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="maestro-regression"><span class="comment"># Regression Test Suite</span>
+<span class="keyword">appId:</span> com.example.storiesapp
+<span class="keyword">name:</span> Full Regression Suite
+<span class="keyword">---</span>
+
+<span class="comment"># Run all test flows in sequence</span>
+- <span class="keyword">runFlow:</span> login_flow.yaml
+- <span class="keyword">runFlow:</span> stories_flow.yaml
+- <span class="keyword">runFlow:</span> profile_flow.yaml
+
+<span class="comment"># Performance test</span>
+- <span class="keyword">launchApp</span>
+- <span class="keyword">repeat:</span>
+    <span class="keyword">times:</span> 5
+    <span class="keyword">commands:</span>
+      - <span class="keyword">tapOn:</span> <span class="string">"Stories"</span>
+      - <span class="keyword">waitForAnimationToEnd</span>
+      - <span class="keyword">back</span></pre>
+                        </div>
+                    </div>
+
+                    <button class="btn" onclick="runFramework('maestro')" style="margin-top: 15px;">▶ Run Maestro Tests</button>
+                    <button class="btn btn-secondary" onclick="downloadFramework('maestro')">💾 Download Complete Framework</button>
+                </div>
+
+                <!-- Appium Framework -->
+                <div id="appium" class="tab-content">
+                    <div class="framework-info">
+                        <div class="info-item">
+                            <span><strong>Framework:</strong></span>
+                            <span>Appium with JavaScript (WebdriverIO)</span>
+                        </div>
+                        <div class="info-item">
+                            <span><strong>Use Case:</strong></span>
+                            <span>Cross-platform Mobile Testing</span>
+                        </div>
+                        <div class="info-item">
+                            <span><strong>Features:</strong></span>
+                            <span>iOS & Android, Parallel execution, Cloud integration</span>
+                        </div>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>wdio.conf.js</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('appium-config')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="appium-config"><span class="keyword">exports</span>.config = {
+  <span class="comment">// WebDriver port</span>
+  port: <span class="string">4723</span>,
+  
+  <span class="comment">// Test specs</span>
+  specs: [
+    <span class="string">'./test/specs/**/*.js'</span>
+  ],
+  
+  <span class="comment">// Capabilities</span>
+  capabilities: [
+    {
+      platformName: <span class="string">'iOS'</span>,
+      <span class="string">'appium:deviceName'</span>: <span class="string">'iPhone 15 Pro'</span>,
+      <span class="string">'appium:platformVersion'</span>: <span class="string">'17.0'</span>,
+      <span class="string">'appium:app'</span>: <span class="string">'./apps/StoriesApp.app'</span>,
+      <span class="string">'appium:automationName'</span>: <span class="string">'XCUITest'</span>
+    },
+    {
+      platformName: <span class="string">'Android'</span>,
+      <span class="string">'appium:deviceName'</span>: <span class="string">'Pixel 8'</span>,
+      <span class="string">'appium:platformVersion'</span>: <span class="string">'14'</span>,
+      <span class="string">'appium:app'</span>: <span class="string">'./apps/StoriesApp.apk'</span>,
+      <span class="string">'appium:automationName'</span>: <span class="string">'UiAutomator2'</span>
+    }
+  ],
+  
+  <span class="comment">// Test framework</span>
+  framework: <span class="string">'mocha'</span>,
+  mochaOpts: {
+    timeout: <span class="string">60000</span>
+  },
+  
+  <span class="comment">// Reporters</span>
+  reporters: [
+    <span class="string">'spec'</span>,
+    [<span class="string">'allure'</span>, {
+      outputDir: <span class="string">'allure-results'</span>
+    }]
+  ],
+  
+  <span class="comment">// Hooks</span>
+  <span class="keyword">beforeTest</span>: <span class="keyword">function</span>() {
+    <span class="keyword">const</span> platform = driver.capabilities.platformName;
+    console.<span class="function">log</span>(<span class="string">`Testing on ${platform}`</span>);
+  }
+};</pre>
+                        </div>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>test/pageobjects/StoriesScreen.js</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('appium-page')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="appium-page"><span class="keyword">class</span> <span class="function">StoriesScreen</span> {
+  <span class="comment">// Selectors</span>
+  <span class="keyword">get</span> <span class="function">storiesTab</span>() {
+    <span class="keyword">return</span> $(<span class="string">'~Stories'</span>); <span class="comment">// Accessibility ID</span>
+  }
+  
+  <span class="keyword">get</span> <span class="function">storiesGrid</span>() {
+    <span class="keyword">return</span> $(<span class="string">'~stories-grid'</span>);
+  }
+  
+  <span class="keyword">get</span> <span class="function">storyCards</span>() {
+    <span class="keyword">return</span> $(<span class="string">'~story-card'</span>);
+  }
+  
+  <span class="keyword">get</span> <span class="function">storyViewer</span>() {
+    <span class="keyword">return</span> $(<span class="string">'~story-viewer'</span>);
+  }
+  
+  <span class="keyword">get</span> <span class="function">closeButton</span>() {
+    <span class="keyword">return</span> $(<span class="string">'~close-button'</span>);
+  }
+  
+  <span class="comment">// Actions</span>
+  <span class="keyword">async</span> <span class="function">navigateToStories</span>() {
+    <span class="keyword">await this</span>.storiesTab.<span class="function">waitForDisplayed</span>({ timeout: <span class="string">10000</span> });
+    <span class="keyword">await this</span>.storiesTab.<span class="function">click</span>();
+    <span class="keyword">await this</span>.storiesGrid.<span class="function">waitForDisplayed</span>();
+  }
+  
+  <span class="keyword">async</span> <span class="function">getStoryCount</span>() {
+    <span class="keyword">await this</span>.storyCards[<span class="string">0</span>].<span class="function">waitForDisplayed</span>();
+    <span class="keyword">return await this</span>.storyCards.<span class="function">length</span>;
+  }
+  
+  <span class="keyword">async</span> <span class="function">openStory</span>(index = <span class="string">0</span>) {
+    <span class="keyword">const</span> cards = <span class="keyword">await this</span>.storyCards;
+    <span class="keyword">await</span> cards[index].<span class="function">click</span>();
+    <span class="keyword">await this</span>.storyViewer.<span class="function">waitForDisplayed</span>();
+  }
+  
+  <span class="keyword">async</span> <span class="function">swipeNext</span>() {
+    <span class="keyword">const</span> { width, height } = <span class="keyword">await</span> driver.<span class="function">getWindowSize</span>();
+    <span class="keyword">await</span> driver.<span class="function">touchPerform</span>([
+      { action: <span class="string">'press'</span>, options: { x: width * <span class="string">0.8</span>, y: height * <span class="string">0.5</span> }},
+      { action: <span class="string">'wait'</span>, options: { ms: <span class="string">100</span> }},
+      { action: <span class="string">'moveTo'</span>, options: { x: width * <span class="string">0.2</span>, y: height * <span class="string">0.5</span> }},
+      { action: <span class="string">'release'</span> }
+    ]);
+  }
+  
+  <span class="keyword">async</span> <span class="function">closeStoryViewer</span>() {
+    <span class="keyword">await this</span>.closeButton.<span class="function">click</span>();
+    <span class="keyword">await this</span>.storiesGrid.<span class="function">waitForDisplayed</span>();
+  }
+  
+  <span class="keyword">async</span> <span class="function">takeScreenshot</span>(name) {
+    <span class="keyword">await</span> driver.<span class="function">saveScreenshot</span>(<span class="string">`./screenshots/${name}.png`</span>);
+  }
+}
+
+<span class="keyword">module</span>.exports = <span class="keyword">new</span> <span class="function">StoriesScreen</span>();</pre>
+                        </div>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>test/specs/stories.test.js</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('appium-test')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="appium-test"><span class="keyword">const</span> StoriesScreen = <span class="function">require</span>(<span class="string">'../pageobjects/StoriesScreen'</span>);
+<span class="keyword">const</span> { expect } = <span class="function">require</span>(<span class="string">'chai'</span>);
+
+<span class="function">describe</span>(<span class="string">'Stories Feature'</span>, () => {
+  
+  <span class="function">beforeEach</span>(<span class="keyword">async</span> () => {
+    <span class="keyword">await</span> StoriesScreen.<span class="function">navigateToStories</span>();
+  });
+  
+  <span class="function">it</span>(<span class="string">'should display stories grid'</span>, <span class="keyword">async</span> () => {
+    <span class="keyword">const</span> storyCount = <span class="keyword">await</span> StoriesScreen.<span class="function">getStoryCount</span>();
+    <span class="function">expect</span>(storyCount).<span class="function">to</span>.<span class="function">be</span>.<span class="function">greaterThan</span>(<span class="string">0</span>);
+  });
+  
+  <span class="function">it</span>(<span class="string">'should open story on tap'</span>, <span class="keyword">async</span> () => {
+    <span class="keyword">await</span> StoriesScreen.<span class="function">openStory</span>(<span class="string">0</span>);
+    <span class="keyword">const</span> isViewerDisplayed = <span class="keyword">await</span> StoriesScreen.storyViewer.<span class="function">isDisplayed</span>();
+    <span class="function">expect</span>(isViewerDisplayed).<span class="function">to</span>.<span class="function">be</span>.<span class="function">true</span>;
+  });
+  
+  <span class="function">it</span>(<span class="string">'should navigate between stories'</span>, <span class="keyword">async</span> () => {
+    <span class="keyword">await</span> StoriesScreen.<span class="function">openStory</span>(<span class="string">0</span>);
+    <span class="keyword">await</span> StoriesScreen.<span class="function">swipeNext</span>();
+    <span class="keyword">await</span> driver.<span class="function">pause</span>(<span class="string">1000</span>);
+    <span class="keyword">await</span> StoriesScreen.<span class="function">takeScreenshot</span>(<span class="string">'next-story'</span>);
+  });
+  
+  <span class="function">it</span>(<span class="string">'should close story viewer'</span>, <span class="keyword">async</span> () => {
+    <span class="keyword">await</span> StoriesScreen.<span class="function">openStory</span>(<span class="string">0</span>);
+    <span class="keyword">await</span> StoriesScreen.<span class="function">closeStoryViewer</span>();
+    <span class="keyword">const</span> isGridDisplayed = <span class="keyword">await</span> StoriesScreen.storiesGrid.<span class="function">isDisplayed</span>();
+    <span class="function">expect</span>(isGridDisplayed).<span class="function">to</span>.<span class="function">be</span>.<span class="function">true</span>;
+  });
+});</pre>
+                        </div>
+                    </div>
+
+                    <button class="btn" onclick="runFramework('appium')" style="margin-top: 15px;">▶ Run Appium Tests</button>
+                    <button class="btn btn-secondary" onclick="downloadFramework('appium')">💾 Download Complete Framework</button>
+                </div>
+
+                <!-- API Automation -->
+                <div id="api" class="tab-content">
+                    <div class="framework-info">
+                        <div class="info-item">
+                            <span><strong>Framework:</strong></span>
+                            <span>Postman/Newman with CI/CD Integration</span>
+                        </div>
+                        <div class="info-item">
+                            <span><strong>Use Case:</strong></span>
+                            <span>REST API Testing & Validation</span>
+                        </div>
+                        <div class="info-item">
+                            <span><strong>Features:</strong></span>
+                            <span>Collections, Environments, Automated reporting</span>
+                        </div>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>collections/stories-api.json</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('api-collection')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="api-collection">{
+  <span class="string">"info"</span>: {
+    <span class="string">"name"</span>: <span class="string">"Stories API Tests"</span>,
+    <span class="string">"schema"</span>: <span class="string">"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"</span>
+  },
+  <span class="string">"item"</span>: [
+    {
+      <span class="string">"name"</span>: <span class="string">"Get All Stories"</span>,
+      <span class="string">"event"</span>: [
+        {
+          <span class="string">"listen"</span>: <span class="string">"test"</span>,
+          <span class="string">"script"</span>: {
+            <span class="string">"exec"</span>: [
+              <span class="string">"// Status code validation"</span>,
+              <span class="string">"pm.test('Status code is 200', function() {"</span>,
+              <span class="string">"    pm.response.to.have.status(200);"</span>,
+              <span class="string">"});"</span>,
+              <span class="string">""</span>,
+              <span class="string">"// Response time validation"</span>,
+              <span class="string">"pm.test('Response time is less than 500ms', function() {"</span>,
+              <span class="string">"    pm.expect(pm.response.responseTime).to.be.below(500);"</span>,
+              <span class="string">"});"</span>,
+              <span class="string">""</span>,
+              <span class="string">"// Schema validation"</span>,
+              <span class="string">"pm.test('Response has correct schema', function() {"</span>,
+              <span class="string">"    const jsonData = pm.response.json();"</span>,
+              <span class="string">"    pm.expect(jsonData).to.have.property('stories');"</span>,
+              <span class="string">"    pm.expect(jsonData.stories).to.be.an('array');"</span>,
+              <span class="string">"    pm.expect(jsonData.stories[0]).to.have.property('id');"</span>,
+              <span class="string">"    pm.expect(jsonData.stories[0]).to.have.property('title');"</span>,
+              <span class="string">"    pm.expect(jsonData.stories[0]).to.have.property('media_url');"</span>,
+              <span class="string">"});"</span>,
+              <span class="string">""</span>,
+              <span class="string">"// Save story ID for next request"</span>,
+              <span class="string">"const stories = pm.response.json().stories;"</span>,
+              <span class="string">"if (stories.length > 0) {"</span>,
+              <span class="string">"    pm.environment.set('story_id', stories[0].id);"</span>,
+              <span class="string">"}"</span>
+            ]
+          }
+        }
+      ],
+      <span class="string">"request"</span>: {
+        <span class="string">"method"</span>: <span class="string">"GET"</span>,
+        <span class="string">"header"</span>: [
+          {
+            <span class="string">"key"</span>: <span class="string">"Authorization"</span>,
+            <span class="string">"value"</span>: <span class="string">"Bearer {{access_token}}"</span>
+          }
+        ],
+        <span class="string">"url"</span>: {
+          <span class="string">"raw"</span>: <span class="string">"{{base_url}}/api/v1/stories"</span>,
+          <span class="string">"host"</span>: [<span class="string">"{{base_url}}"</span>],
+          <span class="string">"path"</span>: [<span class="string">"api"</span>, <span class="string">"v1"</span>, <span class="string">"stories"</span>]
+        }
+      }
+    },
+    {
+      <span class="string">"name"</span>: <span class="string">"Get Story By ID"</span>,
+      <span class="string">"event"</span>: [
+        {
+          <span class="string">"listen"</span>: <span class="string">"test"</span>,
+          <span class="string">"script"</span>: {
+            <span class="string">"exec"</span>: [
+              <span class="string">"pm.test('Story retrieved successfully', function() {"</span>,
+              <span class="string">"    pm.response.to.have.status(200);"</span>,
+              <span class="string">"    const jsonData = pm.response.json();"</span>,
+              <span class="string">"    pm.expect(jsonData.id).to.equal(pm.environment.get('story_id'));"</span>,
+              <span class="string">"});"</span>
+            ]
+          }
+        }
+      ],
+      <span class="string">"request"</span>: {
+        <span class="string">"method"</span>: <span class="string">"GET"</span>,
+        <span class="string">"url"</span>: <span class="string">"{{base_url}}/api/v1/stories/{{story_id}}"</span>
+      }
+    }
+  ]
+}</pre>
+                        </div>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>run-tests.js (Newman Runner)</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('newman-runner')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="newman-runner"><span class="keyword">const</span> newman = <span class="function">require</span>(<span class="string">'newman'</span>);
+<span class="keyword">const</span> fs = <span class="function">require</span>(<span class="string">'fs'</span>);
+
+<span class="comment">// Run Postman collection with Newman</span>
+newman.<span class="function">run</span>({
+  collection: <span class="function">require</span>(<span class="string">'./collections/stories-api.json'</span>),
+  environment: <span class="function">require</span>(<span class="string">'./environments/staging.json'</span>),
+  reporters: [<span class="string">'cli'</span>, <span class="string">'html'</span>, <span class="string">'json'</span>],
+  reporter: {
+    html: {
+      export: <span class="string">'./reports/newman-report.html'</span>
+    },
+    json: {
+      export: <span class="string">'./reports/newman-report.json'</span>
+    }
+  },
+  iterationCount: <span class="string">1</span>,
+  timeout: <span class="string">30000</span>,
+  insecure: <span class="keyword">false</span>,
+  bail: <span class="keyword">false</span>
+}, <span class="keyword">function</span> (err, summary) {
+  <span class="keyword">if</span> (err) {
+    console.<span class="function">error</span>(<span class="string">'Collection run error:'</span>, err);
+    process.<span class="function">exit</span>(<span class="string">1</span>);
+  }
+  
+  console.<span class="function">log</span>(<span class="string">'\\n=== Test Summary ==='</span>);
+  console.<span class="function">log</span>(<span class="string">`Total Tests: ${summary.run.stats.tests.total}`</span>);
+  console.<span class="function">log</span>(<span class="string">`Passed: ${summary.run.stats.tests.passed}`</span>);
+  console.<span class="function">log</span>(<span class="string">`Failed: ${summary.run.stats.tests.failed}`</span>);
+  console.<span class="function">log</span>(<span class="string">`Duration: ${summary.run.timings.completed - summary.run.timings.started}ms`</span>);
+  
+  <span class="comment">// Exit with failure code if tests failed</span>
+  <span class="keyword">if</span> (summary.run.stats.tests.failed > <span class="string">0</span>) {
+    process.<span class="function">exit</span>(<span class="string">1</span>);
+  }
+});</pre>
+                        </div>
+                    </div>
+
+                    <button class="btn" onclick="runFramework('api')" style="margin-top: 15px;">▶ Run API Tests</button>
+                    <button class="btn btn-secondary" onclick="downloadFramework('api')">💾 Download Complete Framework</button>
+                </div>
+
+                <!-- Cypress Framework -->
+                <div id="cypress" class="tab-content">
+                    <div class="framework-info">
+                        <div class="info-item">
+                            <span><strong>Framework:</strong></span>
+                            <span>Cypress E2E Testing</span>
+                        </div>
+                        <div class="info-item">
+                            <span><strong>Use Case:</strong></span>
+                            <span>Modern Web Application Testing</span>
+                        </div>
+                        <div class="info-item">
+                            <span><strong>Features:</strong></span>
+                            <span>Real-time reload, Time travel debugging, Auto-waiting</span>
+                        </div>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>cypress.config.js</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('cypress-config')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="cypress-config"><span class="keyword">const</span> { defineConfig } = <span class="function">require</span>(<span class="string">'cypress'</span>);
+
+<span class="keyword">module</span>.exports = <span class="function">defineConfig</span>({
+  e2e: {
+    baseUrl: <span class="string">'https://app.example.com'</span>,
+    viewportWidth: <span class="string">1280</span>,
+    viewportHeight: <span class="string">720</span>,
+    video: <span class="keyword">true</span>,
+    screenshotOnRunFailure: <span class="keyword">true</span>,
+    
+    <span class="comment">// Setup node events</span>
+    <span class="function">setupNodeEvents</span>(on, config) {
+      <span class="comment">// Task for custom logging</span>
+      on(<span class="string">'task'</span>, {
+        <span class="function">log</span>(message) {
+          console.<span class="function">log</span>(message);
+          <span class="keyword">return null</span>;
+        }
+      });
+    },
+    
+    <span class="comment">// Spec pattern</span>
+    specPattern: <span class="string">'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}'</span>,
+    
+    <span class="comment">// Retry configuration</span>
+    retries: {
+      runMode: <span class="string">2</span>,
+      openMode: <span class="string">0</span>
+    },
+    
+    <span class="comment">// Timeouts</span>
+    defaultCommandTimeout: <span class="string">10000</span>,
+    requestTimeout: <span class="string">10000</span>,
+    responseTimeout: <span class="string">30000</span>
+  }
+});</pre>
+                        </div>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>cypress/e2e/stories.cy.js</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('cypress-test')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="cypress-test"><span class="function">describe</span>(<span class="string">'Stories Feature'</span>, () => {
+  
+  <span class="function">beforeEach</span>(() => {
+    <span class="comment">// Login before each test</span>
+    cy.<span class="function">visit</span>(<span class="string">'/login'</span>);
+    cy.<span class="function">get</span>(<span class="string">'[data-cy=email]'</span>).<span class="function">type</span>(<span class="string">'test@example.com'</span>);
+    cy.<span class="function">get</span>(<span class="string">'[data-cy=password]'</span>).<span class="function">type</span>(<span class="string">'password123'</span>);
+    cy.<span class="function">get</span>(<span class="string">'[data-cy=login-btn]'</span>).<span class="function">click</span>();
+    
+    <span class="comment">// Wait for dashboard</span>
+    cy.<span class="function">url</span>().<span class="function">should</span>(<span class="string">'include'</span>, <span class="string">'/dashboard'</span>);
+  });
+  
+  <span class="function">it</span>(<span class="string">'should display stories grid'</span>, () => {
+    cy.<span class="function">get</span>(<span class="string">'[data-cy=stories-tab]'</span>).<span class="function">click</span>();
+    cy.<span class="function">get</span>(<span class="string">'[data-cy=story-card]'</span>).<span class="function">should</span>(<span class="string">'have.length.greaterThan'</span>, <span class="string">0</span>);
+  });
+  
+  <span class="function">it</span>(<span class="string">'should open story viewer'</span>, () => {
+    cy.<span class="function">get</span>(<span class="string">'[data-cy=stories-tab]'</span>).<span class="function">click</span>();
+    cy.<span class="function">get</span>(<span class="string">'[data-cy=story-card]'</span>).<span class="function">first</span>().<span class="function">click</span>();
+    cy.<span class="function">get</span>(<span class="string">'[data-cy=story-viewer]'</span>).<span class="function">should</span>(<span class="string">'be.visible'</span>);
+  });
+  
+  <span class="function">it</span>(<span class="string">'should intercept and validate API calls'</span>, () => {
+    <span class="comment">// Intercept API request</span>
+    cy.<span class="function">intercept</span>(<span class="string">'GET'</span>, <span class="string">'/api/v1/stories'</span>).<span class="function">as</span>(<span class="string">'getStories'</span>);
+    
+    cy.<span class="function">get</span>(<span class="string">'[data-cy=stories-tab]'</span>).<span class="function">click</span>();
+    
+    <span class="comment">// Wait for and validate API response</span>
+    cy.<span class="function">wait</span>(<span class="string">'@getStories'</span>).<span class="function">then</span>((interception) => {
+      <span class="function">expect</span>(interception.response.statusCode).<span class="function">to</span>.<span class="function">equal</span>(<span class="string">200</span>);
+      <span class="function">expect</span>(interception.response.body).<span class="function">to</span>.<span class="function">have</span>.<span class="function">property</span>(<span class="string">'stories'</span>);
+    });
+  });
+  
+  <span class="function">it</span>(<span class="string">'should track analytics events'</span>, () => {
+    <span class="comment">// Spy on analytics calls</span>
+    cy.<span class="function">window</span>().<span class="function">then</span>((win) => {
+      cy.<span class="function">spy</span>(win, <span class="string">'trackEvent'</span>).<span class="function">as</span>(<span class="string">'trackEvent'</span>);
+    });
+    
+    cy.<span class="function">get</span>(<span class="string">'[data-cy=stories-tab]'</span>).<span class="function">click</span>();
+    cy.<span class="function">get</span>(<span class="string">'[data-cy=story-card]'</span>).<span class="function">first</span>().<span class="function">click</span>();
+    
+    <span class="comment">// Verify analytics tracked</span>
+    cy.<span class="function">get</span>(<span class="string">'@trackEvent'</span>).<span class="function">should</span>(<span class="string">'have.been.calledWith'</span>, <span class="string">'story_viewed'</span>);
+  });
+  
+  <span class="function">it</span>(<span class="string">'should handle network errors gracefully'</span>, () => {
+    <span class="comment">// Force network failure</span>
+    cy.<span class="function">intercept</span>(<span class="string">'GET'</span>, <span class="string">'/api/v1/stories'</span>, {
+      forceNetworkError: <span class="keyword">true</span>
+    }).<span class="function">as</span>(<span class="string">'getStoriesError'</span>);
+    
+    cy.<span class="function">get</span>(<span class="string">'[data-cy=stories-tab]'</span>).<span class="function">click</span>();
+    cy.<span class="function">get</span>(<span class="string">'[data-cy=error-message]'</span>).<span class="function">should</span>(<span class="string">'be.visible'</span>);
+  });
+});</pre>
+                        </div>
+                    </div>
+
+                    <button class="btn" onclick="runFramework('cypress')" style="margin-top: 15px;">▶ Run Cypress Tests</button>
+                    <button class="btn btn-secondary" onclick="downloadFramework('cypress')">💾 Download Complete Framework</button>
+                </div>
+
+                <!-- Pytest Framework -->
+                <div id="pytest" class="tab-content">
+                    <div class="framework-info">
+                        <div class="info-item">
+                            <span><strong>Framework:</strong></span>
+                            <span>Pytest with Requests (Backend API Testing)</span>
+                        </div>
+                        <div class="info-item">
+                            <span><strong>Use Case:</strong></span>
+                            <span>Python-based API & Backend Testing</span>
+                        </div>
+                        <div class="info-item">
+                            <span><strong>Features:</strong></span>
+                            <span>Fixtures, Parametrization, Parallel execution</span>
+                        </div>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>conftest.py</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('pytest-config')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="pytest-config"><span class="keyword">import</span> pytest
+<span class="keyword">import</span> requests
+<span class="keyword">from</span> typing <span class="keyword">import</span> Dict
+
+<span class="comment"># Base URL configuration</span>
+BASE_URL = <span class="string">"https://api.example.com/v1"</span>
+
+<span class="decorator">@pytest.fixture</span>(scope=<span class="string">"session"</span>)
+<span class="keyword">def</span> <span class="function">api_client</span>():
+    <span class="string">"""Provides an authenticated API client"""</span>
+    <span class="keyword">class</span> <span class="function">APIClient</span>:
+        <span class="keyword">def</span> <span class="function">__init__</span>(self):
+            self.session = requests.<span class="function">Session</span>()
+            self.base_url = BASE_URL
+            self.token = <span class="keyword">None</span>
+        
+        <span class="keyword">def</span> <span class="function">authenticate</span>(self, username: <span class="keyword">str</span>, password: <span class="keyword">str</span>):
+            response = self.session.<span class="function">post</span>(
+                <span class="function">f</span><span class="string">"{self.base_url}/auth/login"</span>,
+                json={<span class="string">"username"</span>: username, <span class="string">"password"</span>: password}
+            )
+            self.token = response.<span class="function">json</span>()[<span class="string">"access_token"</span>]
+            self.session.headers.<span class="function">update</span>({
+                <span class="string">"Authorization"</span>: <span class="function">f</span><span class="string">"Bearer {self.token}"</span>
+            })
+        
+        <span class="keyword">def</span> <span class="function">get</span>(self, endpoint: <span class="keyword">str</span>, **kwargs):
+            <span class="keyword">return</span> self.session.<span class="function">get</span>(<span class="function">f</span><span class="string">"{self.base_url}{endpoint}"</span>, **kwargs)
+        
+        <span class="keyword">def</span> <span class="function">post</span>(self, endpoint: <span class="keyword">str</span>, **kwargs):
+            <span class="keyword">return</span> self.session.<span class="function">post</span>(<span class="function">f</span><span class="string">"{self.base_url}{endpoint}"</span>, **kwargs)
+        
+        <span class="keyword">def</span> <span class="function">put</span>(self, endpoint: <span class="keyword">str</span>, **kwargs):
+            <span class="keyword">return</span> self.session.<span class="function">put</span>(<span class="function">f</span><span class="string">"{self.base_url}{endpoint}"</span>, **kwargs)
+        
+        <span class="keyword">def</span> <span class="function">delete</span>(self, endpoint: <span class="keyword">str</span>, **kwargs):
+            <span class="keyword">return</span> self.session.<span class="function">delete</span>(<span class="function">f</span><span class="string">"{self.base_url}{endpoint}"</span>, **kwargs)
+    
+    client = <span class="function">APIClient</span>()
+    client.<span class="function">authenticate</span>(<span class="string">"test@example.com"</span>, <span class="string">"password123"</span>)
+    <span class="keyword">yield</span> client
+    client.session.<span class="function">close</span>()
+
+<span class="decorator">@pytest.fixture</span>
+<span class="keyword">def</span> <span class="function">test_story_data</span>():
+    <span class="string">"""Provides test story data"""</span>
+    <span class="keyword">return</span> {
+        <span class="string">"title"</span>: <span class="string">"Test Story"</span>,
+        <span class="string">"content"</span>: <span class="string">"This is a test story"</span>,
+        <span class="string">"media_url"</span>: <span class="string">"https://example.com/media.jpg"</span>,
+        <span class="string">"duration"</span>: <span class="string">5</span>
+    }
+
+<span class="comment"># Configure pytest</span>
+<span class="keyword">def</span> <span class="function">pytest_configure</span>(config):
+    config.<span class="function">addinivalue_line</span>(
+        <span class="string">"markers"</span>, <span class="string">"smoke: mark test as smoke test"</span>
+    )
+    config.<span class="function">addinivalue_line</span>(
+        <span class="string">"markers"</span>, <span class="string">"regression: mark test as regression test"</span>
+    )</pre>
+                        </div>
+                    </div>
+
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <span>📄</span>
+                                <span>tests/test_stories_api.py</span>
+                            </div>
+                            <button class="btn" onclick="copyCode('pytest-test')">📋 Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <pre id="pytest-test"><span class="keyword">import</span> pytest
+<span class="keyword">from</span> jsonschema <span class="keyword">import</span> validate
+
+<span class="comment"># Story schema for validation</span>
+STORY_SCHEMA = {
+    <span class="string">"type"</span>: <span class="string">"object"</span>,
+    <span class="string">"properties"</span>: {
+        <span class="string">"id"</span>: {<span class="string">"type"</span>: <span class="string">"string"</span>},
+        <span class="string">"title"</span>: {<span class="string">"type"</span>: <span class="string">"string"</span>},
+        <span class="string">"media_url"</span>: {<span class="string">"type"</span>: <span class="string">"string"</span>},
+        <span class="string">"duration"</span>: {<span class="string">"type"</span>: <span class="string">"integer"</span>}
+    },
+    <span class="string">"required"</span>: [<span class="string">"id"</span>, <span class="string">"title"</span>, <span class="string">"media_url"</span>]
+}
+
+<span class="decorator">@pytest.mark.smoke</span>
+<span class="keyword">class</span> <span class="function">TestStoriesAPI</span>:
+    
+    <span class="keyword">def</span> <span class="function">test_get_all_stories</span>(self, api_client):
+        <span class="string">"""Test retrieving all stories"""</span>
+        response = api_client.<span class="function">get</span>(<span class="string">"/stories"</span>)
+        
+        <span class="keyword">assert</span> response.status_code == <span class="string">200</span>
+        <span class="keyword">assert</span> <span class="string">"stories"</span> <span class="keyword">in</span> response.<span class="function">json</span>()
+        <span class="keyword">assert</span> <span class="function">isinstance</span>(response.<span class="function">json</span>()[<span class="string">"stories"</span>], <span class="function">list</span>)
+        <span class="keyword">assert</span> <span class="function">len</span>(response.<span class="function">json</span>()[<span class="string">"stories"</span>]) > <span class="string">0</span>
+    
+    <span class="keyword">def</span> <span class="function">test_get_story_by_id</span>(self, api_client):
+        <span class="string">"""Test retrieving a specific story"""</span>
+        <span class="comment"># First get all stories</span>
+        stories = api_client.<span class="function">get</span>(<span class="string">"/stories"</span>).<span class="function">json</span>()[<span class="string">"stories"</span>]
+        story_id = stories[<span class="string">0</span>][<span class="string">"id"</span>]
+        
+        <span class="comment"># Get specific story</span>
+        response = api_client.<span class="function">get</span>(<span class="function">f</span><span class="string">"/stories/{story_id}"</span>)
+        
+        <span class="keyword">assert</span> response.status_code == <span class="string">200</span>
+        story = response.<span class="function">json</span>()
+        <span class="keyword">assert</span> story[<span class="string">"id"</span>] == story_id
+        
+        <span class="comment"># Validate schema</span>
+        <span class="function">validate</span>(instance=story, schema=STORY_SCHEMA)
+    
+    <span class="keyword">def</span> <span class="function">test_create_story</span>(self, api_client, test_story_data):
+        <span class="string">"""Test creating a new story"""</span>
+        response = api_client.<span class="function">post</span>(<span class="string">"/stories"</span>, json=test_story_data)
+        
+        <span class="keyword">assert</span> response.status_code == <span class="string">201</span>
+        created_story = response.<span class="function">json</span>()
+        <span class="keyword">assert</span> <span class="string">"id"</span> <span class="keyword">in</span> created_story
+        <span class="keyword">assert</span> created_story[<span class="string">"title"</span>] == test_story_data[<span class="string">"title"</span>]
+    
+    <span class="keyword">def</span> <span class="function">test_update_story</span>(self, api_client, test_story_data):
+        <span class="string">"""Test updating an existing story"""</span>
+        <span class="comment"># Create a story first</span>
+        create_response = api_client.<span class="function">post</span>(<span class="string">"/stories"</span>, json=test_story_data)
+        story_id = create_response.<span class="function">json</span>()[<span class="string">"id"</span>]
+        
+        <span class="comment"># Update the story</span>
+        updated_data = {<span class="string">"title"</span>: <span class="string">"Updated Story Title"</span>}
+        response = api_client.<span class="function">put</span>(<span class="function">f</span><span class="string">"/stories/{story_id}"</span>, json=updated_data)
+        
+        <span class="keyword">assert</span> response.status_code == <span class="string">200</span>
+        <span class="keyword">assert</span> response.<span class="function">json</span>()[<span class="string">"title"</span>] == updated_data[<span class="string">"title"</span>]
+    
+    <span class="keyword">def</span> <span class="function">test_delete_story</span>(self, api_client, test_story_data):
+        <span class="string">"""Test deleting a story"""</span>
+        <span class="comment"># Create a story first</span>
+        create_response = api_client.<span class="function">post</span>(<span class="string">"/stories"</span>, json=test_story_data)
+        story_id = create_response.<span class="function">json</span>()[<span class="string">"id"</span>]
+        
+        <span class="comment"># Delete the story</span>
+        response = api_client.<span class="function">delete</span>(<span class="function">f</span><span class="string">"/stories/{story_id}"</span>)
+        
+        <span class="keyword">assert</span> response.status_code == <span class="string">204</span>
+        
+        <span class="comment"># Verify it's deleted</span>
+        get_response = api_client.<span class="function">get</span>(<span class="function">f</span><span class="string">"/stories/{story_id}"</span>)
+        <span class="keyword">assert</span> get_response.status_code == <span class="string">404</span>
+    
+    <span class="decorator">@pytest.mark.parametrize</span>(<span class="string">"invalid_data,expected_error"</span>, [
+        ({<span class="string">"title"</span>: <span class="string">""</span>}, <span class="string">"Title cannot be empty"</span>),
+        ({<span class="string">"duration"</span>: -<span class="string">1</span>}, <span class="string">"Duration must be positive"</span>),
+        ({<span class="string">"media_url"</span>: <span class="string">"invalid"</span>}, <span class="string">"Invalid URL format"</span>)
+    ])
+    <span class="keyword">def</span> <span class="function">test_create_story_validation</span>(self, api_client, invalid_data, expected_error):
+        <span class="string">"""Test story creation validation"""</span>
+        response = api_client.<span class="function">post</span>(<span class="string">"/stories"</span>, json=invalid_data)
+        
+        <span class="keyword">assert</span> response.status_code == <span class="string">400</span>
+        <span class="keyword">assert</span> expected_error <span class="keyword">in</span> response.<span class="function">json</span>()[<span class="string">"error"</span>]
+    
+    <span class="keyword">def</span> <span class="function">test_response_time</span>(self, api_client):
+        <span class="string">"""Test API response time"""</span>
+        <span class="keyword">import</span> time
+        
+        start_time = time.<span class="function">time</span>()
+        response = api_client.<span class="function">get</span>(<span class="string">"/stories"</span>)
+        end_time = time.<span class="function">time</span>()
+        
+        response_time = (end_time - start_time) * <span class="string">1000</span>  <span class="comment"># Convert to ms</span>
+        
+        <span class="keyword">assert</span> response.status_code == <span class="string">200</span>
+        <span class="keyword">assert</span> response_time < <span class="string">500</span>, <span class="function">f</span><span class="string">"Response time too slow: {response_time}ms"</span></pre>
+                        </div>
+                    </div>
+
+                    <button class="btn" onclick="runFramework('pytest')" style="margin-top: 15px;">▶ Run Pytest Suite</button>
+                    <button class="btn btn-secondary" onclick="downloadFramework('pytest')">💾 Download Complete Framework</button>
+                </div>
+            </div>
+
+            <!-- Execution Console -->
+            <div class="card col-8">
+                <div class="card-header">
+                    <div class="header-left">
+                        <div class="icon">💻</div>
+                        <div class="card-title">Test Execution Console</div>
+                    </div>
+                </div>
+                <div class="console" id="executionConsole">
+                    <div class="console-line info">🔧 Framework ready for execution...</div>
+                    <div class="console-line info">💡 Select a framework and click "Run" to start testing</div>
+                </div>
+            </div>
+
+            <!-- Metrics Dashboard -->
+            <div class="card col-4">
+                <div class="card-header">
+                    <div class="header-left">
+                        <div class="icon">📊</div>
+                        <div class="card-title">Test Metrics</div>
+                    </div>
+                </div>
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <div class="metric-value" id="totalTests">0</div>
+                        <div style="font-size: 0.9em; opacity: 0.8;">Total Tests</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" style="color: #4ade80;" id="passedTests">0</div>
+                        <div style="font-size: 0.9em; opacity: 0.8;">Passed</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" style="color: #ef4444;" id="failedTests">0</div>
+                        <div style="font-size: 0.9em; opacity: 0.8;">Failed</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 10px;">
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>Coverage:</span>
+                        <span id="coverage">0%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>Duration:</span>
+                        <span id="duration">0s</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>Frameworks:</span>
+                        <span>6</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">✓ Code copied to clipboard!</div>
+
+    <script>
+        let currentFramework = 'playwright';
+        let testsRun = 0;
+
+        function switchFramework(framework) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(framework).classList.add('active');
+            event.target.classList.add('active');
+            currentFramework = framework;
+            
+            addConsoleLog('info', `📦 Switched to ${framework} framework`);
+        }
+
+        function copyCode(elementId) {
+            const codeElement = document.getElementById(elementId);
+            const text = codeElement.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                showToast();
+                addConsoleLog('pass', `✓ ${elementId} copied to clipboard`);
+            });
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        function runFramework(framework) {
+            addConsoleLog('info', `🚀 Starting ${framework} test execution...`);
+            
+            const tests = {
+                'playwright': ['login.spec.ts', 'stories.spec.ts', 'api.spec.ts'],
+                'maestro': ['login_flow.yaml', 'stories_flow.yaml', 'profile_flow.yaml'],
+                'appium': ['stories.test.js', 'login.test.js', 'profile.test.js'],
+                'api': ['Get All Stories', 'Get Story By ID', 'Create Story', 'Update Story', 'Delete Story'],
+                'cypress': ['stories.cy.js', 'login.cy.js', 'analytics.cy.js'],
+                'pytest': ['test_stories_api.py', 'test_auth.py', 'test_analytics.py']
+            };
+            
+            const testList = tests[framework];
+            let passed = 0;
+            let failed = 0;
+            
+            testList.forEach((test, index) => {
+                setTimeout(() => {
+                    const willPass = Math.random() > 0.15;
+                    if (willPass) {
+                        addConsoleLog('pass', `✓ PASS: ${test}`);
+                        passed++;
+                    } else {
+                        addConsoleLog('fail', `✗ FAIL: ${test} - Assertion failed`);
+                        failed++;
+                    }
+                    
+                    // Update metrics
+                    testsRun++;
+                    document.getElementById('totalTests').textContent = testsRun;
+                    document.getElementById('passedTests').textContent = passed;
+                    document.getElementById('failedTests').textContent = failed;
+                    
+                    if (index === testList.length - 1) {
+                        setTimeout(() => {
+                            const duration = (Math.random() * 5 + 2).toFixed(2);
+                            const coverage = (85 + Math.random() * 10).toFixed(1);
+                            addConsoleLog('info', '═══════════════════════════════════');
+                            addConsoleLog('pass', `✓ Test suite completed in ${duration}s`);
+                            addConsoleLog('info', `📊 Results: ${passed} passed, ${failed} failed`);
+                            addConsoleLog('info', `📈 Code Coverage: ${coverage}%`);
+                            document.getElementById('coverage').textContent = coverage + '%';
+                            document.getElementById('duration').textContent = duration + 's';
+                        }, 1000);
+                    }
+                }, index * 800);
+            });
+        }
+
+        function downloadFramework(framework) {
+            addConsoleLog('info', `💾 Preparing ${framework} framework for download...`);
+            setTimeout(() => {
+                addConsoleLog('pass', `✓ Framework package ready: ${framework}-framework.zip`);
+                addConsoleLog('info', '📦 Package includes: configs, tests, utilities, README');
+            }, 1500);
+        }
+
+        function addConsoleLog(type, message) {
+            const console = document.getElementById('executionConsole');
+            const line = document.createElement('div');
+            line.className = `console-line ${type}`;
+            line.textContent = message;
+            console.appendChild(line);
+            console.scrollTop = console.scrollHeight;
+        }
+    </script>
+</body>
+</html>

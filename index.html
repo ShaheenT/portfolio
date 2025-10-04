@@ -509,14 +509,23 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
   <!-- Resources Grid -->
 <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">    <!-- AI Engineer Resources Card -->
     <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
-      <h2 class="text-xl font-bold mb-4">🚀 AI Engineer Resources</h2>
+      <h2 class="text-xl font-bold mb-4">QA Portfolio Projects</h2>
       <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-        <li>AI Concepts & Applied Learning</li>
-        <li>Reusable Code & Templates</li>
-        <li>Real-World Projects</li>
-        <li>Mentorship & Knowledge Sharing</li>
+        <li>Manual Engineer Project-QA Command Centre</li>
+        
       </ul>
-      <a href="https://github.com/your-ai-engineer-repo"
+      <a href="./portdoor.html"
+         target="_blank"
+         class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition">
+        Explore QA Project
+      </a>
+    </div>
+    <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+      <h2 class="text-xl font-bold mb-4">Software Test Engineer - Live Dashboard</h2>
+      <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+        <li>Real-Time Automated Testing System</li>
+       
+      <a href="./soft-test-engineer-dash.html"
          target="_blank"
          class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition">
         Explore Resources
@@ -971,17 +980,31 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
     toggleBtn.textContent = "☀️"; // show sun if dark mode active
   }
 
-  toggleBtn.addEventListener("click", () => {
-    if (htmlEl.classList.contains("dark")) {
-      htmlEl.classList.remove("dark");
-      localStorage.theme = "light";
-      toggleBtn.textContent = "🌙";
-    } else {
-      htmlEl.classList.add("dark");
-      localStorage.theme = "dark";
-      toggleBtn.textContent = "☀️";
-    }
-  });
+const toggleBtn = document.getElementById("dark-toggle");
+const htmlEl = document.documentElement;
+
+// Load saved theme on page load
+if (localStorage.theme === "dark") {
+  htmlEl.classList.add("dark");
+  toggleBtn.textContent = "☀️";
+} else {
+  htmlEl.classList.remove("dark");
+  toggleBtn.textContent = "🌙";
+}
+
+// Toggle dark/light mode on click
+toggleBtn.addEventListener("click", () => {
+  if (htmlEl.classList.contains("dark")) {
+    htmlEl.classList.remove("dark");
+    localStorage.theme = "light";
+    toggleBtn.textContent = "🌙";
+  } else {
+    htmlEl.classList.add("dark");
+    localStorage.theme = "dark";
+    toggleBtn.textContent = "☀️";
+  }
+});
+
 </script>
 
 
