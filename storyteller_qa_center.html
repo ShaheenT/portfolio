@@ -1,12 +1,10 @@
-            <!-- 🔹 Home Button -->
-<button class="home-btn" onclick="goHome()">🏠 Home</button>
-            <div class="console" id="cicdConsole">
+<body><div class="console" id="cicdConsole">
                 <div class="console-line info">⚙️ CI/CD pipeline ready for integration</div>
                 <div class="console-line info">💡 Copy workflows to your repository</div>
-            </div>
+            <div class="console-line info">🎯 Storyteller QA Command Center initialized</div><div class="console-line info">📱 Mobile testing: iOS 17, Android 14</div><div class="console-line info">🌐 Web SDK: Ready for integration testing</div><div class="console-line info">🔌 API endpoints: 8 test suites configured</div><div class="console-line info">⚙️ CI/CD: GitHub Actions &amp; Azure DevOps ready</div><div class="console-line pass">✓ All systems operational</div><div class="console-line info">▶ Playing story: Premier League Highlights</div><div class="console-line pass">✓ Story loaded in 180ms</div><div class="console-line info">▶ Playing story: Premier League Highlights</div><div class="console-line pass">✓ Story loaded in 180ms</div><div class="console-line info">▶ Playing story: Premier League Highlights</div><div class="console-line pass">✓ Story loaded in 180ms</div><div class="console-line info">🎯 Testing engagement unit (poll)</div><div class="console-line pass">✓ Poll loaded successfully</div><div class="console-line info">🔗 Testing deep link: storyteller://story/premier-league/page/2</div><div class="console-line pass">✓ Deep link navigation successful</div><div class="console-line info">✓ Opened to page 2 as expected</div><div class="console-line info">🔗 Testing deep link: storyteller://story/premier-league/page/2</div><div class="console-line pass">✓ Deep link navigation successful</div><div class="console-line info">✓ Opened to page 2 as expected</div></div>
 
             <button class="btn btn-success" onclick="simulateCI()" style="margin-top: 15px;">▶ Simulate Pipeline Run</button>
-        </div>
+        
 
         <!-- API Testing Suite -->
         <div class="card col-12">
@@ -47,7 +45,7 @@
             <span class="string">"listen"</span>: <span class="string">"test"</span>,
             <span class="string">"script"</span>: {
               <span class="string">"exec"</span>: [
-                <span class="string">"pm.test('Story created successfully', () => {"</span>,
+                <span class="string">"pm.test('Story created successfully', () =&gt; {"</span>,
                 <span class="string">"  pm.response.to.have.status(201);"</span>,
                 <span class="string">"  const json = pm.response.json();"</span>,
                 <span class="string">"  pm.expect(json).to.have.property('id');"</span>,
@@ -78,7 +76,7 @@
             <span class="string">"listen"</span>: <span class="string">"test"</span>,
             <span class="string">"script"</span>: {
               <span class="string">"exec"</span>: [
-                <span class="string">"pm.test('Page uploaded with correct dimensions', () => {"</span>,
+                <span class="string">"pm.test('Page uploaded with correct dimensions', () =&gt; {"</span>,
                 <span class="string">"  pm.response.to.have.status(201);"</span>,
                 <span class="string">"  const json = pm.response.json();"</span>,
                 <span class="string">"  pm.expect(json.width).to.equal(1080);"</span>,
@@ -107,7 +105,7 @@
             <span class="string">"listen"</span>: <span class="string">"test"</span>,
             <span class="string">"script"</span>: {
               <span class="string">"exec"</span>: [
-                <span class="string">"pm.test('Thumbnail set correctly', () => {"</span>,
+                <span class="string">"pm.test('Thumbnail set correctly', () =&gt; {"</span>,
                 <span class="string">"  pm.response.to.have.status(200);"</span>,
                 <span class="string">"  const json = pm.response.json();"</span>,
                 <span class="string">"  pm.expect(json.thumbnail.width).to.equal(256);"</span>,
@@ -131,7 +129,7 @@
             <span class="string">"listen"</span>: <span class="string">"test"</span>,
             <span class="string">"script"</span>: {
               <span class="string">"exec"</span>: [
-                <span class="string">"pm.test('Story scheduled correctly', () => {"</span>,
+                <span class="string">"pm.test('Story scheduled correctly', () =&gt; {"</span>,
                 <span class="string">"  pm.response.to.have.status(200);"</span>,
                 <span class="string">"  const json = pm.response.json();"</span>,
                 <span class="string">"  pm.expect(json.scheduled).to.be.true;"</span>,
@@ -155,7 +153,7 @@
             <span class="string">"listen"</span>: <span class="string">"test"</span>,
             <span class="string">"script"</span>: {
               <span class="string">"exec"</span>: [
-                <span class="string">"pm.test('Eyebrow text within limit', () => {"</span>,
+                <span class="string">"pm.test('Eyebrow text within limit', () =&gt; {"</span>,
                 <span class="string">"  pm.response.to.have.status(200);"</span>,
                 <span class="string">"  const json = pm.response.json();"</span>,
                 <span class="string">"  pm.expect(json.eyebrow.length).to.be.below(21);"</span>,
@@ -178,7 +176,7 @@
             <span class="string">"listen"</span>: <span class="string">"test"</span>,
             <span class="string">"script"</span>: {
               <span class="string">"exec"</span>: [
-                <span class="string">"pm.test('Story published successfully', () => {"</span>,
+                <span class="string">"pm.test('Story published successfully', () =&gt; {"</span>,
                 <span class="string">"  pm.response.to.have.status(200);"</span>,
                 <span class="string">"  const json = pm.response.json();"</span>,
                 <span class="string">"  pm.expect(json.status).to.equal('published');"</span>,
@@ -239,22 +237,22 @@
                 <div class="code-content">
                     <pre id="web-sdk-test"><span class="keyword">import</span> { test, expect } <span class="keyword">from</span> <span class="string">'@playwright/test'</span>;
 
-<span class="function">test</span>.<span class="function">describe</span>(<span class="string">'Storyteller Web SDK Integration'</span>, () => {
+<span class="function">test</span>.<span class="function">describe</span>(<span class="string">'Storyteller Web SDK Integration'</span>, () =&gt; {
   
-  <span class="function">test</span>.<span class="function">beforeEach</span>(<span class="keyword">async</span> ({ page }) => {
+  <span class="function">test</span>.<span class="function">beforeEach</span>(<span class="keyword">async</span> ({ page }) =&gt; {
     <span class="keyword">await</span> page.<span class="function">goto</span>(<span class="string">'https://example.com/stories'</span>);
   });
 
-  <span class="function">test</span>(<span class="string">'should load Stories SDK'</span>, <span class="keyword">async</span> ({ page }) => {
+  <span class="function">test</span>(<span class="string">'should load Stories SDK'</span>, <span class="keyword">async</span> ({ page }) =&gt; {
     <span class="comment">// Verify SDK loaded</span>
-    <span class="keyword">const</span> sdkLoaded = <span class="keyword">await</span> page.<span class="function">evaluate</span>(() => {
+    <span class="keyword">const</span> sdkLoaded = <span class="keyword">await</span> page.<span class="function">evaluate</span>(() =&gt; {
       <span class="keyword">return typeof</span> window.Storyteller !== <span class="string">'undefined'</span>;
     });
     
     <span class="function">expect</span>(sdkLoaded).<span class="function">toBeTruthy</span>();
   });
 
-  <span class="function">test</span>(<span class="string">'should display story grid'</span>, <span class="keyword">async</span> ({ page }) => {
+  <span class="function">test</span>(<span class="string">'should display story grid'</span>, <span class="keyword">async</span> ({ page }) =&gt; {
     <span class="keyword">const</span> storyGrid = page.<span class="function">locator</span>(<span class="string">'.storyteller-stories-grid'</span>);
     <span class="keyword">await</span> <span class="function">expect</span>(storyGrid).<span class="function">toBeVisible</span>();
     
@@ -262,7 +260,7 @@
     <span class="keyword">await</span> <span class="function">expect</span>(stories).<span class="function">toHaveCount</span>.<span class="function">toBeGreaterThan</span>(<span class="string">0</span>);
   });
 
-  <span class="function">test</span>(<span class="string">'should open story on click'</span>, <span class="keyword">async</span> ({ page }) => {
+  <span class="function">test</span>(<span class="string">'should open story on click'</span>, <span class="keyword">async</span> ({ page }) =&gt; {
     <span class="keyword">const</span> firstStory = page.<span class="function">locator</span>(<span class="string">'.storyteller-story-tile'</span>).<span class="function">first</span>();
     <span class="keyword">await</span> firstStory.<span class="function">click</span>();
     
@@ -270,11 +268,11 @@
     <span class="keyword">await</span> <span class="function">expect</span>(viewer).<span class="function">toBeVisible</span>();
   });
 
-  <span class="function">test</span>(<span class="string">'should track analytics events'</span>, <span class="keyword">async</span> ({ page }) => {
+  <span class="function">test</span>(<span class="string">'should track analytics events'</span>, <span class="keyword">async</span> ({ page }) =&gt; {
     <span class="keyword">let</span> analyticsEvents = [];
     
     <span class="comment">// Intercept analytics calls</span>
-    <span class="keyword">await</span> page.<span class="function">route</span>(<span class="string">'**/api/analytics/**'</span>, route => {
+    <span class="keyword">await</span> page.<span class="function">route</span>(<span class="string">'**/api/analytics/**'</span>, route =&gt; {
       analyticsEvents.<span class="function">push</span>(route.<span class="function">request</span>().<span class="function">url</span>());
       route.<span class="function">continue</span>();
     });
@@ -288,7 +286,7 @@
     <span class="function">expect</span>(analyticsEvents.<span class="function">length</span>).<span class="function">toBeGreaterThan</span>(<span class="string">0</span>);
   });
 
-  <span class="function">test</span>(<span class="string">'should handle responsive layout'</span>, <span class="keyword">async</span> ({ page }) => {
+  <span class="function">test</span>(<span class="string">'should handle responsive layout'</span>, <span class="keyword">async</span> ({ page }) =&gt; {
     <span class="comment">// Test mobile viewport</span>
     <span class="keyword">await</span> page.<span class="function">setViewportSize</span>({ width: <span class="string">375</span>, height: <span class="string">667</span> });
     
@@ -323,17 +321,17 @@
                     <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px;">
                         <div style="font-size: 0.9em; opacity: 0.8; margin-bottom: 5px;">Story Load Time</div>
                         <div style="font-size: 2em; font-weight: bold; color: #4ade80;">180ms</div>
-                        <div style="font-size: 0.8em; opacity: 0.7;">Target: < 300ms ✓</div>
+                        <div style="font-size: 0.8em; opacity: 0.7;">Target: &lt; 300ms ✓</div>
                     </div>
                     <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px;">
                         <div style="font-size: 0.9em; opacity: 0.8; margin-bottom: 5px;">Video Buffer Time</div>
                         <div style="font-size: 2em; font-weight: bold; color: #4ade80;">420ms</div>
-                        <div style="font-size: 0.8em; opacity: 0.7;">Target: < 500ms ✓</div>
+                        <div style="font-size: 0.8em; opacity: 0.7;">Target: &lt; 500ms ✓</div>
                     </div>
                     <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px;">
                         <div style="font-size: 0.9em; opacity: 0.8; margin-bottom: 5px;">Memory Usage</div>
                         <div style="font-size: 2em; font-weight: bold; color: #4ade80;">128MB</div>
-                        <div style="font-size: 0.8em; opacity: 0.7;">Target: < 150MB ✓</div>
+                        <div style="font-size: 0.8em; opacity: 0.7;">Target: &lt; 150MB ✓</div>
                     </div>
                     <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px;">
                         <div style="font-size: 0.9em; opacity: 0.8; margin-bottom: 5px;">Frame Rate</div>
@@ -351,9 +349,9 @@
                 <div class="code-content">
                     <pre id="perf-test"><span class="keyword">const</span> { performance } = <span class="function">require</span>(<span class="string">'perf_hooks'</span>);
 
-<span class="function">describe</span>(<span class="string">'Storyteller Performance Tests'</span>, () => {
+<span class="function">describe</span>(<span class="string">'Storyteller Performance Tests'</span>, () =&gt; {
   
-  <span class="function">it</span>(<span class="string">'should load story within 300ms'</span>, <span class="keyword">async</span> () => {
+  <span class="function">it</span>(<span class="string">'should load story within 300ms'</span>, <span class="keyword">async</span> () =&gt; {
     <span class="keyword">const</span> start = performance.<span class="function">now</span>();
     
     <span class="keyword">await</span> driver.$(<span class="string">'~story-card'</span>).<span class="function">click</span>();
@@ -365,7 +363,7 @@
     <span class="function">expect</span>(loadTime).<span class="function">to</span>.<span class="function">be</span>.<span class="function">below</span>(<span class="string">300</span>);
   });
   
-  <span class="function">it</span>(<span class="string">'should maintain 60fps during transitions'</span>, <span class="keyword">async</span> () => {
+  <span class="function">it</span>(<span class="string">'should maintain 60fps during transitions'</span>, <span class="keyword">async</span> () =&gt; {
     <span class="keyword">const</span> metrics = <span class="keyword">await</span> driver.<span class="function">execute</span>(<span class="string">'mobile: getPerformanceData'</span>, {
       packageName: <span class="string">'com.storyteller.app'</span>,
       dataType: <span class="string">'fpsinfo'</span>
@@ -397,7 +395,7 @@
                         <h4 style="color: #4ade80; margin-bottom: 10px;">✓ Functional Testing</h4>
                         <ul style="line-height: 2; opacity: 0.9;">
                             <li>Story creation flow</li>
-                            <li>Page upload & validation</li>
+                            <li>Page upload &amp; validation</li>
                             <li>Duration timing (15s default)</li>
                             <li>Live story priority</li>
                             <li>Multi-category scheduling</li>
@@ -429,7 +427,7 @@
                             <li>Web (Chrome, Firefox, Safari)</li>
                             <li>Tablet (iPad, Android tablets)</li>
                             <li>Various screen sizes</li>
-                            <li>Portrait & landscape</li>
+                            <li>Portrait &amp; landscape</li>
                             <li>Dark/light mode</li>
                         </ul>
                     </div>
@@ -446,7 +444,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    
 
     <div class="toast" id="toast">✓ Code copied to clipboard!</div>
 
@@ -757,10 +755,48 @@
             }, 2000);
         });
     </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Storyteller QA Command Center</title>
@@ -1245,9 +1281,7 @@
             font-size: 0.85em;
         }
     </style>
-</head>
-<body>
-    
+
 
     <div class="header">
         <div class="company-logo">📖</div>
@@ -1255,7 +1289,7 @@
         <p style="font-size: 1.2em; opacity: 0.9; margin: 10px 0;">Production-Ready Testing Platform for Stories SDK</p>
         <div>
             <span class="badge">🎯 Stories-Specific Tests</span>
-            <span class="badge">📱 iOS & Android</span>
+            <span class="badge">📱 iOS &amp; Android</span>
             <span class="badge">🌐 Web SDK</span>
             <span class="badge">⚡ CI/CD Ready</span>
             <span class="badge">⚽ Sports Content</span>
@@ -1263,61 +1297,65 @@
     </div>
 
     <div class="grid">
-<div class="iphone-simulator">
-  <div class="iphone-frame">
-    <div class="iphone-notch"></div>
-    <div class="iphone-screen">
-      <!-- Header -->
-      <div class="story-header">
-        <div class="progress-bars">
-          <div class="progress-bar"><div class="progress-fill" style="width:100%;"></div></div>
-          <div class="progress-bar"><div class="progress-fill" style="width:60%;"></div></div>
-          <div class="progress-bar"><div class="progress-fill" style="width:0%;"></div></div>
+        <!-- Live Story Simulator -->
+        <div class="card col-4">
+            <div class="card-header">
+                <div class="header-left">
+                    <div class="icon">📱</div>
+                    <div class="card-title">Live Story Simulator</div>
+                </div>
+            </div>
+            
+            <div class="device-grid">
+                <div class="device-card active" onclick="switchDevice('ios')">
+                    <div class="device-icon">🍎</div>
+                    <div><strong>iOS 17</strong></div>
+                    <div style="font-size: 0.85em; opacity: 0.8;">iPhone 15 Pro</div>
+                </div>
+                <div class="device-card" onclick="switchDevice('android')">
+                    <div class="device-icon">🤖</div>
+                    <div><strong>Android 14</strong></div>
+                    <div style="font-size: 0.85em; opacity: 0.8;">Pixel 8</div>
+                </div>
+            </div>
+
+            <div class="story-simulator">
+                <div class="phone-screen" id="storyScreen">
+                    <div class="story-header">
+                        <div class="progress-bars" id="progressBars">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 100.5%;"></div></div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
+                        </div>
+                        <div class="story-info">
+                            <div class="story-avatar">⚽</div>
+                            <div class="story-title">
+                                <div style="font-weight: 600;">Premier League</div>
+                                <div class="story-time" id="storyTime">2m ago</div>
+                            </div>
+                            <div class="live-badge" id="liveBadge" style="display: block;">LIVE</div>
+                            <button style="background: none; border: none; color: white; font-size: 1.5em; cursor: pointer;">×</button>
+                        </div>
+                    </div>
+                    <div class="story-content" id="storyContent">
+                    <div class="story-page">
+                        <h2>Player Stats</h2>
+                        <p>⚽<br><br>Top Scorer<br>Salah - 2 Goals<br>Odegaard - 1 Goal</p>
+                    </div>
+                </div>
+                    <div class="swipe-up" id="swipeUp" style="display: none;">
+                        <span>Swipe up</span>
+                        <span>↑</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                <button class="btn btn-success" onclick="playStory()">▶ Play Story</button>
+                <button class="btn btn-warning" onclick="testEngagement()">🎯 Test Poll</button>
+                <button class="btn" onclick="testDeepLink()">🔗 Deep Link</button>
+            </div>
         </div>
-        <div class="story-info">
-          <div class="story-avatar">⚽</div>
-          <div class="story-title">
-            <div class="title-text">Premier League</div>
-            <div class="story-time">25'</div>
-          </div>
-          <div class="live-badge">LIVE</div>
-          <button class="close-btn">×</button>
-        </div>
-      </div>
-
-      <!-- Story Content: Image from Storyteller -->
-      <div class="story-content">
-        
-      <img src="images/soccer.jpg" alt="Storyteller Live Story"></div>
-
-      <div class="swipe-up">Swipe up ↑</div>
-    </div>
-  </div>
-</div>
-
-<style>
-.iphone-simulator { display:flex; justify-content:center; margin-top:40px; }
-.iphone-frame { width:390px; height:844px; background:#111; border-radius:60px; padding:10px;
-  box-shadow:0 30px 60px rgba(0,0,0,0.5), inset 0 0 3px rgba(255,255,255,0.05); position:relative; }
-.iphone-notch { width:210px; height:30px; background:#111; border-radius:0 0 20px 20px;
-  position:absolute; top:0; left:50%; transform:translateX(-50%); z-index:10; }
-.iphone-screen { width:100%; height:100%; border-radius:50px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start; background:#000; color:#fff; padding-top:50px; position:relative; }
-.story-header { position:absolute; top:10px; width:100%; padding:0 15px; display:flex; flex-direction:column; gap:8px; z-index:5; }
-.progress-bars { display:flex; gap:4px; margin-bottom:5px; }
-.progress-bar { flex:1; height:4px; background: rgba(255,255,255,0.3); border-radius:2px; overflow:hidden; }
-.progress-fill { height:100%; background:#1C62EB; width:0%; transition: width 0.5s ease; }
-.story-info { display:flex; align-items:center; justify-content:space-between; background:rgba(0,0,0,0.3); padding:5px 10px; border-radius:15px; }
-.story-avatar { width:36px; height:36px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; font-size:18px; margin-right:10px; }
-.story-title { flex:1; font-size:0.9em; color:#fff; }
-.title-text { font-weight:600; }
-.story-time { font-size:0.75em; opacity:0.8; }
-.live-badge { background:red; color:#fff; font-size:0.65em; padding:2px 6px; border-radius:4px; margin-left:5px; }
-.close-btn { font-size:1.3em; color:#fff; background:none; border:none; cursor:pointer; }
-.story-content { flex:1; display:flex; justify-content:center; align-items:center; overflow:hidden; margin-top:70px; }
-.story-content img { width:100%; height:100%; object-fit:cover; border-radius:20px; }
-.swipe-up { text-align:center; padding-bottom:15px; font-size:0.75em; opacity:0.8; position:absolute; bottom:10px; width:100%; }
-</style>
-
 
         <!-- Test Execution Dashboard -->
         <div class="card col-8">
@@ -1437,7 +1475,7 @@
                     <div class="test-item pass">
                         <div>
                             <strong>✓ Story Load Time</strong>
-                            <div style="font-size: 0.85em; opacity: 0.8;">< 300ms threshold</div>
+                            <div style="font-size: 0.85em; opacity: 0.8;">&lt; 300ms threshold</div>
                         </div>
                         <span class="status-badge status-pass">180ms</span>
                     </div>
@@ -1451,7 +1489,7 @@
                     <div class="test-item pass">
                         <div>
                             <strong>✓ Memory Usage</strong>
-                            <div style="font-size: 0.85em; opacity: 0.8;">< 150MB on device</div>
+                            <div style="font-size: 0.85em; opacity: 0.8;">&lt; 150MB on device</div>
                         </div>
                         <span class="status-badge status-pass">128MB</span>
                     </div>
@@ -1686,9 +1724,9 @@
                     <div class="code-content">
                         <pre id="appium-code"><span class="keyword">const</span> { expect } = <span class="function">require</span>(<span class="string">'chai'</span>);
 
-<span class="function">describe</span>(<span class="string">'Storyteller Stories Feature'</span>, () => {
+<span class="function">describe</span>(<span class="string">'Storyteller Stories Feature'</span>, () =&gt; {
   
-  <span class="function">it</span>(<span class="string">'should display Live Story first'</span>, <span class="keyword">async</span> () => {
+  <span class="function">it</span>(<span class="string">'should display Live Story first'</span>, <span class="keyword">async</span> () =&gt; {
     <span class="keyword">const</span> firstStory = <span class="keyword">await</span> $(<span class="string">'~story-card'</span>);
     <span class="keyword">await</span> firstStory.<span class="function">waitForDisplayed</span>();
     
@@ -1696,7 +1734,7 @@
     <span class="keyword">await</span> <span class="function">expect</span>(<span class="keyword">await</span> liveBadge.<span class="function">isDisplayed</span>()).<span class="function">to</span>.<span class="function">be</span>.<span class="function">true</span>;
   });
 
-  <span class="function">it</span>(<span class="string">'should validate page duration (15s)'</span>, <span class="keyword">async</span> () => {
+  <span class="function">it</span>(<span class="string">'should validate page duration (15s)'</span>, <span class="keyword">async</span> () =&gt; {
     <span class="keyword">const</span> story = <span class="keyword">await</span> $(<span class="string">'~story-card'</span>);
     <span class="keyword">await</span> story.<span class="function">click</span>();
     
@@ -1711,7 +1749,7 @@
     <span class="function">expect</span>(duration).<span class="function">to</span>.<span class="function">be</span>.<span class="function">closeTo</span>(<span class="string">15</span>, <span class="string">1</span>);
   });
 
-  <span class="function">it</span>(<span class="string">'should test thumbnail dimensions'</span>, <span class="keyword">async</span> () => {
+  <span class="function">it</span>(<span class="string">'should test thumbnail dimensions'</span>, <span class="keyword">async</span> () =&gt; {
     <span class="keyword">const</span> thumbnail = <span class="keyword">await</span> $(<span class="string">'~story-thumbnail'</span>);
     <span class="keyword">const</span> size = <span class="keyword">await</span> thumbnail.<span class="function">getSize</span>();
     
@@ -1720,7 +1758,7 @@
     <span class="function">expect</span>(size.height).<span class="function">to</span>.<span class="function">equal</span>(<span class="string">480</span>);
   });
 
-  <span class="function">it</span>(<span class="string">'should test engagement unit (poll)'</span>, <span class="keyword">async</span> () => {
+  <span class="function">it</span>(<span class="string">'should test engagement unit (poll)'</span>, <span class="keyword">async</span> () =&gt; {
     <span class="keyword">const</span> story = <span class="keyword">await</span> $(<span class="string">'~story-card'</span>);
     <span class="keyword">await</span> story.<span class="function">click</span>();
     
@@ -1734,7 +1772,7 @@
     <span class="keyword">await</span> <span class="function">expect</span>(<span class="keyword">await</span> confirmation.<span class="function">isDisplayed</span>()).<span class="function">to</span>.<span class="function">be</span>.<span class="function">true</span>;
   });
 
-  <span class="function">it</span>(<span class="string">'should validate deep link navigation'</span>, <span class="keyword">async</span> () => {
+  <span class="function">it</span>(<span class="string">'should validate deep link navigation'</span>, <span class="keyword">async</span> () =&gt; {
     <span class="keyword">await</span> driver.<span class="function">execute</span>(<span class="string">'mobile: deepLink'</span>, {
       url: <span class="string">'storyteller://story/premier-league/page/2'</span>,
       package: <span class="string">'com.storyteller.app'</span>
@@ -1874,7 +1912,7 @@
     - <span class="keyword">name:</span> Install Maestro
       <span class="keyword">run:</span> |
         curl -Ls <span class="string">"https://get.maestro.mobile.dev"</span> | bash
-        echo <span class="string">"${HOME}/.maestro/bin"</span> >> $GITHUB_PATH
+        echo <span class="string">"${HOME}/.maestro/bin"</span> &gt;&gt; $GITHUB_PATH
     
     - <span class="keyword">name:</span> Run iOS Tests
       <span class="keyword">if:</span> matrix.platform == <span class="string">'ios'</span>
@@ -2017,4 +2055,4 @@
 
             <div class="console" id="cicdConsole">
                 <div class="console-line info">⚙️ CI/CD pipeline ready for integration</div>
-                <div class="console-line info">💡 Copy workflows to your repository</div>
+                <div class="console-line info">💡 Copy workflows to your repository</div><div class="console-line info">🎯 Storyteller QA Command Center initialized</div><div class="console-line info">📱 Mobile testing: iOS 17, Android 14</div><div class="console-line info">🌐 Web SDK: Ready for integration testing</div><div class="console-line info">🔌 API endpoints: 8 test suites configured</div><div class="console-line info">⚙️ CI/CD: GitHub Actions &amp; Azure DevOps ready</div><div class="console-line pass">✓ All systems operational</div><div class="console-line info">▶ Playing story: Premier League Highlights</div><div class="console-line pass">✓ Story loaded in 180ms</div><div class="console-line info">▶ Playing story: Premier League Highlights</div><div class="console-line pass">✓ Story loaded in 180ms</div><div class="console-line info">▶ Playing story: Premier League Highlights</div><div class="console-line pass">✓ Story loaded in 180ms</div><div class="console-line info">🎯 Testing engagement unit (poll)</div><div class="console-line pass">✓ Poll loaded successfully</div><div class="console-line info">🔗 Testing deep link: storyteller://story/premier-league/page/2</div><div class="console-line pass">✓ Deep link navigation successful</div><div class="console-line info">✓ Opened to page 2 as expected</div><div class="console-line info">🔗 Testing deep link: storyteller://story/premier-league/page/2</div><div class="console-line pass">✓ Deep link navigation successful</div><div class="console-line info">✓ Opened to page 2 as expected</div></div></div></div></body>
