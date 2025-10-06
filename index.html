@@ -237,10 +237,110 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
   document.getElementById("downloadResumeBtn").addEventListener("click", confirmAndDownload);
 </script>
 
-<!-- ISTQB Logo -->
-<div class="text-center my-8">
-  <img src="./images/istqb.webp" alt="ISTQB Logo" class="mx-auto w-32 h-auto">
+<!-- ISTQB Logo Section -->
+<div class="text-center my-16">
+  <img
+    id="istqbLogo"
+    src="./images/istqb.webp"
+    alt="ISTQB Logo"
+    class="mx-auto w-40 h-auto opacity-0 transform transition-transform duration-700 ease-out"
+  />
 </div>
+
+<style>
+  /* Base styling */
+  #istqbLogo {
+    transform-origin: bottom center;
+    position: relative;
+    filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.25));
+    perspective: 800px;
+    backface-visibility: hidden;
+    border-radius: 8px;
+  }
+
+  /* Gloss overlay for realistic shine */
+  #istqbLogo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    opacity: 0.4;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  /* Flip animations */
+  @keyframes flipUp {
+    0% {
+      transform: rotateX(90deg);
+      opacity: 0;
+    }
+    60% {
+      transform: rotateX(-10deg);
+      opacity: 0.8;
+    }
+    100% {
+      transform: rotateX(0deg);
+      opacity: 1;
+    }
+  }
+
+  @keyframes flipDown {
+    0% {
+      transform: rotateX(0deg);
+      opacity: 1;
+    }
+    60% {
+      transform: rotateX(-10deg);
+      opacity: 0.8;
+    }
+    100% {
+      transform: rotateX(90deg);
+      opacity: 0;
+    }
+  }
+
+  /* Active states */
+  .flip-visible {
+    animation: flipUp 1.2s ease-out forwards;
+  }
+
+  .flip-hidden {
+    animation: flipDown 1.2s ease-in forwards;
+  }
+</style>
+
+<script>
+  // Two-way scroll flip behavior
+  document.addEventListener("DOMContentLoaded", function () {
+    const logo = document.getElementById("istqbLogo");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            logo.classList.remove("flip-hidden");
+            logo.classList.add("flip-visible");
+          } else {
+            logo.classList.remove("flip-visible");
+            logo.classList.add("flip-hidden");
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(logo);
+  });
+</script>
 
 
 <!-- Certifications / Training Section -->
