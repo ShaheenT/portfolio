@@ -7,6 +7,24 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
+<style>
+@keyframes soft-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-soft-bounce {
+  animation: soft-bounce 2s infinite ease-in-out;
+}
+
+@keyframes soft-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-soft-bounce {
+  animation: soft-bounce 2s infinite ease-in-out;
+}
+</style>
+
 
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300 relative">
@@ -103,7 +121,7 @@
 </h2>
 <p class="max-w-[90%] md:max-w-[88rem] mx-auto text-center text-sm md:text-base">   I’m an AI-driven Quality Assurance Engineer passionate about accelerating software testing with intelligence, precision, and speed.
 
-At EntrprnriX Ai, I leverage AI-powered frameworks—Testim, Mabl, Functionize, Applitools, and TestSigma—alongside tools like Playwright, Selenium, Cypress, Appium, and Postman to design end-to-end QA strategies.
+At EntrprnriX Ai, I leverage AI-powered frameworks Testim, Mabl, Functionize, Applitools, and TestSigma alongside tools like Playwright, Selenium, Cypress, Appium, and Postman to design end-to-end QA strategies.
 
 My work blends traditional QA rigor with AI-enhanced automation, self-healing tests, and predictive defect analytics, ensuring software is functional, secure, scalable, and user-friendly.
 
@@ -115,7 +133,7 @@ Optimize QA workflows to deliver high-quality releases with lean teams.
 
 Provide predictive insights to prioritize risk and improve product reliability.
 
-By combining AI-driven automation, predictive analytics, and deep QA expertise, I help companies build secure, scalable, and market-ready applications faster—without compromising quality.
+By combining AI-driven automation, predictive analytics, and deep QA expertise, I help companies build secure, scalable, and market-ready applications faster without compromising quality.
 
 
 
@@ -218,6 +236,12 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
   lottieEnvelope.addEventListener("click", confirmAndDownload);
   document.getElementById("downloadResumeBtn").addEventListener("click", confirmAndDownload);
 </script>
+
+<!-- ISTQB Logo -->
+<div class="text-center my-8">
+  <img src="./images/istqb.webp" alt="ISTQB Logo" class="mx-auto w-32 h-auto">
+</div>
+
 
 <!-- Certifications / Training Section -->
 <section id="certifications" class="py-16 px-6 bg-gray-100 dark:bg-gray-800 reveal">
@@ -553,12 +577,15 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
 
 
   <!-- Resources Grid -->
-<div class="grid sm:grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">    <!-- AI Engineer Resources Card -->
+<!-- Projects Section -->
+<section id="projects" class="py-12 bg-gray-100 dark:bg-gray-800">
+  <!-- Resources Grid -->
+  <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
+    <!-- AI Engineer Resources Card -->
     <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
       <h2 class="text-xl font-bold mb-4">QA Portfolio Projects</h2>
       <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-        <li>Manual Engineer Project-QA Command Centre</li>
-        
+        <li>Manual Engineer Project - QA Command Centre</li>
       </ul>
       <a href="./portdoor.html"
          target="_blank"
@@ -566,19 +593,21 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
         Explore QA Project
       </a>
     </div>
+
+    <!-- Software Test Engineer Resources Card -->
     <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
       <h2 class="text-xl font-bold mb-4">Software Test Engineer - Live Dashboard</h2>
       <ul class="space-y-2 text-gray-700 dark:text-gray-300">
         <li>Real-Time Automated Testing System</li>
-       
+      </ul>
       <a href="./soft-test-engineer-dash.html"
          target="_blank"
          class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition">
         Explore Resources
       </a>
     </div>
-
-    <!-- QA Knowledge Share Card -->
+    
+  <!-- QA Knowledge Share Card -->
     <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
       <h2 class="text-xl font-bold mb-4">🧪 AI QA Knowledge Share</h2>
       <ul class="space-y-2 text-gray-700 dark:text-gray-300">
@@ -588,24 +617,45 @@ By combining AI-driven automation, predictive analytics, and deep QA expertise, 
         <li>CI/CD Pipeline Integration Guides</li>
         
       </ul>
-      <a href="#testing-guide"
+      <a href="#"
    class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition">
-   Guide to Software Testing & Automation 📘
+   Guide to Software Testing & Automation -coming soon📘
 </a>
 
-
-      <a href="https://github.com/your-qa-automation-hub"
+  <a href="https://github.com/your-qa-automation-hub"
          target="_blank"
          class="mt-4 inline-block px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition">
         Open Source Portal 🌍
       </a>
     </div>
   </div>
+  </div>
+  </section></div>
+
+  
 </section>
+
+   
 
 
 <!-- PROJECTS -->
 <!-- Project Grid -->
+ <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition">
+  <p class="text-gray-700 dark:text-gray-300 mb-4 text-lg font-medium">Knowledge is Sharing</p>
+
+  <a href="knowledge-board.html" 
+     class="inline-flex items-center justify-center mx-auto bg-blue-600 hover:bg-blue-500 text-white px-5 py-3 rounded-full transition animate-soft-bounce">
+    <!-- Spark of Knowledge Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" 
+         stroke-width="1.5" stroke="currentColor" 
+         class="w-6 h-6 text-yellow-400 mr-2">
+      <path stroke-linecap="round" stroke-linejoin="round" 
+            d="M12 3v2.25M17.25 6.75l1.5 1.5M21 12h-2.25M17.25 17.25l1.5 1.5M12 18.75V21M6.75 17.25l-1.5 1.5M3 12h2.25M6.75 6.75l-1.5-1.5M8.25 12a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0z" />
+    </svg>
+    <span class="font-semibold text-lg">iShare</span>
+  </a>
+
+
 <!-- Project Grid -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
