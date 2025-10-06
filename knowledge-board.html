@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge Share Board</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      min-height: 100vh;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .note-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: move;
+      position: absolute;
+      animation: float 4s ease-in-out infinite, fadeIn 0.5s ease-out;
+      backdrop-filter: blur(10px);
+      background: rgba(31, 41, 55, 0.95);
+      border: 2px solid rgba(59, 130, 246, 0.3);
+    }
+    
+    .note-card:hover {
+      transform: scale(1.08) rotate(1deg) !important;
+      box-shadow: 0 25px 50px rgba(255, 107, 0, 0.4);
+      z-index: 100;
+      border-color: rgba(251, 146, 60, 0.8);
+    }
+    
+    .board-bg {
+      background-color: #1f2937;
+      background-image: 
+        linear-gradient(rgba(59, 130, 246, 0.1) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.1) 2px, transparent 2px),
+        linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+      background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+      background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+      box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
+    }
+    
+    .glow-button {
+      background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
+      box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+      transition: all 0.3s ease;
+    }
+    
+    .glow-button:hover {
+      box-shadow: 0 6px 25px rgba(249, 115, 22, 0.6);
+      transform: translateY(-2px);
+    }
+    
+    .header-gradient {
+      background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .modal-backdrop {
+      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.8);
+    }
+    
+    .category-badge {
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    input, textarea, select {
+      transition: all 0.3s ease;
+    }
+    
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #f97316;
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+    }
+    
+    .filter-btn {
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    
+    .filter-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .filter-btn.active {
+      background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
+      box-shadow: 0 4px 15px rgba(249, 115, 22, 0.5);
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Header -->
+  <header class="header-gradient py-6 shadow-xl sticky top-0 z-50" style="backdrop-filter: blur(10px);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <a href="index.html" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(255, 255, 255, 0.1); border-radius: 8px; color: white; text-decoration: none; transition: all 0.3s; border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'">
+            <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span style="font-weight: 500;">Home</span>
+          </a>
+          <div>
+            <h1 style="font-size: 32px; font-weight: bold; background: linear-gradient(135deg, #f97316 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              QA Knowledge Board
+            </h1>
+            <p style="color: #d1d5db; font-size: 14px; margin-top: 4px;">Collaborative learning space • Pin your insights</p>
+          </div>
+        </div>
+        <button onclick="toggleAddNote()" class="glow-button" style="padding: 12px 24px; border-radius: 8px; font-weight: 600; color: white; border: none; cursor: pointer;">
+          + Add Knowledge Note
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Add Note Modal -->
+  <div id="addNoteModal" class="modal-backdrop" style="display: none; position: fixed; inset: 0; align-items: center; justify-content: center; z-index: 100;">
+    <div style="background: rgba(31, 41, 55, 0.98); border-radius: 16px; padding: 32px; max-width: 500px; width: 90%; margin: 0 16px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); border: 2px solid rgba(59, 130, 246, 0.3);">
+      <h2 style="font-size: 24px; font-weight: bold; margin-bottom: 24px; color: #f97316;">Share Your Knowledge</h2>
+      
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div>
+          <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: #d1d5db;">Title</label>
+          <input type="text" id="noteTitle" placeholder="e.g., Playwright Best Practice" 
+            style="width: 100%; padding: 12px; background: #374151; border-radius: 8px; border: 1px solid #4b5563; color: white;">
+        </div>
+        
+        <div>
+          <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: #d1d5db;">Your Insight</label>
+          <textarea id="noteContent" rows="4" placeholder="Share your testing wisdom..."
+            style="width: 100%; padding: 12px; background: #374151; border-radius: 8px; border: 1px solid #4b5563; color: white; resize: vertical;"></textarea>
+        </div>
+        
+        <div>
+          <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: #d1d5db;">Category</label>
+          <select id="noteCategory" style="width: 100%; padding: 12px; background: #374151; border-radius: 8px; border: 1px solid #4b5563; color: white; cursor: pointer;">
+            <option value="automation">Test Automation</option>
+            <option value="manual">Manual Testing</option>
+            <option value="ai">AI/ML Testing</option>
+            <option value="performance">Performance</option>
+            <option value="security">Security</option>
+            <option value="api">API Testing</option>
+            <option value="mobile">Mobile Testing</option>
+            <option value="tools">Tools & Frameworks</option>
+          </select>
+        </div>
+        
+        <div>
+          <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: #d1d5db;">Your Name (optional)</label>
+          <input type="text" id="noteAuthor" placeholder="Anonymous QA Hero" 
+            style="width: 100%; padding: 12px; background: #374151; border-radius: 8px; border: 1px solid #4b5563; color: white;">
+        </div>
+      </div>
+      
+      <div style="display: flex; gap: 16px; margin-top: 24px;">
+        <button onclick="toggleAddNote()" style="flex: 1; padding: 12px 24px; background: #374151; border-radius: 8px; color: white; border: none; cursor: pointer; font-weight: 500; transition: all 0.3s;">
+          Cancel
+        </button>
+        <button onclick="addNote()" class="glow-button" style="flex: 1; padding: 12px 24px; border-radius: 8px; font-weight: 600; color: white; border: none; cursor: pointer;">
+          Pin Note
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Bar -->
+  <div style="max-width: 1280px; margin: 0 auto; padding: 24px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+      <span style="color: #9ca3af; font-size: 14px; font-weight: 500;">Filter by:</span>
+      <button onclick="filterNotes('all')" class="filter-btn active" data-filter="all" style="padding: 10px 20px; border-radius: 9999px; background: #1f2937; color: white; border: none; cursor: pointer; font-size: 14px;">
+        All Notes
+      </button>
+      <button onclick="filterNotes('automation')" class="filter-btn" data-filter="automation" style="padding: 10px 20px; border-radius: 9999px; background: #1f2937; color: white; border: none; cursor: pointer; font-size: 14px;">
+        Automation
+      </button>
+      <button onclick="filterNotes('ai')" class="filter-btn" data-filter="ai" style="padding: 10px 20px; border-radius: 9999px; background: #1f2937; color: white; border: none; cursor: pointer; font-size: 14px;">
+        AI/ML
+      </button>
+      <button onclick="filterNotes('api')" class="filter-btn" data-filter="api" style="padding: 10px 20px; border-radius: 9999px; background: #1f2937; color: white; border: none; cursor: pointer; font-size: 14px;">
+        API
+      </button>
+      <button onclick="filterNotes('tools')" class="filter-btn" data-filter="tools" style="padding: 10px 20px; border-radius: 9999px; background: #1f2937; color: white; border: none; cursor: pointer; font-size: 14px;">
+        Tools
+      </button>
+    </div>
+  </div>
+
+  <!-- Board Container -->
+  <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px 48px;">
+    <div id="board" class="board-bg" style="position: relative; min-height: 600px; border-radius: 16px; padding: 32px; border: 2px solid rgba(59, 130, 246, 0.2);">
+      <div style="position: absolute; top: 16px; right: 16px; color: #9ca3af; font-size: 14px;">
+        <span id="noteCount">0</span> knowledge notes • Drag to rearrange
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Footer -->
+  <footer style="background: rgba(31, 41, 55, 0.8); padding: 24px; margin-top: 48px; border-top: 1px solid rgba(75, 85, 99, 0.5); backdrop-filter: blur(10px);">
+    <div style="max-width: 1280px; margin: 0 auto; text-align: center; color: #9ca3af; font-size: 14px;">
+      <p>Collaborative QA Knowledge Sharing • Built with care for the testing community</p>
+    </div>
+  </footer>
+
+  <script>
+    let notes = [];
+    let draggedNote = null;
+    let currentFilter = 'all';
+    
+    const categoryColors = {
+      automation: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+      manual: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+      ai: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+      performance: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+      security: 'linear-gradient(135deg, #eab308 0%, #ca8a04 100%)',
+      api: 'linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)',
+      mobile: 'linear-gradient(135deg, #ec4899 0%, #db2777 100%)',
+      tools: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)'
+    };
+    
+    const categoryLabels = {
+      automation: 'Automation',
+      manual: 'Manual',
+      ai: 'AI/ML',
+      performance: 'Performance',
+      security: 'Security',
+      api: 'API',
+      mobile: 'Mobile',
+      tools: 'Tools'
+    };
+
+    function toggleAddNote() {
+      const modal = document.getElementById('addNoteModal');
+      if (modal.style.display === 'none' || modal.style.display === '') {
+        modal.style.display = 'flex';
+      } else {
+        modal.style.display = 'none';
+      }
+    }
+
+    function addNote() {
+      const title = document.getElementById('noteTitle').value.trim();
+      const content = document.getElementById('noteContent').value.trim();
+      const category = document.getElementById('noteCategory').value;
+      const author = document.getElementById('noteAuthor').value.trim() || 'Anonymous';
+      
+      if (!title || !content) {
+        alert('Please fill in both title and content!');
+        return;
+      }
+      
+      const note = {
+        id: Date.now(),
+        title,
+        content,
+        category,
+        author,
+        x: Math.random() * 60 + 5,
+        y: Math.random() * 60 + 5,
+        timestamp: new Date().toLocaleDateString()
+      };
+      
+      notes.push(note);
+      saveNotes();
+      renderNotes();
+      toggleAddNote();
+      
+      document.getElementById('noteTitle').value = '';
+      document.getElementById('noteContent').value = '';
+      document.getElementById('noteAuthor').value = '';
+    }
+
+    function deleteNote(id) {
+      if (confirm('Remove this knowledge note?')) {
+        notes = notes.filter(n => n.id !== id);
+        saveNotes();
+        renderNotes();
+      }
+    }
+
+    function filterNotes(category) {
+      currentFilter = category;
+      renderNotes();
+      
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelector(`[data-filter="${category}"]`).classList.add('active');
+    }
+
+    function renderNotes() {
+      const board = document.getElementById('board');
+      const filtered = currentFilter === 'all' 
+        ? notes 
+        : notes.filter(n => n.category === currentFilter);
+      
+      board.innerHTML = `
+        <div style="position: absolute; top: 16px; right: 16px; color: #9ca3af; font-size: 14px;">
+          <span id="noteCount">${filtered.length}</span> knowledge notes • Drag to rearrange
+        </div>
+      `;
+      
+      filtered.forEach(note => {
+        const noteEl = document.createElement('div');
+        noteEl.className = 'note-card';
+        noteEl.style.cssText = `
+          left: ${note.x}%;
+          top: ${note.y}%;
+          width: 280px;
+          padding: 24px;
+          border-radius: 12px;
+        `;
+        noteEl.draggable = true;
+        noteEl.dataset.id = note.id;
+        
+        noteEl.innerHTML = `
+          <div style="display: flex; align-items: start; justify-content: space-between; margin-bottom: 12px;">
+            <span class="category-badge" style="padding: 6px 12px; border-radius: 9999px; font-size: 12px; font-weight: 600; background: ${categoryColors[note.category]}; color: white;">
+              ${categoryLabels[note.category]}
+            </span>
+            <button onclick="deleteNote(${note.id})" style="color: #9ca3af; background: none; border: none; cursor: pointer; padding: 0; font-size: 20px; line-height: 1; transition: all 0.3s;">
+              ×
+            </button>
+          </div>
+          
+          <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #f97316;">${note.title}</h3>
+          <p style="color: #d1d5db; font-size: 14px; margin-bottom: 16px; line-height: 1.5;">${note.content}</p>
+          
+          <div style="display: flex; align-items: center; justify-between; font-size: 12px; color: #9ca3af; padding-top: 12px; border-top: 1px solid rgba(75, 85, 99, 0.5);">
+            <span>📝 ${note.author}</span>
+            <span>📅 ${note.timestamp}</span>
+          </div>
+        `;
+        
+        noteEl.addEventListener('dragstart', (e) => {
+          draggedNote = note;
+          e.target.style.opacity = '0.5';
+        });
+        
+        noteEl.addEventListener('dragend', (e) => {
+          e.target.style.opacity = '1';
+        });
+        
+        board.appendChild(noteEl);
+      });
+    }
+
+    document.getElementById('board').addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+
+    document.getElementById('board').addEventListener('drop', (e) => {
+      e.preventDefault();
+      if (!draggedNote) return;
+      
+      const board = document.getElementById('board');
+      const rect = board.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      
+      draggedNote.x = Math.max(0, Math.min(80, x));
+      draggedNote.y = Math.max(0, Math.min(80, y));
+      
+      saveNotes();
+      renderNotes();
+      draggedNote = null;
+    });
+
+    function saveNotes() {
+      localStorage.setItem('qaKnowledgeNotes', JSON.stringify({ notes, lastUpdated: new Date().toISOString() }));
+    }
+
+    function loadNotes() {
+      const saved = localStorage.getItem('qaKnowledgeNotes');
+      if (saved) {
+        const data = JSON.parse(saved);
+        notes = data.notes || [];
+      } else {
+        notes = [
+          {
+            id: 1,
+            title: 'Playwright Tip',
+            content: 'Use page.waitForLoadState("networkidle") for better reliability when testing SPAs.',
+            category: 'automation',
+            author: 'Shaheen',
+            x: 10,
+            y: 15,
+            timestamp: new Date().toLocaleDateString()
+          },
+          {
+            id: 2,
+            title: 'AI Testing Insight',
+            content: 'Combine AI-driven test generation with human review for optimal coverage and accuracy.',
+            category: 'ai',
+            author: 'Community',
+            x: 45,
+            y: 25,
+            timestamp: new Date().toLocaleDateString()
+          }
+        ];
+        saveNotes();
+      }
+      renderNotes();
+    }
+
+    loadNotes();
+  </script>
+</body>
+</html>
